@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tu carrito. RetroWave: música, ropa e identidad. Prototipo educativo en HTML.">
+    <title>Tu carrito | RetroWave</title>
+    <!-- En la etapa de CSS se agregará aquí el enlace a una hoja de estilos externa. -->
+</head>
+<body>
+    <a href="#contenido">Saltar al contenido principal</a>
+
+    <!-- Encabezado y navegación compartidos por las páginas del sitio. -->
+    <header id="encabezado">
+        <p><a href="index.html"><strong>RetroWave</strong></a></p>
+        <p>MÚSICA · ROPA · IDENTIDAD</p>
+        <nav>
+            <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="tienda.html">Tienda</a></li>
+            <li><a href="index.html#estilos">Artistas y estilos</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="cuenta.html">Mi cuenta</a></li>
+            <li><a href="carrito.html">Carrito</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="contenido">
+<h1>Tu carrito</h1>
+        <p>3 artículos elegidos para tu próxima escucha.</p>
+        <p><strong>Carrito de ejemplo:</strong> estos artículos son fijos. Todavía no se pueden agregar, eliminar o comprar productos.</p>
+        <p><a href="carrito-vacio.html">Ver el ejemplo de carrito vacío</a></p>
+        <section id="articulos">
+            <h2>Artículos</h2>
+            <figure><img src="imagenes/4427145.jpeg" alt="Cámara, guitarra y accesorios; imagen ilustrativa del prototipo" width="180"><figcaption>Remera Higher Ground</figcaption></figure>
+            <figure><img src="imagenes/6186448.jpeg" alt="Buzo doblado con franjas de colores" width="180"><figcaption>Buzo Sound Check</figcaption></figure>
+            <figure><img src="imagenes/6862370.jpeg" alt="Mujer buscando discos en una tienda" width="180"><figcaption>Tote bag Vinyl Forever</figcaption></figure>
+            <!-- Esta tabla contiene datos de compra, no se usa para maquetar la página. -->
+            <table>
+                <caption>Productos del carrito de ejemplo</caption>
+                <thead><tr><th scope="col">Producto</th><th scope="col">Color</th><th scope="col">Talle</th><th scope="col">Precio</th><th scope="col">Cantidad</th><th scope="col">Subtotal</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Remera Higher Ground</th>
+                        <td>Carbón</td><td>M</td><td>$32.000</td><td>1</td><td>$32.000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Buzo Sound Check</th>
+                        <td>Verde menta</td><td>L</td><td>$54.000</td><td>1</td><td>$54.000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Tote bag Vinyl Forever</th>
+                        <td>Crudo</td><td>Único</td><td>$18.000</td><td>1</td><td>$18.000</td>
+                    </tr>
+                </tbody>
+            </table>
+            <form id="cart-form">
+                <fieldset disabled>
+                    <legend>Modificar el carrito (próximamente)</legend>
+                    <p><label for="cart-product">Producto</label>
+                        <select id="cart-product" name="product"><option value="higherGround">Remera Higher Ground</option><option value="soundCheck">Buzo Sound Check</option><option value="tote">Tote bag Vinyl Forever</option></select>
+                    </p>
+                    <p><label for="quantity">Cantidad</label> <input id="quantity" name="quantity" type="number" min="1" max="10" value="1"></p>
+                    <button type="button">Actualizar cantidad</button>
+                    <button type="button">Eliminar</button>
+                </fieldset>
+            </form>
+        </section>
+        <section id="resumen">
+            <h2>Resumen</h2>
+            <p>Subtotal: <strong>$104.000</strong></p>
+            <p>Envío: se calcula en el siguiente paso.</p>
+            <p>Total sin envío: <strong>$104.000</strong></p>
+            <form id="discount-form">
+                <p><label for="discount-code">Código de descuento</label> <input type="text" id="discount-code" name="discountCode" maxlength="30" disabled></p>
+                <button type="submit" disabled>Aplicar</button>
+            </form>
+            <p><button type="button" disabled>Continuar con la compra</button></p>
+            <p><a href="tienda.html">Seguir comprando</a></p>
+        </section>
+    </main>
+
+    <!-- La suscripción necesita un servidor; el botón está deshabilitado por ahora. -->
+    <footer id="pie">
+        <hr>
+        <p><strong>RetroWave</strong> · Música para llevar.</p>
+        <nav>
+            <ul>
+                <li><a href="tienda.html">Remeras</a></li>
+                <li><a href="buzos.html">Buzos</a></li>
+                <li><a href="accesorios.html">Accesorios</a></li>
+                <li><a href="contacto.html#preguntas">Preguntas frecuentes</a></li>
+                <li><a href="contacto.html#envios">Envíos</a></li>
+                <li><a href="contacto.html#cambios">Cambios</a></li>
+                <li><a href="contacto.html#canales">Redes y canales de contacto</a></li>
+            </ul>
+        </nav>
+        <section id="suscripcion">
+            <h2>Quedate en la frecuencia</h2>
+            <p>Novedades, lanzamientos y música para vestir.</p>
+            <p>La suscripción todavía no está disponible.</p>
+            <form id="newsletter-form">
+                <p>
+                    <label for="newsletter-email">Tu email</label>
+                    <input type="email" id="newsletter-email" name="newsletterEmail" placeholder="nombre@ejemplo.com" maxlength="100" disabled>
+                </p>
+                <button type="submit" disabled>Suscribirme</button>
+            </form>
+        </section>
+        <p><small>© 2026 RetroWave. Prototipo educativo. Los precios son de ejemplo.</small></p>
+        <p><a href="#encabezado">Volver arriba</a></p>
+    </footer>
+    <!-- En una próxima etapa se podrá enlazar aquí un archivo JavaScript externo. -->
+</body>
+</html>
