@@ -1,223 +1,243 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Remeras. RetroWave: música, ropa e identidad. Prototipo educativo en HTML.">
-    <title>Remeras | RetroWave</title>
-    <!-- En la etapa de CSS se agregará aquí el enlace a una hoja de estilos externa. -->
-</head>
-<body>
-    <a href="#contenido">Saltar al contenido principal</a>
-
-    <!-- Encabezado y navegación compartidos por las páginas del sitio. -->
-    <header id="encabezado">
-        <p><a href="index.html"><strong>RetroWave</strong></a></p>
-        <p>MÚSICA · ROPA · IDENTIDAD</p>
-        <nav>
-            <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="tienda.html">Tienda</a></li>
-            <li><a href="index.html#estilos">Artistas y estilos</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-            <li><a href="cuenta.html">Mi cuenta</a></li>
-            <li><a href="carrito.html">Carrito</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main id="contenido">
-<p><a href="index.html">Inicio</a> / Tienda / Remeras</p>
-        <h1>Remeras</h1>
-        <p>Remeras estampadas para llevar tus discos y canciones favoritas a todas partes.</p>
-        <section id="categorias">
-            <h2>Categorías de la tienda</h2>
-        <nav>
-            <p><a href="tienda.html#categorias">Todas las categorías</a> · <a href="tienda.html">Remeras</a> · <a href="buzos.html">Buzos</a> · <a href="accesorios.html">Accesorios</a></p>
-        </nav>
-        </section>
-        <!-- Los filtros son controles de muestra. Más adelante JavaScript filtrará el catálogo. -->
-        <aside id="filtros">
-            <h2>Filtrar</h2>
-            <p>Podés probar los controles. El listado todavía no cambia al seleccionarlos.</p>
-            <form id="filter-form">
-                <fieldset>
-                    <legend>Precio</legend>
-                    <p><input type="checkbox" id="price-0" name="priceRange" value="0"> <label for="price-0">Menos de $30.000</label></p>
-                    <p><input type="checkbox" id="price-1" name="priceRange" value="1"> <label for="price-1">$30.000 a $40.000</label></p>
-                    <p><input type="checkbox" id="price-2" name="priceRange" value="2"> <label for="price-2">Más de $40.000</label></p>
-                </fieldset>
-                <fieldset>
-                    <legend>Disponibilidad</legend>
-                    <p><input type="checkbox" id="available" name="availability" value="available"> <label for="available">Disponible</label></p>
-                    <p><input type="checkbox" id="sold-out" name="availability" value="soldOut"> <label for="sold-out">Agotado</label></p>
-                </fieldset>
-                <fieldset>
-                    <legend>Color y talle</legend>
-                    <p><label for="color">Color</label>
-                        <select id="color" name="color">
-                            <option value="all">Todos</option>
-                            <option value="black">Negro</option>
-                            <option value="cream">Crudo</option>
-                            <option value="coral">Coral</option>
-                            <option value="mint">Menta</option>
-                        </select>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Remeras. RetroWave: música, ropa e identidad. Prototipo educativo en HTML." name="description">
+        <title>Remeras | RetroWave</title>
+        <meta content="Albarracin, Garcia y Terpin" name="author">
+        <meta content="RetroWave, música, ropa, remeras, buzos, accesorios, tienda, proyecto universitario" name="keywords">
+        <link href="imagenes/favicon-retrowave.svg" rel="icon" type="image/svg+xml">
+    </head>
+    <body>
+        <div id="pagina">
+            <a href="#contenido">Saltar al contenido principal</a>
+            <header id="encabezado">
+                <div class="contenedor">
+                    <p>
+                        <a href="index.html">
+                            <img alt="" height="48" src="imagenes/favicon-retrowave.svg" width="48">
+                            <strong>RetroWave</strong>
+                        </a>
                     </p>
-                    <p><label for="size">Talle</label>
-                        <select id="size" name="size">
-                            <option value="all">Todos</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                        </select>
-                    </p>
-                </fieldset>
-                <p><label for="sort">Ordenar por</label>
-                    <select id="sort" name="sort">
-                        <option value="featured">Destacados</option>
-                        <option value="new">Novedades</option>
-                        <option value="priceAsc">Menor precio</option>
-                        <option value="priceDesc">Mayor precio</option>
-                    </select>
-                </p>
-                <button type="submit" disabled>Aplicar filtros</button>
-                <button type="reset">Limpiar filtros</button>
-            </form>
-        </aside>
-        <section id="catalogo">
-            <h2>Catálogo de remeras</h2>
-            <p>12 productos de ejemplo. Se muestran todos en esta página.</p>
-        <article id="remera-highway-grooves">
-            <h3>Remera Highway Grooves</h3>
-            <img src="imagenes/33624546.jpeg" alt="Remera con diseño gráfico musical en tonos vintage" width="280">
-            <p><strong>Nuevo</strong></p>
-            <p><strong>$28.900</strong> · Precio de ejemplo</p>
-            <p>Colores: Negro y crudo</p>
-            <p><a href="productos.html#remera-highway-grooves">Ver detalle de Remera Highway Grooves</a></p>
-        </article>
-        <article id="remera-spin-forever">
-            <h3>Remera Spin Forever</h3>
-            <img src="imagenes/12955748.jpeg" alt="Persona sosteniendo un disco de vinilo con fondo naranja" width="280">
-            <p><strong>Nuevo</strong></p>
-            <p><strong>$31.500</strong> · Precio de ejemplo</p>
-            <p>Colores: Crudo y coral</p>
-            <p><a href="productos.html#remera-spin-forever">Ver detalle de Remera Spin Forever</a></p>
-        </article>
-        <article id="remera-music-heals">
-            <h3>Remera Music Heals</h3>
-            <img src="imagenes/14867670.jpeg" alt="Dos remeras blancas colgadas en perchas de madera" width="280">
-            
-            <p><strong>$34.900</strong> · Precio de ejemplo</p>
-            <p>Colores: Negro y menta</p>
-            <p><a href="productos.html#remera-music-heals">Ver detalle de Remera Music Heals</a></p>
-        </article>
-        <article id="remera-stay-wild">
-            <h3>Remera Stay Wild</h3>
-            <img src="imagenes/3838325.jpeg" alt="Papel kraft y elementos artesanales vintage" width="280">
-            <p><strong>Nuevo</strong></p>
-            <p><strong>$28.900</strong> · Precio de ejemplo</p>
-            <p>Colores: Coral y crudo</p>
-            <p><a href="productos.html#remera-stay-wild">Ver detalle de Remera Stay Wild</a></p>
-        </article>
-        <article id="remera-good-music-only">
-            <h3>Remera Good Music Only</h3>
-            <img src="imagenes/37704849.jpeg" alt="Remera blanca sobre piso de madera con luz cálida" width="280">
-            
-            <p><strong>$32.900</strong> · Precio de ejemplo</p>
-            <p>Colores: Crudo y negro</p>
-            <p><a href="productos.html#remera-good-music-only">Ver detalle de Remera Good Music Only</a></p>
-        </article>
-        <article id="remera-vinyl-forever">
-            <h3>Remera Vinyl Forever</h3>
-            <img src="imagenes/2112651.jpeg" alt="Remeras con estampas en un perchero" width="280">
-            <p><strong>Nuevo</strong></p>
-            <p><strong>$36.500</strong> · Precio de ejemplo</p>
-            <p>Colores: Negro y menta</p>
-            <p><a href="productos.html#remera-vinyl-forever">Ver detalle de Remera Vinyl Forever</a></p>
-        </article>
-        <article id="remera-midnight-radio">
-            <h3>Remera Midnight Radio</h3>
-            <img src="imagenes/10856203.jpeg" alt="Hombre con remera gráfica en iluminación tenue" width="280">
-            <p><strong>Agotado</strong></p>
-            <p><strong>$38.900</strong> · Precio de ejemplo</p>
-            <p>Colores: Negro</p>
-            <p><a href="productos.html#remera-midnight-radio">Ver detalle de Remera Midnight Radio</a></p>
-        </article>
-        <article id="remera-electric-soul">
-            <h3>Remera Electric Soul</h3>
-            <img src="imagenes/4440566.jpeg" alt="Remeras de colores plegadas sobre una superficie azul" width="280">
-            
-            <p><strong>$29.900</strong> · Precio de ejemplo</p>
-            <p>Colores: Coral y mostaza</p>
-            <p><a href="productos.html#remera-electric-soul">Ver detalle de Remera Electric Soul</a></p>
-        </article>
-        <article id="remera-loud-free">
-            <h3>Remera Loud &amp; Free</h3>
-            <img src="imagenes/38539214.jpeg" alt="Discos de vinilo y póster retro en una sala" width="280">
-            
-            <p><strong>$41.900</strong> · Precio de ejemplo</p>
-            <p>Colores: Negro y crudo</p>
-            <p><a href="productos.html#remera-loud-free">Ver detalle de Remera Loud &amp; Free</a></p>
-        </article>
-        <article id="remera-backstage-club">
-            <h3>Remera Backstage Club</h3>
-            <img src="imagenes/12025472.jpeg" alt="Remera blanca sobre fondo neutro" width="280">
-            <p><strong>Nuevo</strong></p>
-            <p><strong>$33.500</strong> · Precio de ejemplo</p>
-            <p>Colores: Crudo y menta</p>
-            <p><a href="productos.html#remera-backstage-club">Ver detalle de Remera Backstage Club</a></p>
-        </article>
-        <article id="remera-analog-heart">
-            <h3>Remera Analog Heart</h3>
-            <img src="imagenes/2062324.jpeg" alt="Cámara analógica y remera gráfica sobre una silla" width="280">
-            
-            <p><strong>$35.900</strong> · Precio de ejemplo</p>
-            <p>Colores: Coral y negro</p>
-            <p><a href="productos.html#remera-analog-heart">Ver detalle de Remera Analog Heart</a></p>
-        </article>
-        <article id="remera-sunday-records">
-            <h3>Remera Sunday Records</h3>
-            <img src="imagenes/6863611.jpeg" alt="Dos personas en una tienda de discos vintage" width="280">
-            
-            <p><strong>$30.500</strong> · Precio de ejemplo</p>
-            <p>Colores: Crudo y mostaza</p>
-            <p><a href="productos.html#remera-sunday-records">Ver detalle de Remera Sunday Records</a></p>
-        </article>
-        </section>
-    </main>
-
-    <!-- La suscripción necesita un servidor; el botón está deshabilitado por ahora. -->
-    <footer id="pie">
-        <hr>
-        <p><strong>RetroWave</strong> · Música para llevar.</p>
-        <nav>
-            <ul>
-                <li><a href="tienda.html">Remeras</a></li>
-                <li><a href="buzos.html">Buzos</a></li>
-                <li><a href="accesorios.html">Accesorios</a></li>
-                <li><a href="contacto.html#preguntas">Preguntas frecuentes</a></li>
-                <li><a href="contacto.html#envios">Envíos</a></li>
-                <li><a href="contacto.html#cambios">Cambios</a></li>
-                <li><a href="contacto.html#canales">Redes y canales de contacto</a></li>
-            </ul>
-        </nav>
-        <section id="suscripcion">
-            <h2>Quedate en la frecuencia</h2>
-            <p>Novedades, lanzamientos y música para vestir.</p>
-            <p>La suscripción todavía no está disponible.</p>
-            <form id="newsletter-form">
-                <p>
-                    <label for="newsletter-email">Tu email</label>
-                    <input type="email" id="newsletter-email" name="newsletterEmail" placeholder="nombre@ejemplo.com" maxlength="100" disabled>
-                </p>
-                <button type="submit" disabled>Suscribirme</button>
-            </form>
-        </section>
-        <p><small>© 2026 RetroWave. Prototipo educativo. Los precios son de ejemplo.</small></p>
-        <p><a href="#encabezado">Volver arriba</a></p>
-    </footer>
-    <!-- En una próxima etapa se podrá enlazar aquí un archivo JavaScript externo. -->
-</body>
+                    <h1>Remeras</h1>
+                    <p>MÚSICA · ROPA · IDENTIDAD</p>
+                    <nav>
+                        <ul>
+                            <li><a href="index.html">Inicio</a></li>
+                            <li><a href="tienda.html">Tienda</a></li>
+                            <li><a href="index.html#estilos">Artistas y estilos</a></li>
+                            <li><a href="nosotros.html">Nosotros</a></li>
+                            <li><a href="contacto.html">Contacto</a></li>
+                            <li><a href="cuenta.html">Mi cuenta</a></li>
+                            <li><a href="carrito.html">Carrito</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+            <main id="contenido">
+                <div class="contenedor">
+                    <p><a href="index.html">Inicio</a> / Tienda / Remeras</p>
+                    <p>Remeras estampadas para llevar tus discos y canciones favoritas a todas partes.</p>
+                    <section id="categorias">
+                        <h2>Categorías de la tienda</h2>
+                        <nav>
+                            <p><a href="tienda.html#categorias">Todas las categorías</a> · <a href="tienda.html">Remeras</a> · <a href="buzos.html">Buzos</a> · <a href="accesorios.html">Accesorios</a></p>
+                        </nav>
+                    </section>
+                    <aside id="filtros">
+                        <h2>Filtrar</h2>
+                        <p>Podés probar los controles. El listado todavía no cambia al seleccionarlos.</p>
+                        <form id="filter-form">
+                            <fieldset>
+                                <legend>Precio</legend>
+                                <p>
+                                    <input id="price-0" name="priceRange" type="checkbox" value="0">
+                                    <label for="price-0">Menos de $30.000</label>
+                                </p>
+                                <p>
+                                    <input id="price-1" name="priceRange" type="checkbox" value="1">
+                                    <label for="price-1">$30.000 a $40.000</label>
+                                </p>
+                                <p>
+                                    <input id="price-2" name="priceRange" type="checkbox" value="2">
+                                    <label for="price-2">Más de $40.000</label>
+                                </p>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Disponibilidad</legend>
+                                <p>
+                                    <input id="available" name="availability" type="checkbox" value="available">
+                                    <label for="available">Disponible</label>
+                                </p>
+                                <p>
+                                    <input id="sold-out" name="availability" type="checkbox" value="soldOut">
+                                    <label for="sold-out">Agotado</label>
+                                </p>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Color y talle</legend>
+                                <p>
+                                    <label for="color">Color</label>
+                                    <select id="color" name="color">
+                                        <option value="all">Todos</option>
+                                        <option value="black">Negro</option>
+                                        <option value="cream">Crudo</option>
+                                        <option value="coral">Coral</option>
+                                        <option value="mint">Menta</option>
+                                    </select>
+                                </p>
+                                <p>
+                                    <label for="size">Talle</label>
+                                    <select id="size" name="size">
+                                        <option value="all">Todos</option>
+                                        <option value="S">S</option>
+                                        <option value="M">M</option>
+                                        <option value="L">L</option>
+                                        <option value="XL">XL</option>
+                                    </select>
+                                </p>
+                            </fieldset>
+                            <p>
+                                <label for="sort">Ordenar por</label>
+                                <select id="sort" name="sort">
+                                    <option value="featured">Destacados</option>
+                                    <option value="new">Novedades</option>
+                                    <option value="priceAsc">Menor precio</option>
+                                    <option value="priceDesc">Mayor precio</option>
+                                </select>
+                            </p>
+                            <button disabled="" type="submit">Aplicar filtros</button>
+                            <button type="reset">Limpiar filtros</button>
+                        </form>
+                    </aside>
+                    <section id="catalogo">
+                        <h2>Catálogo de remeras</h2>
+                        <p>12 productos de ejemplo. Se muestran todos en esta página.</p>
+                        <article id="remera-highway-grooves">
+                            <h3>Remera Highway Grooves</h3>
+                            <img alt="Remera con diseño gráfico musical en tonos vintage" src="imagenes/remera-grafica-vintage.jpeg" width="280">
+                            <p><strong>Nuevo</strong></p>
+                            <p><strong>$28.900</strong> · Precio de ejemplo</p>
+                            <p>Colores: Negro y crudo</p>
+                            <p><a href="productos.html#remera-highway-grooves">Ver detalle de Remera Highway Grooves</a></p>
+                        </article>
+                        <article id="remera-spin-forever">
+                            <h3>Remera Spin Forever</h3>
+                            <img alt="Persona sosteniendo un disco de vinilo con fondo naranja" src="imagenes/persona-disco-vinilo.jpeg" width="280">
+                            <p><strong>Nuevo</strong></p>
+                            <p><strong>$31.500</strong> · Precio de ejemplo</p>
+                            <p>Colores: Crudo y coral</p>
+                            <p><a href="productos.html#remera-spin-forever">Ver detalle de Remera Spin Forever</a></p>
+                        </article>
+                        <article id="remera-music-heals">
+                            <h3>Remera Music Heals</h3>
+                            <img alt="Dos remeras blancas colgadas en perchas de madera" src="imagenes/remeras-blancas-perchas.jpeg" width="280">
+                            <p><strong>$34.900</strong> · Precio de ejemplo</p>
+                            <p>Colores: Negro y menta</p>
+                            <p><a href="productos.html#remera-music-heals">Ver detalle de Remera Music Heals</a></p>
+                        </article>
+                        <article id="remera-stay-wild">
+                            <h3>Remera Stay Wild</h3>
+                            <img alt="Papel kraft y elementos artesanales vintage" src="imagenes/papel-kraft-artesanal.jpeg" width="280">
+                            <p><strong>Nuevo</strong></p>
+                            <p><strong>$28.900</strong> · Precio de ejemplo</p>
+                            <p>Colores: Coral y crudo</p>
+                            <p><a href="productos.html#remera-stay-wild">Ver detalle de Remera Stay Wild</a></p>
+                        </article>
+                        <article id="remera-good-music-only">
+                            <h3>Remera Good Music Only</h3>
+                            <img alt="Remera blanca sobre piso de madera con luz cálida" src="imagenes/remera-blanca-madera.jpeg" width="280">
+                            <p><strong>$32.900</strong> · Precio de ejemplo</p>
+                            <p>Colores: Crudo y negro</p>
+                            <p><a href="productos.html#remera-good-music-only">Ver detalle de Remera Good Music Only</a></p>
+                        </article>
+                        <article id="remera-vinyl-forever">
+                            <h3>Remera Vinyl Forever</h3>
+                            <img alt="Remeras con estampas en un perchero" src="imagenes/remeras-perchero.jpeg" width="280">
+                            <p><strong>Nuevo</strong></p>
+                            <p><strong>$36.500</strong> · Precio de ejemplo</p>
+                            <p>Colores: Negro y menta</p>
+                            <p><a href="productos.html#remera-vinyl-forever">Ver detalle de Remera Vinyl Forever</a></p>
+                        </article>
+                        <article id="remera-midnight-radio">
+                            <h3>Remera Midnight Radio</h3>
+                            <img alt="Hombre con remera gráfica en iluminación tenue" src="imagenes/remera-midnight-radio.jpeg" width="280">
+                            <p><strong>Agotado</strong></p>
+                            <p><strong>$38.900</strong> · Precio de ejemplo</p>
+                            <p>Colores: Negro</p>
+                            <p><a href="productos.html#remera-midnight-radio">Ver detalle de Remera Midnight Radio</a></p>
+                        </article>
+                        <article id="remera-electric-soul">
+                            <h3>Remera Electric Soul</h3>
+                            <img alt="Remeras de colores plegadas sobre una superficie azul" src="imagenes/remeras-colores-plegadas.jpeg" width="280">
+                            <p><strong>$29.900</strong> · Precio de ejemplo</p>
+                            <p>Colores: Coral y mostaza</p>
+                            <p><a href="productos.html#remera-electric-soul">Ver detalle de Remera Electric Soul</a></p>
+                        </article>
+                        <article id="remera-loud-free">
+                            <h3>Remera Loud &amp; Free</h3>
+                            <img alt="Discos de vinilo y póster retro en una sala" src="imagenes/vinilos-poster-retro.jpeg" width="280">
+                            <p><strong>$41.900</strong> · Precio de ejemplo</p>
+                            <p>Colores: Negro y crudo</p>
+                            <p><a href="productos.html#remera-loud-free">Ver detalle de Remera Loud &amp; Free</a></p>
+                        </article>
+                        <article id="remera-backstage-club">
+                            <h3>Remera Backstage Club</h3>
+                            <img alt="Remera blanca sobre fondo neutro" src="imagenes/remera-blanca-fondo-neutro.jpeg" width="280">
+                            <p><strong>Nuevo</strong></p>
+                            <p><strong>$33.500</strong> · Precio de ejemplo</p>
+                            <p>Colores: Crudo y menta</p>
+                            <p><a href="productos.html#remera-backstage-club">Ver detalle de Remera Backstage Club</a></p>
+                        </article>
+                        <article id="remera-analog-heart">
+                            <h3>Remera Analog Heart</h3>
+                            <img alt="Cámara analógica y remera gráfica sobre una silla" src="imagenes/camara-remera-silla.jpeg" width="280">
+                            <p><strong>$35.900</strong> · Precio de ejemplo</p>
+                            <p>Colores: Coral y negro</p>
+                            <p><a href="productos.html#remera-analog-heart">Ver detalle de Remera Analog Heart</a></p>
+                        </article>
+                        <article id="remera-sunday-records">
+                            <h3>Remera Sunday Records</h3>
+                            <img alt="Dos personas en una tienda de discos vintage" src="imagenes/personas-disqueria.jpeg" width="280">
+                            <p><strong>$30.500</strong> · Precio de ejemplo</p>
+                            <p>Colores: Crudo y mostaza</p>
+                            <p><a href="productos.html#remera-sunday-records">Ver detalle de Remera Sunday Records</a></p>
+                        </article>
+                    </section>
+                </div>
+            </main>
+            <footer id="pie">
+                <div class="contenedor">
+                    <hr>
+                    <p><strong>RetroWave</strong> · Música para llevar.</p>
+                    <nav>
+                        <ul>
+                            <li><a href="tienda.html">Remeras</a></li>
+                            <li><a href="buzos.html">Buzos</a></li>
+                            <li><a href="accesorios.html">Accesorios</a></li>
+                            <li><a href="contacto.html#preguntas">Preguntas frecuentes</a></li>
+                            <li><a href="contacto.html#envios">Envíos</a></li>
+                            <li><a href="contacto.html#cambios">Cambios</a></li>
+                            <li><a href="contacto.html#canales">Redes y canales de contacto</a></li>
+                        </ul>
+                    </nav>
+                    <section id="suscripcion">
+                        <h2>Quedate en la frecuencia</h2>
+                        <p>Novedades, lanzamientos y música para vestir.</p>
+                        <p>La suscripción todavía no está disponible.</p>
+                        <form id="newsletter-form">
+                            <p>
+                                <label for="newsletter-email">Tu email</label>
+                                <input disabled="" id="newsletter-email" maxlength="100" name="newsletterEmail" placeholder="nombre@ejemplo.com" size="28" type="email">
+                            </p>
+                            <button disabled="" type="submit">Suscribirme</button>
+                        </form>
+                    </section>
+                    <p><small>© 2026 RetroWave. Prototipo educativo. Los precios son de ejemplo.</small></p>
+                    <p><a href="#encabezado">Volver arriba</a></p>
+                </div>
+            </footer>
+        </div>
+    </body>
 </html>

@@ -1,109 +1,155 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contacto. RetroWave: música, ropa e identidad. Prototipo educativo en HTML.">
-    <title>Contacto | RetroWave</title>
-    <!-- En la etapa de CSS se agregará aquí el enlace a una hoja de estilos externa. -->
-</head>
-<body>
-    <a href="#contenido">Saltar al contenido principal</a>
-
-    <!-- Encabezado y navegación compartidos por las páginas del sitio. -->
-    <header id="encabezado">
-        <p><a href="index.html"><strong>RetroWave</strong></a></p>
-        <p>MÚSICA · ROPA · IDENTIDAD</p>
-        <nav>
-            <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="tienda.html">Tienda</a></li>
-            <li><a href="index.html#estilos">Artistas y estilos</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-            <li><a href="cuenta.html">Mi cuenta</a></li>
-            <li><a href="carrito.html">Carrito</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main id="contenido">
-<p>RETROWAVE ESCUCHA</p>
-        <h1>Hablemos</h1>
-        <p>¿Tenés una consulta sobre tu pedido o nuestras prendas? Escribinos.</p>
-        <section id="mensaje">
-            <h2>Contanos qué necesitás</h2>
-            <p>Formulario de práctica. Podés completar y limpiar los campos, pero el envío todavía no está disponible.</p>
-            <p>Los campos con * serán obligatorios.</p>
-            <!-- No hay action ni envío habilitado. Más adelante se conectará con el backend usando POST. -->
-            <form id="contact-form">
-                <fieldset>
-                    <legend>Tus datos</legend>
-                    <p><label for="contact-name">Nombre *</label><br><input type="text" id="contact-name" name="fullName" placeholder="Tu nombre" maxlength="60" required></p>
-                    <p><label for="contact-email">Email *</label><br><input type="email" id="contact-email" name="email" placeholder="nombre@ejemplo.com" maxlength="100" required></p>
-                </fieldset>
-                <fieldset>
-                    <legend>Tu consulta</legend>
-                    <p><label for="contact-reason">Motivo de consulta *</label><br>
-                        <select id="contact-reason" name="reason" required>
-                            <option value="">Elegí una opción</option>
-                            <option value="product">Consulta sobre un producto</option>
-                            <option value="order">Estado de mi pedido</option>
-                            <option value="exchange">Cambios</option>
-                            <option value="other">Otro</option>
-                        </select>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Contacto. RetroWave: música, ropa e identidad. Prototipo educativo en HTML." name="description">
+        <title>Contacto | RetroWave</title>
+        <meta content="Albarracin, Garcia y Terpin" name="author">
+        <meta content="RetroWave, música, ropa, remeras, buzos, accesorios, tienda, proyecto universitario" name="keywords">
+        <link href="imagenes/favicon-retrowave.svg" rel="icon" type="image/svg+xml">
+    </head>
+    <body>
+        <div id="pagina">
+            <a href="#contenido">Saltar al contenido principal</a>
+            <header id="encabezado">
+                <div class="contenedor">
+                    <p>
+                        <a href="index.html">
+                            <img alt="" height="48" src="imagenes/favicon-retrowave.svg" width="48">
+                            <strong>RetroWave</strong>
+                        </a>
                     </p>
-                    <p><label for="order-number">Número de pedido (opcional)</label><br><input type="text" id="order-number" name="orderNumber" placeholder="Ejemplo: RW-1234" maxlength="30"></p>
-                    <p><label for="contact-message">Mensaje *</label><br><textarea id="contact-message" name="message" rows="6" cols="28" placeholder="Contanos qué necesitás" maxlength="2000" required></textarea></p>
-                </fieldset>
-                <p><button type="submit" disabled>Enviar mensaje</button> <button type="reset">Limpiar formulario</button></p>
-            </form>
-        </section>
-        <section id="canales">
-            <h2>También nos encontrás acá</h2>
-            <p>Los canales oficiales todavía están pendientes de completar en el prototipo.</p>
-            <ul><li>Email: pendiente.</li><li>WhatsApp: pendiente.</li><li>Redes sociales: pendientes.</li><li>Horario de atención: pendiente.</li></ul>
-        </section>
-        <section id="preguntas">
-            <h2>Preguntas frecuentes</h2>
-            <p>Las condiciones de la tienda deben completarse antes de habilitar las compras.</p>
-            <article id="talles"><h3>¿Cómo sé qué talle elegir?</h3><p>La guía de medidas está pendiente. Consultá las medidas de la prenda cuando estén disponibles.</p></article>
-            <article id="envios"><h3>¿Cómo funcionan los envíos?</h3><p>Los destinos, costos y plazos están pendientes de confirmar.</p></article>
-            <article id="cambios"><h3>¿Puedo hacer un cambio?</h3><p>La política de cambios está pendiente de definir.</p></article>
-            <article id="seguimiento"><h3>¿Dónde sigo mi pedido?</h3><p>El seguimiento estará disponible cuando se habiliten las compras y las cuentas.</p></article>
-        </section>
-    </main>
-
-    <!-- La suscripción necesita un servidor; el botón está deshabilitado por ahora. -->
-    <footer id="pie">
-        <hr>
-        <p><strong>RetroWave</strong> · Música para llevar.</p>
-        <nav>
-            <ul>
-                <li><a href="tienda.html">Remeras</a></li>
-                <li><a href="buzos.html">Buzos</a></li>
-                <li><a href="accesorios.html">Accesorios</a></li>
-                <li><a href="contacto.html#preguntas">Preguntas frecuentes</a></li>
-                <li><a href="contacto.html#envios">Envíos</a></li>
-                <li><a href="contacto.html#cambios">Cambios</a></li>
-                <li><a href="contacto.html#canales">Redes y canales de contacto</a></li>
-            </ul>
-        </nav>
-        <section id="suscripcion">
-            <h2>Quedate en la frecuencia</h2>
-            <p>Novedades, lanzamientos y música para vestir.</p>
-            <p>La suscripción todavía no está disponible.</p>
-            <form id="newsletter-form">
-                <p>
-                    <label for="newsletter-email">Tu email</label>
-                    <input type="email" id="newsletter-email" name="newsletterEmail" placeholder="nombre@ejemplo.com" maxlength="100" disabled>
-                </p>
-                <button type="submit" disabled>Suscribirme</button>
-            </form>
-        </section>
-        <p><small>© 2026 RetroWave. Prototipo educativo. Los precios son de ejemplo.</small></p>
-        <p><a href="#encabezado">Volver arriba</a></p>
-    </footer>
-    <!-- En una próxima etapa se podrá enlazar aquí un archivo JavaScript externo. -->
-</body>
+                    <h1>Hablemos</h1>
+                    <p>MÚSICA · ROPA · IDENTIDAD</p>
+                    <nav>
+                        <ul>
+                            <li><a href="index.html">Inicio</a></li>
+                            <li><a href="tienda.html">Tienda</a></li>
+                            <li><a href="index.html#estilos">Artistas y estilos</a></li>
+                            <li><a href="nosotros.html">Nosotros</a></li>
+                            <li><a href="contacto.html">Contacto</a></li>
+                            <li><a href="cuenta.html">Mi cuenta</a></li>
+                            <li><a href="carrito.html">Carrito</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+            <main id="contenido">
+                <div class="contenedor">
+                    <p>RETROWAVE ESCUCHA</p>
+                    <p>¿Tenés una consulta sobre tu pedido o nuestras prendas? Escribinos.</p>
+                    <section id="mensaje">
+                        <h2>Contanos qué necesitás</h2>
+                        <p>Formulario de práctica. Podés completar y limpiar los campos, pero el envío todavía no está disponible.</p>
+                        <p>Los campos con * serán obligatorios.</p>
+                        <form id="contact-form">
+                            <fieldset>
+                                <legend>Tus datos</legend>
+                                <p>
+                                    <label for="contact-name">Nombre *</label>
+                                    <br>
+                                    <input id="contact-name" maxlength="60" name="fullName" placeholder="Tu nombre" required="" size="28" type="text">
+                                </p>
+                                <p>
+                                    <label for="contact-email">Email *</label>
+                                    <br>
+                                    <input id="contact-email" maxlength="100" name="email" placeholder="nombre@ejemplo.com" required="" size="28" type="email">
+                                </p>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Tu consulta</legend>
+                                <p>
+                                    <label for="contact-reason">Motivo de consulta *</label>
+                                    <br>
+                                    <select id="contact-reason" name="reason" required="">
+                                        <option value="">Elegí una opción</option>
+                                        <option value="product">Consulta sobre un producto</option>
+                                        <option value="order">Estado de mi pedido</option>
+                                        <option value="exchange">Cambios</option>
+                                        <option value="other">Otro</option>
+                                    </select>
+                                </p>
+                                <p>
+                                    <label for="order-number">Número de pedido (opcional)</label>
+                                    <br>
+                                    <input id="order-number" maxlength="30" name="orderNumber" placeholder="Ejemplo: RW-1234" size="28" type="text">
+                                </p>
+                                <p>
+                                    <label for="contact-message">Mensaje *</label>
+                                    <br>
+                                    <textarea cols="28" id="contact-message" maxlength="2000" name="message" placeholder="Contanos qué necesitás" required="" rows="6"></textarea>
+                                </p>
+                            </fieldset>
+                            <p>
+                                <button disabled="" type="submit">Enviar mensaje</button>
+                                <button type="reset">Limpiar formulario</button>
+                            </p>
+                        </form>
+                    </section>
+                    <section id="canales">
+                        <h2>También nos encontrás acá</h2>
+                        <p>Los canales oficiales todavía están pendientes de completar en el prototipo.</p>
+                        <ul>
+                            <li>Email: pendiente.</li>
+                            <li>WhatsApp: pendiente.</li>
+                            <li>Redes sociales: pendientes.</li>
+                            <li>Horario de atención: pendiente.</li>
+                        </ul>
+                    </section>
+                    <section id="preguntas">
+                        <h2>Preguntas frecuentes</h2>
+                        <p>Las condiciones de la tienda deben completarse antes de habilitar las compras.</p>
+                        <article id="talles">
+                            <h3>¿Cómo sé qué talle elegir?</h3>
+                            <p>La guía de medidas está pendiente. Consultá las medidas de la prenda cuando estén disponibles.</p>
+                        </article>
+                        <article id="envios">
+                            <h3>¿Cómo funcionan los envíos?</h3>
+                            <p>Los destinos, costos y plazos están pendientes de confirmar.</p>
+                        </article>
+                        <article id="cambios">
+                            <h3>¿Puedo hacer un cambio?</h3>
+                            <p>La política de cambios está pendiente de definir.</p>
+                        </article>
+                        <article id="seguimiento">
+                            <h3>¿Dónde sigo mi pedido?</h3>
+                            <p>El seguimiento estará disponible cuando se habiliten las compras y las cuentas.</p>
+                        </article>
+                    </section>
+                </div>
+            </main>
+            <footer id="pie">
+                <div class="contenedor">
+                    <hr>
+                    <p><strong>RetroWave</strong> · Música para llevar.</p>
+                    <nav>
+                        <ul>
+                            <li><a href="tienda.html">Remeras</a></li>
+                            <li><a href="buzos.html">Buzos</a></li>
+                            <li><a href="accesorios.html">Accesorios</a></li>
+                            <li><a href="contacto.html#preguntas">Preguntas frecuentes</a></li>
+                            <li><a href="contacto.html#envios">Envíos</a></li>
+                            <li><a href="contacto.html#cambios">Cambios</a></li>
+                            <li><a href="contacto.html#canales">Redes y canales de contacto</a></li>
+                        </ul>
+                    </nav>
+                    <section id="suscripcion">
+                        <h2>Quedate en la frecuencia</h2>
+                        <p>Novedades, lanzamientos y música para vestir.</p>
+                        <p>La suscripción todavía no está disponible.</p>
+                        <form id="newsletter-form">
+                            <p>
+                                <label for="newsletter-email">Tu email</label>
+                                <input disabled="" id="newsletter-email" maxlength="100" name="newsletterEmail" placeholder="nombre@ejemplo.com" size="28" type="email">
+                            </p>
+                            <button disabled="" type="submit">Suscribirme</button>
+                        </form>
+                    </section>
+                    <p><small>© 2026 RetroWave. Prototipo educativo. Los precios son de ejemplo.</small></p>
+                    <p><a href="#encabezado">Volver arriba</a></p>
+                </div>
+            </footer>
+        </div>
+    </body>
 </html>
