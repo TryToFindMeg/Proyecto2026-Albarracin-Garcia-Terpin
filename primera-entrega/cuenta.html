@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Albarracin, Garcia y Terpin">
+    <meta name="description" content="Tu espacio para seguir descubriendo música para vestir.">
+    <meta name="keywords" content="RetroWave, música, ropa, remeras, buzos, accesorios">
+    <title>Mi cuenta | RetroWave</title>
+    <link rel="icon" href="imagenes/vinilo-tocadiscos.jpeg" type="image/jpeg">
+</head>
+<body>
+    <div id="pagina">
+        <header id="encabezado">
+            <div class="contenedor">
+                <p><a href="index.html"><strong>RetroWave</strong></a></p>
+                <p>Música · Ropa · Identidad</p>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="tienda.html">Tienda</a></li>
+                        <li><a href="index.html#estilos">Artistas y estilos</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                        <li><a href="cuenta.html">Mi cuenta</a></li>
+                        <li><a href="carrito.html">Carrito</a></li>
+                    </ul>
+                </nav>
+                <h1>Volvé a conectar con tu estilo</h1>
+                <p>Tu espacio para seguir descubriendo música para vestir.</p>
+                <img src="imagenes/personas-disqueria.jpeg" alt="Personas recorriendo una tienda de discos" width="280">
+            </div>
+        </header>
+        <main id="contenido">
+            <div class="contenedor">
+                <section id="iniciar-sesion">
+                    <h2>Ingresá a tu cuenta</h2>
+                    <form id="formulario-ingreso" method="post">
+                        <fieldset>
+                            <legend>Datos de acceso</legend>
+                            <p>
+                                <label for="email-ingreso">Email</label>
+                                <input type="email" id="email-ingreso" name="loginEmail" placeholder="nombre@ejemplo.com" size="28" maxlength="100" required="required">
+                            </p>
+                            <p>
+                                <label for="contrasena-ingreso">Contraseña</label>
+                                <input type="password" id="contrasena-ingreso" name="loginPassword" placeholder="Tu contraseña" size="28" maxlength="64" required="required">
+                            </p>
+                            <p>
+                                <input type="checkbox" id="recordarme" name="rememberMe" value="yes">
+                                <label for="recordarme">Recordarme</label>
+                            </p>
+                        </fieldset>
+                        <p>
+                            <button type="submit" disabled="disabled">Iniciar sesión</button>
+                            <button type="reset">Limpiar campos</button>
+                        </p>
+                    </form>
+                    <p><a href="#recuperar-contrasena">Recuperar contraseña</a></p>
+                    <p>¿Todavía no tenés cuenta? <a href="#crear-cuenta">Crear cuenta</a></p>
+                </section>
+                <section id="recuperar-contrasena">
+                    <h2>Recuperar contraseña</h2>
+                    <p>Ingresá el email asociado a tu cuenta.</p>
+                    <form id="formulario-recuperacion" method="post">
+                        <p>
+                            <label for="email-recuperacion">Email de tu cuenta</label>
+                            <input type="email" id="email-recuperacion" name="recoveryEmail" placeholder="nombre@ejemplo.com" size="28" maxlength="100" required="required">
+                        </p>
+                        <button type="submit" disabled="disabled">Recuperar acceso</button>
+                    </form>
+                    <p><a href="#iniciar-sesion">Volver al ingreso</a></p>
+                </section>
+                <section id="crear-cuenta">
+                    <h2>Crear cuenta</h2>
+                    <form id="formulario-registro" method="post">
+                        <fieldset>
+                            <legend>Datos personales</legend>
+                            <p>
+                                <label for="nombre-registro">Nombre</label>
+                                <input type="text" id="nombre-registro" name="firstName" placeholder="Tu nombre" size="28" maxlength="40" required="required">
+                            </p>
+                            <p>
+                                <label for="apellido-registro">Apellido</label>
+                                <input type="text" id="apellido-registro" name="lastName" placeholder="Tu apellido" size="28" maxlength="40" required="required">
+                            </p>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Datos de la cuenta</legend>
+                            <p>
+                                <label for="email-registro">Email</label>
+                                <input type="email" id="email-registro" name="registerEmail" placeholder="nombre@ejemplo.com" size="28" maxlength="100" required="required">
+                            </p>
+                            <p>
+                                <label for="contrasena-registro">Contraseña</label>
+                                <input type="password" id="contrasena-registro" name="registerPassword" placeholder="Elegí una contraseña" size="28" maxlength="64" required="required">
+                            </p>
+                            <p>
+                                <label for="confirmar-contrasena">Repetir contraseña</label>
+                                <input type="password" id="confirmar-contrasena" name="confirmPassword" placeholder="Repetí tu contraseña" size="28" maxlength="64" required="required">
+                            </p>
+                        </fieldset>
+                        <p>
+                            <button type="submit" disabled="disabled">Crear cuenta</button>
+                            <button type="reset">Limpiar campos</button>
+                        </p>
+                    </form>
+                </section>
+            </div>
+        </main>
+        <footer id="pie">
+            <div class="contenedor">
+                <p><strong>RetroWave</strong> · La música también se lleva.</p>
+                <nav>
+                    <ul>
+                        <li><a href="tienda.html">Remeras</a></li>
+                        <li><a href="buzos.html">Buzos</a></li>
+                        <li><a href="accesorios.html">Accesorios</a></li>
+                        <li><a href="nosotros.html">Nuestra historia</a></li>
+                        <li><a href="contacto.html#preguntas">Preguntas frecuentes</a></li>
+                        <li><a href="contacto.html#envios">Envíos</a></li>
+                        <li><a href="contacto.html#cambios">Cambios</a></li>
+                    </ul>
+                </nav>
+                <section id="novedades">
+                    <h2>Quedate en la frecuencia</h2>
+                    <p>Novedades, lanzamientos y música para vestir.</p>
+                    <form id="formulario-novedades" method="post">
+                        <p>
+                            <label for="email-novedades">Tu email</label>
+                            <input type="email" id="email-novedades" name="newsletterEmail" placeholder="nombre@ejemplo.com" size="28" maxlength="100" required="required">
+                        </p>
+                        <button type="submit" disabled="disabled">Suscribirme</button>
+                    </form>
+                </section>
+                <p><small>© 2026 RetroWave</small></p>
+                <p><a href="#encabezado">Volver arriba</a></p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
