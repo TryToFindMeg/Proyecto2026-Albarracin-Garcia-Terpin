@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Albarracin, Garcia y Terpin">
+    <meta name="description" content="Abrigo para noches de concierto, viajes y canciones que no se olvidan.">
+    <meta name="keywords" content="RetroWave, música, ropa, remeras, buzos, accesorios">
+    <title>Buzos | RetroWave</title>
+    <link rel="icon" href="imagenes/vinilo-tocadiscos.jpeg" type="image/jpeg">
+</head>
+<body>
+    <div id="pagina">
+        <header id="encabezado">
+            <div class="contenedor">
+                <p><a href="index.html"><strong>RetroWave</strong></a></p>
+                <p>Música · Ropa · Identidad</p>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="tienda.html">Tienda</a></li>
+                        <li><a href="index.html#estilos">Artistas y estilos</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                        <li><a href="cuenta.html">Mi cuenta</a></li>
+                        <li><a href="carrito.html">Carrito</a></li>
+                    </ul>
+                </nav>
+                <h1>Buzos</h1>
+                <p>Abrigo para noches de concierto, viajes y canciones que no se olvidan.</p>
+            </div>
+        </header>
+        <main id="contenido">
+            <div class="contenedor">
+                <nav>
+                    <ul>
+                        <li><a href="tienda.html">Remeras</a></li>
+                        <li><a href="buzos.html">Buzos</a></li>
+                        <li><a href="accesorios.html">Accesorios</a></li>
+                        <li><a href="productos.html">Todos los productos</a></li>
+                    </ul>
+                </nav>
+                <aside id="filtros">
+                    <h2>Filtrar productos</h2>
+                    <form id="formulario-filtros">
+                        <fieldset>
+                            <legend>Elegí tus preferencias</legend>
+                            <p>
+                                <label for="precio-minimo">Precio mínimo en pesos</label>
+                                <input type="number" id="precio-minimo" name="minPrice" min="0" max="100000" step="100" placeholder="20000">
+                            </p>
+                            <p>
+                                <label for="precio-maximo">Precio máximo en pesos</label>
+                                <input type="number" id="precio-maximo" name="maxPrice" min="0" max="100000" step="100" placeholder="70000">
+                            </p>
+                            <p>
+                                <label for="disponibilidad">Disponibilidad</label>
+                                <select id="disponibilidad" name="availability">
+                                    <option value="all">Todos</option>
+                                    <option value="available">Disponible</option>
+                                    <option value="sold-out">Agotado</option>
+                                </select>
+                            </p>
+                            <p>
+                                <label for="color">Color</label>
+                                <select id="color" name="color">
+                                    <option value="all">Todos</option>
+                                    <option value="black">Negro</option>
+                                    <option value="cream">Crudo</option>
+                                    <option value="coral">Coral</option>
+                                    <option value="mint">Menta</option>
+                                </select>
+                            </p>
+                            <p>
+                                <label for="talle">Talle</label>
+                                <select id="talle" name="size">
+                                    <option value="all">Todos</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                </select>
+                            </p>
+                            <p>
+                                <label for="orden">Ordenar por</label>
+                                <select id="orden" name="sortOrder">
+                                    <option value="featured">Destacados</option>
+                                    <option value="newest">Novedades</option>
+                                    <option value="lowest">Menor precio</option>
+                                    <option value="highest">Mayor precio</option>
+                                </select>
+                            </p>
+                        </fieldset>
+                        <p>
+                            <button type="button" disabled="disabled">Aplicar filtros</button>
+                            <button type="reset">Limpiar filtros</button>
+                        </p>
+                    </form>
+                </aside>
+                <section id="catalogo">
+                    <h2>Catálogo de buzos</h2>
+                    <p>12 productos. Precios expresados en pesos argentinos.</p>
+                    <div class="lista-productos">
+                        <article class="producto" id="buzo-music-heals">
+                            <h3>Buzo Music Heals</h3>
+                            <img src="imagenes/buzos-colores.png" alt="Buzos de distintos colores" width="280">
+                            <p>Nuevo</p>
+                            <p><strong>$58.900</strong></p>
+                            <p>Colores: Negro y crudo.</p>
+                            <p><a href="productos.html#buzo-music-heals">Ver Buzo Music Heals</a></p>
+                        </article>
+                        <article class="producto" id="buzo-backstage-club">
+                            <h3>Buzo Backstage Club</h3>
+                            <img src="imagenes/buzos-pastel-perchero.jpeg" alt="Buzos de colores claros en un perchero" width="280">
+                            <p>Nuevo</p>
+                            <p><strong>$62.400</strong></p>
+                            <p>Colores: Crudo y menta.</p>
+                            <p><a href="productos.html#buzo-backstage-club">Ver Buzo Backstage Club</a></p>
+                        </article>
+                        <article class="producto" id="buzo-analog-dreams">
+                            <h3>Buzo Analog Dreams</h3>
+                            <img src="imagenes/tejidos-marrones.jpeg" alt="Prendas tejidas marrones apiladas" width="280">
+                            <p><strong>$56.300</strong></p>
+                            <p>Colores: Marrón y crudo.</p>
+                            <p><a href="productos.html#buzo-analog-dreams">Ver Buzo Analog Dreams</a></p>
+                        </article>
+                        <article class="producto" id="buzo-loud-free">
+                            <h3>Buzo Loud &amp; Free</h3>
+                            <img src="imagenes/buzo-naranja.png" alt="Persona con un buzo naranja" width="280">
+                            <p>Nuevo</p>
+                            <p><strong>$64.800</strong></p>
+                            <p>Colores: Naranja y negro.</p>
+                            <p><a href="productos.html#buzo-loud-free">Ver Buzo Loud &amp; Free</a></p>
+                        </article>
+                        <article class="producto" id="buzo-midnight-radio">
+                            <h3>Buzo Midnight Radio</h3>
+                            <img src="imagenes/prendas-abrigo.jpeg" alt="Prendas de abrigo acomodadas sobre una superficie" width="280">
+                            <p><strong>$59.900</strong></p>
+                            <p>Colores: Negro y crudo.</p>
+                            <p><a href="productos.html#buzo-midnight-radio">Ver Buzo Midnight Radio</a></p>
+                        </article>
+                        <article class="producto" id="buzo-good-music-only">
+                            <h3>Buzo Good Music Only</h3>
+                            <img src="imagenes/buzo-beige.jpeg" alt="Buzo beige sobre fondo amarillo" width="280">
+                            <p><strong>$57.100</strong></p>
+                            <p>Colores: Beige y negro.</p>
+                            <p><a href="productos.html#buzo-good-music-only">Ver Buzo Good Music Only</a></p>
+                        </article>
+                        <article class="producto" id="buzo-vinyl-society">
+                            <h3>Buzo Vinyl Society</h3>
+                            <img src="imagenes/buzo-escuchando-vinilos.jpeg" alt="Joven con un buzo mirando discos de vinilo" width="280">
+                            <p>Nuevo</p>
+                            <p><strong>$61.500</strong></p>
+                            <p>Colores: Negro y menta.</p>
+                            <p><a href="productos.html#buzo-vinyl-society">Ver Buzo Vinyl Society</a></p>
+                        </article>
+                        <article class="producto" id="buzo-electric-soul">
+                            <h3>Buzo Electric Soul</h3>
+                            <img src="imagenes/buzo-franjas-colores.jpeg" alt="Buzo plegado con franjas de colores" width="280">
+                            <p><strong>$63.900</strong></p>
+                            <p>Colores: Menta y coral.</p>
+                            <p><a href="productos.html#buzo-electric-soul">Ver Buzo Electric Soul</a></p>
+                        </article>
+                        <article class="producto" id="buzo-tour-memories">
+                            <h3>Buzo Tour Memories</h3>
+                            <img src="imagenes/buzo-amplio.jpeg" alt="Mujer con un buzo amplio" width="280">
+                            <p><strong>$58.200</strong></p>
+                            <p>Colores: Crudo y negro.</p>
+                            <p><a href="productos.html#buzo-tour-memories">Ver Buzo Tour Memories</a></p>
+                        </article>
+                        <article class="producto" id="buzo-sunday-records">
+                            <h3>Buzo Sunday Records</h3>
+                            <img src="imagenes/buzo-lectura.jpeg" alt="Mujer con un buzo leyendo un libro" width="280">
+                            <p><strong>$54.400</strong></p>
+                            <p>Colores: Crudo y menta.</p>
+                            <p><a href="productos.html#buzo-sunday-records">Ver Buzo Sunday Records</a></p>
+                        </article>
+                        <article class="producto" id="buzo-stereo-hearts">
+                            <h3>Buzo Stereo Hearts</h3>
+                            <img src="imagenes/buzo-gris-madera.jpeg" alt="Persona con un buzo gris frente a una pared de madera" width="280">
+                            <p>Nuevo</p>
+                            <p><strong>$60.600</strong></p>
+                            <p>Colores: Gris y negro.</p>
+                            <p><a href="productos.html#buzo-stereo-hearts">Ver Buzo Stereo Hearts</a></p>
+                        </article>
+                        <article class="producto" id="buzo-after-hours">
+                            <h3>Buzo After Hours</h3>
+                            <img src="imagenes/buzo-auriculares-noche.jpeg" alt="Mujer con buzo y auriculares en una calle de noche" width="280">
+                            <p>Agotado</p>
+                            <p><strong>$62.900</strong></p>
+                            <p>Colores: Negro y coral.</p>
+                            <p><a href="productos.html#buzo-after-hours">Ver Buzo After Hours</a></p>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <footer id="pie">
+            <div class="contenedor">
+                <p><strong>RetroWave</strong> · La música también se lleva.</p>
+                <nav>
+                    <ul>
+                        <li><a href="tienda.html">Remeras</a></li>
+                        <li><a href="buzos.html">Buzos</a></li>
+                        <li><a href="accesorios.html">Accesorios</a></li>
+                        <li><a href="nosotros.html">Nuestra historia</a></li>
+                        <li><a href="contacto.html#preguntas">Preguntas frecuentes</a></li>
+                        <li><a href="contacto.html#envios">Envíos</a></li>
+                        <li><a href="contacto.html#cambios">Cambios</a></li>
+                    </ul>
+                </nav>
+                <section id="novedades">
+                    <h2>Quedate en la frecuencia</h2>
+                    <p>Novedades, lanzamientos y música para vestir.</p>
+                    <form id="formulario-novedades" method="post">
+                        <p>
+                            <label for="email-novedades">Tu email</label>
+                            <input type="email" id="email-novedades" name="newsletterEmail" placeholder="nombre@ejemplo.com" size="28" maxlength="100" required="required">
+                        </p>
+                        <button type="submit" disabled="disabled">Suscribirme</button>
+                    </form>
+                </section>
+                <p><small>© 2026 RetroWave</small></p>
+                <p><a href="#encabezado">Volver arriba</a></p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
