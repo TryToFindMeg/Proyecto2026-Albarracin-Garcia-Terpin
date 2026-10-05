@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Albarracin, Garcia y Terpin">
+    <meta name="description" content="Tres artículos elegidos para tu próxima escucha.">
+    <meta name="keywords" content="RetroWave, música, ropa, remeras, buzos, accesorios">
+    <title>Carrito | RetroWave</title>
+    <link rel="icon" href="imagenes/vinilo-tocadiscos.jpeg" type="image/jpeg">
+</head>
+<body>
+    <div id="pagina">
+        <header id="encabezado">
+            <div class="contenedor">
+                <p><a href="index.html"><strong>RetroWave</strong></a></p>
+                <p>Música · Ropa · Identidad</p>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="tienda.html">Tienda</a></li>
+                        <li><a href="index.html#estilos">Artistas y estilos</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                        <li><a href="cuenta.html">Mi cuenta</a></li>
+                        <li><a href="carrito.html">Carrito</a></li>
+                    </ul>
+                </nav>
+                <h1>Tu carrito</h1>
+                <p>Tres artículos elegidos para tu próxima escucha.</p>
+            </div>
+        </header>
+        <main id="contenido">
+            <div class="contenedor">
+                <p><a href="carrito-vacio.html">Ver el carrito vacío</a></p>
+                <form id="formulario-carrito">
+                    <section id="productos-carrito">
+                        <h2>Productos elegidos</h2>
+                        <table>
+                            <caption>Detalle de tu carrito en pesos argentinos</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Producto</th>
+                                    <th scope="col">Precio unitario</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Subtotal</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p><a href="productos.html#remera-highway-grooves">Remera Highway Grooves</a></p>
+                                        <img src="imagenes/remera-grafica-vintage.jpeg" alt="Remera de una banda con estampado en celeste y amarillo" width="120">
+                                        <p>Color: Negro. Talle: M.</p>
+                                    </td>
+                                    <td>$28.900</td>
+                                    <td>
+                                        <label for="cantidad-1">Cantidad de Remera Highway Grooves</label>
+                                        <input type="number" id="cantidad-1" name="quantity1" min="1" max="10" step="1" value="1" required="required">
+                                    </td>
+                                    <td id="subtotal-1">$28.900</td>
+                                    <td><button type="button" disabled="disabled">Eliminar Remera Highway Grooves</button></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p><a href="productos.html#buzo-music-heals">Buzo Music Heals</a></p>
+                                        <img src="imagenes/buzos-colores.png" alt="Buzos de distintos colores" width="120">
+                                        <p>Color: Crudo. Talle: L.</p>
+                                    </td>
+                                    <td>$58.900</td>
+                                    <td>
+                                        <label for="cantidad-2">Cantidad de Buzo Music Heals</label>
+                                        <input type="number" id="cantidad-2" name="quantity2" min="1" max="10" step="1" value="1" required="required">
+                                    </td>
+                                    <td id="subtotal-2">$58.900</td>
+                                    <td><button type="button" disabled="disabled">Eliminar Buzo Music Heals</button></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p><a href="productos.html#tote-vinyl-forever">Tote bag Vinyl Forever</a></p>
+                                        <p>Color: Crudo. Talle: Único.</p>
+                                    </td>
+                                    <td>$18.000</td>
+                                    <td>
+                                        <label for="cantidad-3">Cantidad de Tote bag Vinyl Forever</label>
+                                        <input type="number" id="cantidad-3" name="quantity3" min="1" max="10" step="1" value="1" required="required">
+                                    </td>
+                                    <td id="subtotal-3">$18.000</td>
+                                    <td><button type="button" disabled="disabled">Eliminar Tote bag Vinyl Forever</button></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th scope="row" colspan="3">Subtotal de los productos</th>
+                                    <td id="subtotal-productos" colspan="2">$105.800</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <p>
+                            <button type="button" id="actualizar-carrito" disabled="disabled">Actualizar carrito</button>
+                            <button type="button" id="vaciar-carrito" disabled="disabled">Vaciar carrito</button>
+                            <button type="reset">Restablecer cantidades</button>
+                        </p>
+                    </section>
+                    <section id="resumen">
+                        <h2>Resumen de compra</h2>
+                        <fieldset>
+                            <legend>Descuento</legend>
+                            <p>
+                                <label for="codigo-descuento">Código de descuento</label>
+                                <input type="text" id="codigo-descuento" name="discountCode" placeholder="Ingresá tu código" size="28" maxlength="20">
+                            </p>
+                            <button type="button" id="aplicar-descuento" disabled="disabled">Aplicar</button>
+                        </fieldset>
+                        <p>Subtotal: <strong>$105.800</strong></p>
+                        <p>Envío: se calcula en el siguiente paso.</p>
+                        <p>Total de productos: <strong id="total-carrito">$105.800</strong></p>
+                        <button type="submit" disabled="disabled">Continuar con la compra</button>
+                    </section>
+                </form>
+                <p><a href="tienda.html">Seguir comprando</a></p>
+            </div>
+        </main>
+        <footer id="pie">
+            <div class="contenedor">
+                <p><strong>RetroWave</strong> · La música también se lleva.</p>
+                <nav>
+                    <ul>
+                        <li><a href="tienda.html">Remeras</a></li>
+                        <li><a href="buzos.html">Buzos</a></li>
+                        <li><a href="accesorios.html">Accesorios</a></li>
+                        <li><a href="nosotros.html">Nuestra historia</a></li>
+                        <li><a href="contacto.html#preguntas">Preguntas frecuentes</a></li>
+                        <li><a href="contacto.html#envios">Envíos</a></li>
+                        <li><a href="contacto.html#cambios">Cambios</a></li>
+                    </ul>
+                </nav>
+                <section id="novedades">
+                    <h2>Quedate en la frecuencia</h2>
+                    <p>Novedades, lanzamientos y música para vestir.</p>
+                    <form id="formulario-novedades" method="post">
+                        <p>
+                            <label for="email-novedades">Tu email</label>
+                            <input type="email" id="email-novedades" name="newsletterEmail" placeholder="nombre@ejemplo.com" size="28" maxlength="100" required="required">
+                        </p>
+                        <button type="submit" disabled="disabled">Suscribirme</button>
+                    </form>
+                </section>
+                <p><small>© 2026 RetroWave</small></p>
+                <p><a href="#encabezado">Volver arriba</a></p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
