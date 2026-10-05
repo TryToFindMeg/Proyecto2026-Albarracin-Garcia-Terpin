@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Albarracin, Garcia y Terpin">
+    <meta name="description" content="¿Tenés una consulta sobre tu pedido o nuestras prendas? Escribinos.">
+    <meta name="keywords" content="RetroWave, música, ropa, remeras, buzos, accesorios">
+    <title>Contacto | RetroWave</title>
+    <link rel="icon" href="imagenes/vinilo-tocadiscos.jpeg" type="image/jpeg">
+</head>
+<body>
+    <div id="pagina">
+        <header id="encabezado">
+            <div class="contenedor">
+                <p><a href="index.html"><strong>RetroWave</strong></a></p>
+                <p>Música · Ropa · Identidad</p>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="tienda.html">Tienda</a></li>
+                        <li><a href="index.html#estilos">Artistas y estilos</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                        <li><a href="cuenta.html">Mi cuenta</a></li>
+                        <li><a href="carrito.html">Carrito</a></li>
+                    </ul>
+                </nav>
+                <h1>Hablemos</h1>
+                <p>¿Tenés una consulta sobre tu pedido o nuestras prendas? Escribinos.</p>
+                <img src="imagenes/vinilo-tocadiscos.jpeg" alt="Disco de vinilo en un tocadiscos" width="280">
+            </div>
+        </header>
+        <main id="contenido">
+            <div class="contenedor">
+                <section id="mensaje">
+                    <h2>Contanos qué necesitás</h2>
+                    <p>Los campos con * son obligatorios.</p>
+                    <form id="formulario-contacto" method="post">
+                        <fieldset>
+                            <legend>Tus datos</legend>
+                            <p>
+                                <label for="nombre-contacto">Nombre *</label>
+                                <input type="text" id="nombre-contacto" name="fullName" placeholder="Tu nombre" size="28" maxlength="60" required="required">
+                            </p>
+                            <p>
+                                <label for="email-contacto">Email *</label>
+                                <input type="email" id="email-contacto" name="contactEmail" placeholder="nombre@ejemplo.com" size="28" maxlength="100" required="required">
+                            </p>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Tu consulta</legend>
+                            <p>
+                                <label for="motivo-contacto">Motivo de consulta *</label>
+                                <select id="motivo-contacto" name="reason" required="required">
+                                    <option value="">Elegí una opción</option>
+                                    <option value="product">Consulta sobre un producto</option>
+                                    <option value="order">Estado de mi pedido</option>
+                                    <option value="exchange">Cambios</option>
+                                    <option value="other">Otro</option>
+                                </select>
+                            </p>
+                            <p>
+                                <label for="numero-pedido">Número de pedido (opcional)</label>
+                                <input type="text" id="numero-pedido" name="orderNumber" placeholder="Ejemplo: RW-1234" size="28" maxlength="20">
+                            </p>
+                            <p>
+                                <label for="mensaje-contacto">Mensaje *</label>
+                            </p>
+                            <p>
+                                <textarea id="mensaje-contacto" name="message" rows="6" cols="28" maxlength="2000" placeholder="Contanos qué necesitás" required="required"></textarea>
+                            </p>
+                        </fieldset>
+                        <p>
+                            <button type="submit" disabled="disabled">Enviar mensaje</button>
+                            <button type="reset">Limpiar formulario</button>
+                        </p>
+                    </form>
+                </section>
+                <section id="preguntas">
+                    <h2>Preguntas frecuentes</h2>
+                    <article id="talles">
+                        <h3>¿Cómo sé qué talle elegir?</h3>
+                        <p>Elegí la prenda que te interesa y consultanos sus medidas antes de decidir el talle. Incluí el nombre del producto en tu mensaje.</p>
+                        <p><a href="#mensaje">Consultar por un talle</a></p>
+                    </article>
+                    <article id="envios">
+                        <h3>¿Cómo funcionan los envíos?</h3>
+                        <p>Para consultar opciones, costos y tiempos de entrega, indicá tu localidad y código postal en el formulario.</p>
+                        <p><a href="#mensaje">Consultar un envío</a></p>
+                    </article>
+                    <article id="cambios">
+                        <h3>¿Puedo hacer un cambio?</h3>
+                        <p>Seleccioná el motivo Cambios e indicá el número de pedido y la prenda que querés cambiar para consultar las opciones.</p>
+                        <p><a href="#mensaje">Consultar por un cambio</a></p>
+                    </article>
+                    <article id="pedidos">
+                        <h3>¿Dónde consulto por mi pedido?</h3>
+                        <p>Elegí Estado de mi pedido y completá el número de pedido para identificar tu consulta.</p>
+                        <p><a href="#mensaje">Consultar un pedido</a></p>
+                    </article>
+                </section>
+            </div>
+        </main>
+        <footer id="pie">
+            <div class="contenedor">
+                <p><strong>RetroWave</strong> · La música también se lleva.</p>
+                <nav>
+                    <ul>
+                        <li><a href="tienda.html">Remeras</a></li>
+                        <li><a href="buzos.html">Buzos</a></li>
+                        <li><a href="accesorios.html">Accesorios</a></li>
+                        <li><a href="nosotros.html">Nuestra historia</a></li>
+                        <li><a href="contacto.html#preguntas">Preguntas frecuentes</a></li>
+                        <li><a href="contacto.html#envios">Envíos</a></li>
+                        <li><a href="contacto.html#cambios">Cambios</a></li>
+                    </ul>
+                </nav>
+                <section id="novedades">
+                    <h2>Quedate en la frecuencia</h2>
+                    <p>Novedades, lanzamientos y música para vestir.</p>
+                    <form id="formulario-novedades" method="post">
+                        <p>
+                            <label for="email-novedades">Tu email</label>
+                            <input type="email" id="email-novedades" name="newsletterEmail" placeholder="nombre@ejemplo.com" size="28" maxlength="100" required="required">
+                        </p>
+                        <button type="submit" disabled="disabled">Suscribirme</button>
+                    </form>
+                </section>
+                <p><small>© 2026 RetroWave</small></p>
+                <p><a href="#encabezado">Volver arriba</a></p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
