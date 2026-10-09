@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Albarracin, Garcia y Terpin">
+    <meta name="description" content="Una prenda de abrigo para acompañar tus canciones favoritas.">
+    <meta name="keywords" content="RetroWave, música, ropa, remeras, buzos, accesorios">
+    <title>Buzo Analog Dreams | RetroWave</title>
+    <link rel="icon" href="../imagenes/vinilo-tocadiscos.jpeg" type="image/jpeg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&amp;family=Shrikhand&amp;display=swap">
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body class="pagina-detalle">
+    <div id="pagina">
+        <header id="encabezado">
+            <div class="contenedor">
+                <div class="barra-superior">
+                    <div class="marca">
+                        <p><a href="../index.html"><strong>RetroWave</strong></a></p>
+                        <p class="lema">Música · Ropa · Identidad</p>
+                    </div>
+                    <nav class="navegacion-principal" aria-label="Navegación principal">
+                        <ul>
+                            <li><a href="../index.html">Inicio</a></li>
+                            <li><a class="activo" href="../tienda.html">Tienda</a></li>
+                            <li><a href="../index.html#estilos">Artistas y estilos</a></li>
+                            <li><a href="../nosotros.html">Nosotros</a></li>
+                            <li><a href="../contacto.html">Contacto</a></li>
+                            <li><a href="../cuenta.html">Mi cuenta</a></li>
+                            <li><a href="../carrito.html">Carrito</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="presentacion">
+                    <div class="presentacion-texto">
+                        <h1>Buzo Analog Dreams</h1>
+                        <p>Conocé los detalles y elegí las opciones de tu producto.</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main id="contenido">
+            <div class="contenedor">
+                <nav class="categorias" aria-label="Categorías de productos">
+                    <ul>
+                        <li><a href="../tienda.html">Remeras</a></li>
+                        <li><a class="activo" href="../buzos.html" aria-current="location">Buzos</a></li>
+                        <li><a href="../accesorios.html">Accesorios</a></li>
+                        <li><a href="../productos.html">Todos los productos</a></li>
+                    </ul>
+                </nav>
+                <section class="detalle-producto" id="buzo-analog-dreams">
+                    <div class="imagen-producto">
+                        <img src="../imagenes/tejidos-marrones.jpeg" alt="Prendas tejidas marrones apiladas" width="280">
+                    </div>
+                    <div class="informacion-producto">
+                        <h2>Detalles y opciones</h2>
+                        <p><strong>$56.300</strong></p>
+                        <p>Una prenda de abrigo para acompañar tus canciones favoritas.</p>
+                        <form id="formulario-buzo-analog-dreams">
+                            <fieldset>
+                                <legend>Elegí las opciones de Buzo Analog Dreams</legend>
+                                <p>
+                                    <label for="talle-buzo-analog-dreams">Talle</label>
+                                    <select id="talle-buzo-analog-dreams" name="size">
+                                        <option value="S">S</option>
+                                        <option value="M">M</option>
+                                        <option value="L">L</option>
+                                        <option value="XL">XL</option>
+                                    </select>
+                                </p>
+                                <p>
+                                    <label for="color-buzo-analog-dreams">Color</label>
+                                    <select id="color-buzo-analog-dreams" name="color">
+                                        <option value="marrón">Marrón</option>
+                                        <option value="crudo">Crudo</option>
+                                    </select>
+                                </p>
+                                <p>
+                                    <label for="cantidad-buzo-analog-dreams">Cantidad</label>
+                                    <input type="number" id="cantidad-buzo-analog-dreams" name="quantity" min="1" max="10" step="1" value="1" required="required">
+                                </p>
+                            </fieldset>
+                            <p class="acciones-formulario">
+                                <button type="button" disabled="disabled">Agregar al carrito</button>
+                                <button type="reset">Restablecer opciones</button>
+                            </p>
+                        </form>
+                        <p><a href="../buzos.html">Volver al catálogo</a></p>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <footer id="pie">
+            <div class="contenedor">
+                <p class="marca-pie"><strong>RetroWave</strong> La música también se lleva.</p>
+                <nav class="navegacion-pie" aria-label="Enlaces del pie de página">
+                    <ul>
+                        <li><a href="../tienda.html">Remeras</a></li>
+                        <li><a href="../buzos.html">Buzos</a></li>
+                        <li><a href="../accesorios.html">Accesorios</a></li>
+                        <li><a href="../nosotros.html">Nuestra historia</a></li>
+                        <li><a href="../contacto.html#preguntas">Preguntas frecuentes</a></li>
+                        <li><a href="../contacto.html#envios">Envíos</a></li>
+                        <li><a href="../contacto.html#cambios">Cambios</a></li>
+                    </ul>
+                </nav>
+                <section id="novedades">
+                    <h2>Quedate en la frecuencia</h2>
+                    <p>Novedades, lanzamientos y música para vestir.</p>
+                    <form id="formulario-novedades" method="post">
+                        <p>
+                            <label for="email-novedades">Tu email</label>
+                            <input type="email" id="email-novedades" name="newsletterEmail" placeholder="nombre@ejemplo.com" size="28" maxlength="100" required="required">
+                        </p>
+                        <button type="submit" disabled="disabled">Suscribirme</button>
+                    </form>
+                </section>
+                <p class="copyright"><small>© 2026 RetroWave</small></p>
+                <p class="volver-arriba"><a href="#encabezado">Volver arriba</a></p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
