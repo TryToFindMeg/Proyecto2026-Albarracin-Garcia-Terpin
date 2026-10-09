@@ -8,32 +8,42 @@
     <meta name="keywords" content="RetroWave, música, ropa, remeras, buzos, accesorios">
     <title>Mi cuenta | RetroWave</title>
     <link rel="icon" href="imagenes/vinilo-tocadiscos.jpeg" type="image/jpeg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&amp;family=Shrikhand&amp;display=swap">
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body>
+<body class="pagina-cuenta">
     <div id="pagina">
         <header id="encabezado">
             <div class="contenedor">
-                <p><a href="index.html"><strong>RetroWave</strong></a></p>
-                <p>Música · Ropa · Identidad</p>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Inicio</a></li>
-                        <li><a href="tienda.html">Tienda</a></li>
-                        <li><a href="index.html#estilos">Artistas y estilos</a></li>
-                        <li><a href="nosotros.html">Nosotros</a></li>
-                        <li><a href="contacto.html">Contacto</a></li>
-                        <li><a href="cuenta.html">Mi cuenta</a></li>
-                        <li><a href="carrito.html">Carrito</a></li>
-                    </ul>
-                </nav>
-                <h1>Volvé a conectar con tu estilo</h1>
-                <p>Tu espacio para seguir descubriendo música para vestir.</p>
-                <img src="imagenes/personas-disqueria.jpeg" alt="Personas recorriendo una tienda de discos" width="280">
+                <div class="barra-superior">
+                    <div class="marca">
+                        <p><a href="index.html"><strong>RetroWave</strong></a></p>
+                        <p class="lema">Música · Ropa · Identidad</p>
+                    </div>
+                    <nav class="navegacion-principal" aria-label="Navegación principal">
+                        <ul>
+                            <li><a href="index.html">Inicio</a></li>
+                            <li><a href="tienda.html">Tienda</a></li>
+                            <li><a href="index.html#estilos">Artistas y estilos</a></li>
+                            <li><a href="nosotros.html">Nosotros</a></li>
+                            <li><a href="contacto.html">Contacto</a></li>
+                            <li><a class="activo" href="cuenta.html" aria-current="page">Mi cuenta</a></li>
+                            <li><a href="carrito.html">Carrito</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="presentacion presentacion-con-imagen">
+                    <div class="presentacion-texto">
+                        <h1>Volvé a conectar con tu estilo</h1>
+                        <p>Tu espacio para seguir descubriendo música para vestir.</p>
+                    </div>
+                    <img class="foto-presentacion" src="imagenes/personas-disqueria.jpeg" alt="Personas recorriendo una tienda de discos" width="280">
+                </div>
             </div>
         </header>
         <main id="contenido">
             <div class="contenedor">
-                <section id="iniciar-sesion">
+                <section class="panel-formulario" id="iniciar-sesion">
                     <h2>Ingresá a tu cuenta</h2>
                     <form id="formulario-ingreso" method="post">
                         <fieldset>
@@ -46,12 +56,12 @@
                                 <label for="contrasena-ingreso">Contraseña</label>
                                 <input type="password" id="contrasena-ingreso" name="loginPassword" placeholder="Tu contraseña" size="28" maxlength="64" required="required">
                             </p>
-                            <p>
+                            <p class="opcion-recordarme">
                                 <input type="checkbox" id="recordarme" name="rememberMe" value="yes">
                                 <label for="recordarme">Recordarme</label>
                             </p>
                         </fieldset>
-                        <p>
+                        <p class="acciones-formulario">
                             <button type="submit" disabled="disabled">Iniciar sesión</button>
                             <button type="reset">Limpiar campos</button>
                         </p>
@@ -59,7 +69,7 @@
                     <p><a href="#recuperar-contrasena">Recuperar contraseña</a></p>
                     <p>¿Todavía no tenés cuenta? <a href="#crear-cuenta">Crear cuenta</a></p>
                 </section>
-                <section id="recuperar-contrasena">
+                <section class="panel-formulario" id="recuperar-contrasena">
                     <h2>Recuperar contraseña</h2>
                     <p>Ingresá el email asociado a tu cuenta.</p>
                     <form id="formulario-recuperacion" method="post">
@@ -71,7 +81,7 @@
                     </form>
                     <p><a href="#iniciar-sesion">Volver al ingreso</a></p>
                 </section>
-                <section id="crear-cuenta">
+                <section class="panel-formulario" id="crear-cuenta">
                     <h2>Crear cuenta</h2>
                     <form id="formulario-registro" method="post">
                         <fieldset>
@@ -100,7 +110,7 @@
                                 <input type="password" id="confirmar-contrasena" name="confirmPassword" placeholder="Repetí tu contraseña" size="28" maxlength="64" required="required">
                             </p>
                         </fieldset>
-                        <p>
+                        <p class="acciones-formulario">
                             <button type="submit" disabled="disabled">Crear cuenta</button>
                             <button type="reset">Limpiar campos</button>
                         </p>
@@ -110,8 +120,8 @@
         </main>
         <footer id="pie">
             <div class="contenedor">
-                <p><strong>RetroWave</strong> · La música también se lleva.</p>
-                <nav>
+                <p class="marca-pie"><strong>RetroWave</strong> La música también se lleva.</p>
+                <nav class="navegacion-pie" aria-label="Enlaces del pie de página">
                     <ul>
                         <li><a href="tienda.html">Remeras</a></li>
                         <li><a href="buzos.html">Buzos</a></li>
@@ -133,8 +143,8 @@
                         <button type="submit" disabled="disabled">Suscribirme</button>
                     </form>
                 </section>
-                <p><small>© 2026 RetroWave</small></p>
-                <p><a href="#encabezado">Volver arriba</a></p>
+                <p class="copyright"><small>© 2026 RetroWave</small></p>
+                <p class="volver-arriba"><a href="#encabezado">Volver arriba</a></p>
             </div>
         </footer>
     </div>
