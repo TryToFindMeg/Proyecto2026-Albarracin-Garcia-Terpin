@@ -8,26 +8,36 @@
     <meta name="keywords" content="RetroWave, música, ropa, remeras, buzos, accesorios">
     <title>Carrito | RetroWave</title>
     <link rel="icon" href="imagenes/vinilo-tocadiscos.jpeg" type="image/jpeg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&amp;family=Shrikhand&amp;display=swap">
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body>
+<body class="pagina-carrito">
     <div id="pagina">
         <header id="encabezado">
             <div class="contenedor">
-                <p><a href="index.html"><strong>RetroWave</strong></a></p>
-                <p>Música · Ropa · Identidad</p>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Inicio</a></li>
-                        <li><a href="tienda.html">Tienda</a></li>
-                        <li><a href="index.html#estilos">Artistas y estilos</a></li>
-                        <li><a href="nosotros.html">Nosotros</a></li>
-                        <li><a href="contacto.html">Contacto</a></li>
-                        <li><a href="cuenta.html">Mi cuenta</a></li>
-                        <li><a href="carrito.html">Carrito</a></li>
-                    </ul>
-                </nav>
-                <h1>Tu carrito</h1>
-                <p>Tres artículos elegidos para tu próxima escucha.</p>
+                <div class="barra-superior">
+                    <div class="marca">
+                        <p><a href="index.html"><strong>RetroWave</strong></a></p>
+                        <p class="lema">Música · Ropa · Identidad</p>
+                    </div>
+                    <nav class="navegacion-principal" aria-label="Navegación principal">
+                        <ul>
+                            <li><a href="index.html">Inicio</a></li>
+                            <li><a href="tienda.html">Tienda</a></li>
+                            <li><a href="index.html#estilos">Artistas y estilos</a></li>
+                            <li><a href="nosotros.html">Nosotros</a></li>
+                            <li><a href="contacto.html">Contacto</a></li>
+                            <li><a href="cuenta.html">Mi cuenta</a></li>
+                            <li><a class="activo" href="carrito.html" aria-current="page">Carrito</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="presentacion">
+                    <div class="presentacion-texto">
+                        <h1>Tu carrito</h1>
+                        <p>Tres artículos elegidos para tu próxima escucha.</p>
+                    </div>
+                </div>
             </div>
         </header>
         <main id="contenido">
@@ -36,68 +46,71 @@
                 <form id="formulario-carrito">
                     <section id="productos-carrito">
                         <h2>Productos elegidos</h2>
-                        <table>
-                            <caption>Detalle de tu carrito en pesos argentinos</caption>
-                            <thead>
-                                <tr>
-                                    <th scope="col">Producto</th>
-                                    <th scope="col">Precio unitario</th>
-                                    <th scope="col">Cantidad</th>
-                                    <th scope="col">Subtotal</th>
-                                    <th scope="col">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <p><a href="productos.html#remera-highway-grooves">Remera Highway Grooves</a></p>
-                                        <img src="imagenes/remera-grafica-vintage.jpeg" alt="Remera de una banda con estampado en celeste y amarillo" width="120">
-                                        <p>Color: Negro. Talle: M.</p>
-                                    </td>
-                                    <td>$28.900</td>
-                                    <td>
-                                        <label for="cantidad-1">Cantidad de Remera Highway Grooves</label>
-                                        <input type="number" id="cantidad-1" name="quantity1" min="1" max="10" step="1" value="1" required="required">
-                                    </td>
-                                    <td id="subtotal-1">$28.900</td>
-                                    <td><button type="button" disabled="disabled">Eliminar Remera Highway Grooves</button></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><a href="productos.html#buzo-music-heals">Buzo Music Heals</a></p>
-                                        <img src="imagenes/buzos-colores.png" alt="Buzos de distintos colores" width="120">
-                                        <p>Color: Crudo. Talle: L.</p>
-                                    </td>
-                                    <td>$58.900</td>
-                                    <td>
-                                        <label for="cantidad-2">Cantidad de Buzo Music Heals</label>
-                                        <input type="number" id="cantidad-2" name="quantity2" min="1" max="10" step="1" value="1" required="required">
-                                    </td>
-                                    <td id="subtotal-2">$58.900</td>
-                                    <td><button type="button" disabled="disabled">Eliminar Buzo Music Heals</button></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><a href="productos.html#tote-vinyl-forever">Tote bag Vinyl Forever</a></p>
-                                        <p>Color: Crudo. Talle: Único.</p>
-                                    </td>
-                                    <td>$18.000</td>
-                                    <td>
-                                        <label for="cantidad-3">Cantidad de Tote bag Vinyl Forever</label>
-                                        <input type="number" id="cantidad-3" name="quantity3" min="1" max="10" step="1" value="1" required="required">
-                                    </td>
-                                    <td id="subtotal-3">$18.000</td>
-                                    <td><button type="button" disabled="disabled">Eliminar Tote bag Vinyl Forever</button></td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th scope="row" colspan="3">Subtotal de los productos</th>
-                                    <td id="subtotal-productos" colspan="2">$105.800</td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                        <p>
+                        <div class="tabla-carrito" tabindex="0" role="region" aria-label="Detalle de los productos del carrito">
+                            <table>
+                                <caption>Detalle de tu carrito en pesos argentinos</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Producto</th>
+                                        <th scope="col">Precio unitario</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Subtotal</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p><a href="productos/remera-highway-grooves.html">Remera Highway Grooves</a></p>
+                                            <img src="imagenes/remera-grafica-vintage.jpeg" alt="Remera de una banda con estampado en celeste y amarillo" width="120">
+                                            <p>Color: Negro. Talle: M.</p>
+                                        </td>
+                                        <td>$28.900</td>
+                                        <td>
+                                            <label for="cantidad-1">Cantidad de Remera Highway Grooves</label>
+                                            <input type="number" id="cantidad-1" name="quantity1" min="1" max="10" step="1" value="1" required="required">
+                                        </td>
+                                        <td id="subtotal-1">$28.900</td>
+                                        <td><button type="button" disabled="disabled">Eliminar Remera Highway Grooves</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p><a href="productos/buzo-music-heals.html">Buzo Music Heals</a></p>
+                                            <img src="imagenes/buzos-colores.png" alt="Buzos de distintos colores" width="120">
+                                            <p>Color: Crudo. Talle: L.</p>
+                                        </td>
+                                        <td>$58.900</td>
+                                        <td>
+                                            <label for="cantidad-2">Cantidad de Buzo Music Heals</label>
+                                            <input type="number" id="cantidad-2" name="quantity2" min="1" max="10" step="1" value="1" required="required">
+                                        </td>
+                                        <td id="subtotal-2">$58.900</td>
+                                        <td><button type="button" disabled="disabled">Eliminar Buzo Music Heals</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p><a href="productos/tote-vinyl-forever.html">Tote bag Vinyl Forever</a></p>
+                                            <img class="foto-tote" src="imagenes/tote-vinyl-forever.jpg" alt="Bolsa de tela color crudo con un diseño de disco de vinilo y tocadiscos" width="120">
+                                            <p>Color: Crudo. Talle: Único.</p>
+                                        </td>
+                                        <td>$18.000</td>
+                                        <td>
+                                            <label for="cantidad-3">Cantidad de Tote bag Vinyl Forever</label>
+                                            <input type="number" id="cantidad-3" name="quantity3" min="1" max="10" step="1" value="1" required="required">
+                                        </td>
+                                        <td id="subtotal-3">$18.000</td>
+                                        <td><button type="button" disabled="disabled">Eliminar Tote bag Vinyl Forever</button></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th scope="row" colspan="3">Subtotal de los productos</th>
+                                        <td id="subtotal-productos" colspan="2">$105.800</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <p class="acciones-formulario">
                             <button type="button" id="actualizar-carrito" disabled="disabled">Actualizar carrito</button>
                             <button type="button" id="vaciar-carrito" disabled="disabled">Vaciar carrito</button>
                             <button type="reset">Restablecer cantidades</button>
@@ -124,8 +137,8 @@
         </main>
         <footer id="pie">
             <div class="contenedor">
-                <p><strong>RetroWave</strong> · La música también se lleva.</p>
-                <nav>
+                <p class="marca-pie"><strong>RetroWave</strong> La música también se lleva.</p>
+                <nav class="navegacion-pie" aria-label="Enlaces del pie de página">
                     <ul>
                         <li><a href="tienda.html">Remeras</a></li>
                         <li><a href="buzos.html">Buzos</a></li>
@@ -147,8 +160,8 @@
                         <button type="submit" disabled="disabled">Suscribirme</button>
                     </form>
                 </section>
-                <p><small>© 2026 RetroWave</small></p>
-                <p><a href="#encabezado">Volver arriba</a></p>
+                <p class="copyright"><small>© 2026 RetroWave</small></p>
+                <p class="volver-arriba"><a href="#encabezado">Volver arriba</a></p>
             </div>
         </footer>
     </div>
