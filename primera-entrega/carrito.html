@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Albarracin, Garcia y Terpin">
-    <meta name="description" content="Tres artículos elegidos para tu próxima escucha.">
+    <meta name="description" content="Revisá tus productos, modificá las cantidades y calculá el total de tu carrito RetroWave.">
     <meta name="keywords" content="RetroWave, música, ropa, remeras, buzos, accesorios">
     <title>Carrito | RetroWave</title>
     <link rel="icon" href="imagenes/vinilo-tocadiscos.jpeg" type="image/jpeg">
@@ -43,9 +43,15 @@
         <main id="contenido">
             <div class="contenedor">
                 <section id="mensaje-carrito-vacio" hidden="hidden">
-                    <h2>Tu carrito está vacío</h2>
-                    <p>Elegí una prenda y agregala desde su ficha.</p>
-                    <p><a class="boton" href="tienda.html">Explorar la tienda</a></p>
+                    <img class="foto-carrito-vacio" src="imagenes/vinilo-tocadiscos.jpeg" alt="Disco de vinilo en un tocadiscos" width="144" height="144">
+                    <div class="texto-carrito-vacio">
+                        <h2>Tu carrito está vacío</h2>
+                        <p>Encontrá esa prenda que va con vos y con tu música.</p>
+                        <div class="acciones-carrito-vacio">
+                            <a class="boton" href="tienda.html">Explorar la tienda</a>
+                            <a href="productos.html">Ver todos los productos</a>
+                        </div>
+                    </div>
                 </section>
                 <form id="formulario-carrito" novalidate="novalidate" onsubmit="return verResumenCompra()">
                     <section id="productos-carrito">
@@ -76,6 +82,7 @@
                             <button type="button" id="vaciar-carrito" onclick="vaciarCarrito()">Vaciar carrito</button>
                             <button type="button" class="boton-secundario" onclick="restablecerCantidades()">Restablecer cantidades a 1</button>
                         </p>
+                        <p><a href="tienda.html">Seguir comprando</a></p>
                     </section>
                     <section id="resumen">
                         <h2>Resumen de compra</h2>
@@ -97,7 +104,6 @@
                         <p class="aviso-demo">Demostración: no se generan pedidos ni pagos.</p>
                     </section>
                 </form>
-                <p><a href="tienda.html">Seguir comprando</a></p>
             </div>
         </main>
         <footer id="pie">
