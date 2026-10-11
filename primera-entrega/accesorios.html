@@ -53,7 +53,7 @@
                 <div class="catalogo-con-filtros">
                     <aside id="filtros">
                         <h2>Filtrar productos</h2>
-                        <p class="aviso-filtros" id="aviso-filtros">Géneros y artistas de ejemplo para esta colección.</p>
+                        <p class="aviso-filtros" id="aviso-filtros">Filtrá por el género musical o el artista de cada estampa.</p>
                         <form id="formulario-filtros" aria-describedby="aviso-filtros" novalidate="novalidate" onsubmit="return aplicarFiltros()">
                             <fieldset>
                                 <legend>Elegí tus preferencias</legend>
@@ -62,15 +62,18 @@
                                     <select id="genero" name="genre">
                                         <option value="all">Todos</option>
                                         <option value="rock">Rock</option>
-                                        <option value="pop">Pop</option>
+                                        <option value="pop">Pop / rock</option>
                                         <option value="indie">Indie</option>
-                                        <option value="alternativo">Alternativo</option>
-                                        <option value="clasicos">Clásicos</option>
+                                        <option value="alternativo">Rock alternativo</option>
+                                        <option value="clasicos">Rock clásico</option>
+                                        <option value="metal">Metal</option>
+                                        <option value="punk">Punk</option>
+                                        <option value="grunge">Grunge</option>
                                     </select>
                                 </p>
                                 <p>
                                     <label for="artista">Artista o banda</label>
-                                    <input type="search" id="artista" name="artist" placeholder="Nombre del artista" size="24" maxlength="80">
+                                    <input type="search" id="artista" name="artist" placeholder="Ejemplo: Nirvana" size="24" maxlength="80">
                                 </p>
                                 <p>
                                     <label for="precio-minimo">Precio mínimo en pesos</label>
@@ -125,11 +128,11 @@
                         <p id="cantidad-resultados" role="status" aria-live="polite"></p>
                         <div class="lista-productos" id="lista-catalogo">
                             <article class="producto" id="tote-vinyl-forever">
-                                <h3>Tote bag Vinyl Forever</h3>
-                                <img class="foto-tote" src="imagenes/tote-vinyl-forever.jpg" alt="Bolsa de tela color crudo con un diseño de disco de vinilo y tocadiscos" width="280">
+                                <h3>Tote bag My Chemical Romance</h3>
+                                <img class="foto-tote" src="imagenes/tote-my-chemical-romance.jpeg" alt="Tote bag cruda con asas largas, un corazón formado por texto y el logo de My Chemical Romance en negro." width="280">
                                 <p><strong>$18.000</strong></p>
-                                <p>Colores: Crudo.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/tote-vinyl-forever.html">Ver Tote bag Vinyl Forever</a></p>
+                                <p>Color: Crudo.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/tote-vinyl-forever.html">Ver Tote bag My Chemical Romance</a></p>
                             </article>
                         </div>
                     </section>
