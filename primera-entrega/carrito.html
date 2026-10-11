@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&amp;family=Shrikhand&amp;display=swap">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body class="pagina-carrito">
+<body class="pagina-carrito" onload="iniciarPagina()">
     <div id="pagina">
         <header id="encabezado">
             <div class="contenedor">
@@ -28,22 +28,26 @@
                             <li><a href="nosotros.html">Nosotros</a></li>
                             <li><a href="contacto.html">Contacto</a></li>
                             <li><a href="cuenta.html">Mi cuenta</a></li>
-                            <li><a class="activo" href="carrito.html" aria-current="page">Carrito</a></li>
+                            <li><a class="activo" href="carrito.html" aria-current="page">Carrito <span class="contador-carrito" id="contador-carrito">0</span></a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="presentacion">
                     <div class="presentacion-texto">
                         <h1>Tu carrito</h1>
-                        <p>Tres artículos elegidos para tu próxima escucha.</p>
+                        <p>Revisá tus productos, cantidades y el total de tu selección.</p>
                     </div>
                 </div>
             </div>
         </header>
         <main id="contenido">
             <div class="contenedor">
-                <p><a href="carrito-vacio.html">Ver el carrito vacío</a></p>
-                <form id="formulario-carrito">
+                <section id="mensaje-carrito-vacio" hidden="hidden">
+                    <h2>Tu carrito está vacío</h2>
+                    <p>Elegí una prenda y agregala desde su ficha.</p>
+                    <p><a class="boton" href="tienda.html">Explorar la tienda</a></p>
+                </section>
+                <form id="formulario-carrito" novalidate="novalidate" onsubmit="return verResumenCompra()">
                     <section id="productos-carrito">
                         <h2>Productos elegidos</h2>
                         <div class="tabla-carrito" tabindex="0" role="region" aria-label="Detalle de los productos del carrito">
@@ -58,62 +62,19 @@
                                         <th scope="col">Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <p><a href="productos/remera-highway-grooves.html">Remera Highway Grooves</a></p>
-                                            <img src="imagenes/remera-grafica-vintage.jpeg" alt="Remera de una banda con estampado en celeste y amarillo" width="120">
-                                            <p>Color: Negro. Talle: M.</p>
-                                        </td>
-                                        <td>$28.900</td>
-                                        <td>
-                                            <label for="cantidad-1">Cantidad de Remera Highway Grooves</label>
-                                            <input type="number" id="cantidad-1" name="quantity1" min="1" max="10" step="1" value="1" required="required">
-                                        </td>
-                                        <td id="subtotal-1">$28.900</td>
-                                        <td><button type="button" disabled="disabled">Eliminar Remera Highway Grooves</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p><a href="productos/buzo-music-heals.html">Buzo Music Heals</a></p>
-                                            <img src="imagenes/buzos-colores.png" alt="Buzos de distintos colores" width="120">
-                                            <p>Color: Crudo. Talle: L.</p>
-                                        </td>
-                                        <td>$58.900</td>
-                                        <td>
-                                            <label for="cantidad-2">Cantidad de Buzo Music Heals</label>
-                                            <input type="number" id="cantidad-2" name="quantity2" min="1" max="10" step="1" value="1" required="required">
-                                        </td>
-                                        <td id="subtotal-2">$58.900</td>
-                                        <td><button type="button" disabled="disabled">Eliminar Buzo Music Heals</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p><a href="productos/tote-vinyl-forever.html">Tote bag Vinyl Forever</a></p>
-                                            <img class="foto-tote" src="imagenes/tote-vinyl-forever.jpg" alt="Bolsa de tela color crudo con un diseño de disco de vinilo y tocadiscos" width="120">
-                                            <p>Color: Crudo. Talle: Único.</p>
-                                        </td>
-                                        <td>$18.000</td>
-                                        <td>
-                                            <label for="cantidad-3">Cantidad de Tote bag Vinyl Forever</label>
-                                            <input type="number" id="cantidad-3" name="quantity3" min="1" max="10" step="1" value="1" required="required">
-                                        </td>
-                                        <td id="subtotal-3">$18.000</td>
-                                        <td><button type="button" disabled="disabled">Eliminar Tote bag Vinyl Forever</button></td>
-                                    </tr>
-                                </tbody>
+                                <tbody id="cuerpo-carrito"></tbody>
                                 <tfoot>
                                     <tr>
                                         <th scope="row" colspan="3">Subtotal de los productos</th>
-                                        <td id="subtotal-productos" colspan="2">$105.800</td>
+                                        <td id="subtotal-productos" colspan="2">$0,00</td>
                                     </tr>
                                 </tfoot>
                             </table>
                         </div>
                         <p class="acciones-formulario">
-                            <button type="button" id="actualizar-carrito" disabled="disabled">Actualizar carrito</button>
-                            <button type="button" id="vaciar-carrito" disabled="disabled">Vaciar carrito</button>
-                            <button type="reset">Restablecer cantidades</button>
+                            <button type="button" id="actualizar-carrito" onclick="actualizarCarrito()">Actualizar carrito</button>
+                            <button type="button" id="vaciar-carrito" onclick="vaciarCarrito()">Vaciar carrito</button>
+                            <button type="button" class="boton-secundario" onclick="restablecerCantidades()">Restablecer cantidades a 1</button>
                         </p>
                     </section>
                     <section id="resumen">
@@ -122,14 +83,18 @@
                             <legend>Descuento</legend>
                             <p>
                                 <label for="codigo-descuento">Código de descuento</label>
-                                <input type="text" id="codigo-descuento" name="discountCode" placeholder="Ingresá tu código" size="28" maxlength="20">
+                                <input type="text" id="codigo-descuento" name="discountCode" placeholder="Ejemplo: RETRO10" size="28" maxlength="20">
                             </p>
-                            <button type="button" id="aplicar-descuento" disabled="disabled">Aplicar</button>
+                            <button type="button" id="aplicar-descuento" onclick="aplicarDescuento()">Aplicar</button>
+                            <p class="aviso-demo">RETRO10: 10 % de descuento de ejemplo.</p>
                         </fieldset>
-                        <p>Subtotal: <strong>$105.800</strong></p>
-                        <p>Envío: se calcula en el siguiente paso.</p>
-                        <p>Total de productos: <strong id="total-carrito">$105.800</strong></p>
-                        <button type="submit" disabled="disabled">Continuar con la compra</button>
+                        <p>Subtotal: <strong id="subtotal-resumen">$0,00</strong></p>
+                        <p>Descuento: <strong id="importe-descuento">$0,00</strong></p>
+                        <p id="mensaje-descuento" role="status" aria-live="polite"></p>
+                        <p>Envío no incluido en esta demostración.</p>
+                        <p>Total de productos: <strong id="total-carrito">$0,00</strong></p>
+                        <button type="submit">Ver resumen de prueba</button>
+                        <p class="aviso-demo">Demostración: no se generan pedidos ni pagos.</p>
                     </section>
                 </form>
                 <p><a href="tienda.html">Seguir comprando</a></p>
@@ -151,19 +116,38 @@
                 </nav>
                 <section id="novedades">
                     <h2>Quedate en la frecuencia</h2>
-                    <p>Novedades, lanzamientos y música para vestir.</p>
-                    <form id="formulario-novedades" method="post">
+                    <p>Novedades, lanzamientos y música para vestir. Suscripción de prueba.</p>
+                    <form id="formulario-novedades" method="post" novalidate="novalidate" onsubmit="return suscribirNovedades(this)" onreset="limpiarMensajeFormulario(this)">
                         <p>
                             <label for="email-novedades">Tu email</label>
                             <input type="email" id="email-novedades" name="newsletterEmail" placeholder="nombre@ejemplo.com" size="28" maxlength="100" required="required">
                         </p>
-                        <button type="submit" disabled="disabled">Suscribirme</button>
+                        <button type="submit">Suscribirme</button>
                     </form>
+                    <p class="mensaje-formulario" id="mensaje-formulario-novedades" role="status" aria-live="polite"></p>
                 </section>
                 <p class="copyright"><small>© 2026 RetroWave</small></p>
                 <p class="volver-arriba"><a href="#encabezado">Volver arriba</a></p>
             </div>
         </footer>
     </div>
+    <dialog id="dialogo-aviso" aria-labelledby="titulo-aviso" aria-describedby="texto-aviso">
+        <h2 id="titulo-aviso">Aviso de RetroWave</h2>
+        <p id="texto-aviso"></p>
+        <button type="button" onclick="cerrarAviso()" autofocus="autofocus">Entendido</button>
+    </dialog>
+    <dialog id="dialogo-vaciar" aria-labelledby="titulo-vaciar">
+        <h2 id="titulo-vaciar">Vaciar carrito</h2>
+        <p>¿Querés quitar todos los productos del carrito?</p>
+        <div class="acciones-formulario">
+            <button type="button" class="boton-secundario" onclick="cancelarVaciado()" autofocus="autofocus">Cancelar</button>
+            <button type="button" onclick="confirmarVaciado()">Sí, vaciar carrito</button>
+        </div>
+    </dialog>
+    <script src="js/datos-productos.js"></script>
+    <script src="js/funciones.js"></script>
+    <script src="js/catalogo.js"></script>
+    <script src="js/carrito.js"></script>
+    <script src="js/formularios.js"></script>
 </body>
 </html>
