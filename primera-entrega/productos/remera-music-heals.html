@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&amp;family=Shrikhand&amp;display=swap">
     <link rel="stylesheet" href="../css/estilos.css">
 </head>
-<body class="pagina-detalle">
+<body class="pagina-detalle" onload="iniciarPagina()">
     <div id="pagina">
         <header id="encabezado">
             <div class="contenedor">
@@ -28,7 +28,7 @@
                             <li><a href="../nosotros.html">Nosotros</a></li>
                             <li><a href="../contacto.html">Contacto</a></li>
                             <li><a href="../cuenta.html">Mi cuenta</a></li>
-                            <li><a href="../carrito.html">Carrito</a></li>
+                            <li><a href="../carrito.html">Carrito <span class="contador-carrito" id="contador-carrito">0</span></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -57,8 +57,9 @@
                     <div class="informacion-producto">
                         <h2>Detalles y opciones</h2>
                         <p><strong>$34.900</strong></p>
-                        <p>Una remera de la colección RetroWave para llevar la música a todos lados.</p>
-                        <form id="formulario-remera-music-heals">
+                        <p id="descripcion-producto">Una remera de la colección RetroWave para llevar la música a todos lados.</p>
+                        <p class="clasificacion-producto" id="clasificacion-producto"></p>
+                        <form id="formulario-remera-music-heals" novalidate="novalidate" onsubmit="return agregarAlCarrito('remera-music-heals')">
                             <fieldset>
                                 <legend>Elegí las opciones de Remera Music Heals</legend>
                                 <p>
@@ -79,14 +80,16 @@
                                 </p>
                                 <p>
                                     <label for="cantidad-remera-music-heals">Cantidad</label>
-                                    <input type="number" id="cantidad-remera-music-heals" name="quantity" min="1" max="10" step="1" value="1" required="required">
+                                    <input type="number" id="cantidad-remera-music-heals" name="quantity" min="1" max="10" step="1" value="1" required="required" onchange="actualizarImporteFicha('remera-music-heals')">
                                 </p>
                             </fieldset>
+                            <p>Importe por la cantidad elegida: <strong id="importe-producto" aria-live="polite"></strong></p>
                             <p class="acciones-formulario">
-                                <button type="button" disabled="disabled">Agregar al carrito</button>
-                                <button type="reset">Restablecer opciones</button>
+                                <button type="submit" id="agregar-producto">Agregar al carrito</button>
+                                <button type="button" class="boton-secundario" onclick="restablecerFicha('remera-music-heals')">Restablecer opciones</button>
                             </p>
                         </form>
+                        <p class="mensaje-formulario" id="mensaje-producto" role="status" aria-live="polite"></p>
                         <p><a href="../tienda.html">Volver al catálogo</a></p>
                     </div>
                 </section>
@@ -108,19 +111,30 @@
                 </nav>
                 <section id="novedades">
                     <h2>Quedate en la frecuencia</h2>
-                    <p>Novedades, lanzamientos y música para vestir.</p>
-                    <form id="formulario-novedades" method="post">
+                    <p>Novedades, lanzamientos y música para vestir. Suscripción de prueba.</p>
+                    <form id="formulario-novedades" method="post" novalidate="novalidate" onsubmit="return suscribirNovedades(this)" onreset="limpiarMensajeFormulario(this)">
                         <p>
                             <label for="email-novedades">Tu email</label>
                             <input type="email" id="email-novedades" name="newsletterEmail" placeholder="nombre@ejemplo.com" size="28" maxlength="100" required="required">
                         </p>
-                        <button type="submit" disabled="disabled">Suscribirme</button>
+                        <button type="submit">Suscribirme</button>
                     </form>
+                    <p class="mensaje-formulario" id="mensaje-formulario-novedades" role="status" aria-live="polite"></p>
                 </section>
                 <p class="copyright"><small>© 2026 RetroWave</small></p>
                 <p class="volver-arriba"><a href="#encabezado">Volver arriba</a></p>
             </div>
         </footer>
     </div>
+    <dialog id="dialogo-aviso" aria-labelledby="titulo-aviso" aria-describedby="texto-aviso">
+        <h2 id="titulo-aviso">Aviso de RetroWave</h2>
+        <p id="texto-aviso"></p>
+        <button type="button" onclick="cerrarAviso()" autofocus="autofocus">Entendido</button>
+    </dialog>
+    <script src="../js/datos-productos.js"></script>
+    <script src="../js/funciones.js"></script>
+    <script src="../js/catalogo.js"></script>
+    <script src="../js/carrito.js"></script>
+    <script src="../js/formularios.js"></script>
 </body>
 </html>
