@@ -14,6 +14,14 @@
     box-sizing: border-box;
 }
 
+[hidden] {
+    display: none;
+}
+
+#formulario-carrito[hidden], #mensaje-carrito-vacio[hidden] {
+    display: none;
+}
+
 body {
     margin: 0;
     background-color: var(--color-crema);
@@ -326,6 +334,60 @@ button:disabled, button:disabled:hover {
     font-size: 0.85rem;
 }
 
+.aviso-demo, .clasificacion-producto {
+    color: var(--color-secundario);
+    font-size: 0.85rem;
+}
+
+.mensaje-formulario {
+    margin-top: 0.8rem;
+    color: #365133;
+    font-size: 0.9rem;
+}
+
+.mensaje-formulario:empty {
+    margin: 0;
+}
+
+.contador-carrito {
+    display: inline-block;
+    min-width: 1.4rem;
+    padding: 0 0.25rem;
+    border-radius: 50%;
+    background-color: var(--color-mostaza);
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+.sin-resultados {
+    grid-column: 1 / -1;
+    padding: 1.5rem;
+    border: 1px solid var(--color-borde);
+    background-color: var(--color-papel);
+}
+
+[aria-invalid="true"] {
+    border-color: #9c352f;
+}
+
+dialog {
+    width: 440px;
+    max-width: 90%;
+    padding: 2rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 6px;
+    background-color: var(--color-papel);
+    color: var(--color-texto);
+}
+
+dialog::backdrop {
+    background-color: rgba(48, 42, 36, 0.55);
+}
+
+dialog h2 {
+    font-size: 1.7rem;
+}
+
 #filtros h2 {
     font-size: 1.5rem;
 }
@@ -392,6 +454,12 @@ button:disabled, button:disabled:hover {
 }
 
 .lista-estilos button {
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 0.85rem;
+}
+
+.lista-estilos .boton {
     width: 100%;
     padding: 0.6rem;
     font-size: 0.85rem;
@@ -568,6 +636,10 @@ legend {
     font-size: 1.6rem;
 }
 
+#importe-producto {
+    font-size: 1.1rem;
+}
+
 /* Carrito */
 #formulario-carrito {
     display: grid;
@@ -672,7 +744,7 @@ td button {
     font-size: 1.8rem;
 }
 
-#carrito-vacio {
+#carrito-vacio, #mensaje-carrito-vacio {
     max-width: 750px;
     margin: 0 auto;
     padding: 3rem 1.5rem;
