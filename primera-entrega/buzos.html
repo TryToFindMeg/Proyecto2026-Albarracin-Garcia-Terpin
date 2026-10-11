@@ -53,7 +53,7 @@
                 <div class="catalogo-con-filtros">
                     <aside id="filtros">
                         <h2>Filtrar productos</h2>
-                        <p class="aviso-filtros" id="aviso-filtros">Géneros y artistas de ejemplo para esta colección.</p>
+                        <p class="aviso-filtros" id="aviso-filtros">Filtrá por el género musical o el artista de cada estampa.</p>
                         <form id="formulario-filtros" aria-describedby="aviso-filtros" novalidate="novalidate" onsubmit="return aplicarFiltros()">
                             <fieldset>
                                 <legend>Elegí tus preferencias</legend>
@@ -62,15 +62,18 @@
                                     <select id="genero" name="genre">
                                         <option value="all">Todos</option>
                                         <option value="rock">Rock</option>
-                                        <option value="pop">Pop</option>
+                                        <option value="pop">Pop / rock</option>
                                         <option value="indie">Indie</option>
-                                        <option value="alternativo">Alternativo</option>
-                                        <option value="clasicos">Clásicos</option>
+                                        <option value="alternativo">Rock alternativo</option>
+                                        <option value="clasicos">Rock clásico</option>
+                                        <option value="metal">Metal</option>
+                                        <option value="punk">Punk</option>
+                                        <option value="grunge">Grunge</option>
                                     </select>
                                 </p>
                                 <p>
                                     <label for="artista">Artista o banda</label>
-                                    <input type="search" id="artista" name="artist" placeholder="Nombre del artista" size="24" maxlength="80">
+                                    <input type="search" id="artista" name="artist" placeholder="Ejemplo: Nirvana" size="24" maxlength="80">
                                 </p>
                                 <p>
                                     <label for="precio-minimo">Precio mínimo en pesos</label>
@@ -93,10 +96,8 @@
                                     <select id="color" name="color">
                                         <option value="all">Todos</option>
                                         <option value="black">Negro</option>
-                                        <option value="cream">Crudo</option>
-                                        <option value="orange">Naranja</option>
-                                        <option value="brown">Marrón</option>
                                         <option value="gray">Gris</option>
+                                        <option value="navy">Azul marino</option>
                                     </select>
                                 </p>
                                 <p>
@@ -132,94 +133,94 @@
                         <p id="cantidad-resultados" role="status" aria-live="polite"></p>
                         <div class="lista-productos" id="lista-catalogo">
                             <article class="producto" id="buzo-music-heals">
-                                <h3>Buzo Music Heals</h3>
-                                <img src="imagenes/buzos-colores.png" alt="Buzos de distintos colores" width="280">
+                                <h3>Buzo Alice in Chains</h3>
+                                <img src="imagenes/buzo-alice-in-chains.jpeg" alt="Buzo gris oscuro con capucha, el nombre de Alice in Chains en el frente y una composición gráfica en la espalda." width="280">
                                 <p class="estado">Nuevo</p>
                                 <p><strong>$58.900</strong></p>
-                                <p>Colores: Negro y crudo.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-music-heals.html">Ver Buzo Music Heals</a></p>
+                                <p>Color: Gris.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-music-heals.html">Ver Buzo Alice in Chains</a></p>
                             </article>
                             <article class="producto" id="buzo-backstage-club">
-                                <h3>Buzo Backstage Club</h3>
-                                <img src="imagenes/buzos-pastel-perchero.jpeg" alt="Buzos de colores claros en un perchero" width="280">
+                                <h3>Buzo Deftones</h3>
+                                <img src="imagenes/buzo-deftones.jpeg" alt="Buzo negro con capucha y una estampa roja de Deftones con la imagen de un búho en el frente." width="280">
                                 <p class="estado">Nuevo</p>
                                 <p><strong>$62.400</strong></p>
-                                <p>Colores: Crudo y menta.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-backstage-club.html">Ver Buzo Backstage Club</a></p>
+                                <p>Color: Negro.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-backstage-club.html">Ver Buzo Deftones</a></p>
                             </article>
                             <article class="producto" id="buzo-analog-dreams">
-                                <h3>Buzo Analog Dreams</h3>
-                                <img src="imagenes/tejidos-marrones.jpeg" alt="Prendas tejidas marrones apiladas" width="280">
+                                <h3>Buzo Fleetwood Mac Rumours</h3>
+                                <img src="imagenes/buzo-fleetwood-mac.jpeg" alt="Buzo azul marino con capucha, el nombre de Fleetwood Mac y una estampa clara inspirada en Rumours." width="280">
                                 <p><strong>$56.300</strong></p>
-                                <p>Colores: Marrón y crudo.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-analog-dreams.html">Ver Buzo Analog Dreams</a></p>
+                                <p>Color: Azul marino.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-analog-dreams.html">Ver Buzo Fleetwood Mac Rumours</a></p>
                             </article>
                             <article class="producto" id="buzo-loud-free">
-                                <h3>Buzo Loud &amp; Free</h3>
-                                <img src="imagenes/buzo-naranja.png" alt="Persona con un buzo naranja" width="280">
+                                <h3>Buzo Led Zeppelin</h3>
+                                <img src="imagenes/buzo-led-zeppelin.jpeg" alt="Buzo negro con capucha, el nombre de Led Zeppelin, una figura alada y referencias gráficas a una gira." width="280">
                                 <p class="estado">Nuevo</p>
                                 <p><strong>$64.800</strong></p>
-                                <p>Colores: Naranja y negro.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-loud-free.html">Ver Buzo Loud &amp; Free</a></p>
+                                <p>Color: Negro.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-loud-free.html">Ver Buzo Led Zeppelin</a></p>
                             </article>
                             <article class="producto" id="buzo-midnight-radio">
-                                <h3>Buzo Midnight Radio</h3>
-                                <img src="imagenes/prendas-abrigo.jpeg" alt="Prendas de abrigo acomodadas sobre una superficie" width="280">
+                                <h3>Buzo Nirvana In Utero</h3>
+                                <img src="imagenes/buzo-nirvana.jpeg" alt="Buzo negro con capucha y diseños de Nirvana en el frente y la espalda, con una figura alada en la estampa principal." width="280">
                                 <p><strong>$59.900</strong></p>
-                                <p>Colores: Negro y crudo.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-midnight-radio.html">Ver Buzo Midnight Radio</a></p>
+                                <p>Color: Negro.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-midnight-radio.html">Ver Buzo Nirvana In Utero</a></p>
                             </article>
                             <article class="producto" id="buzo-good-music-only">
-                                <h3>Buzo Good Music Only</h3>
-                                <img src="imagenes/buzo-beige.jpeg" alt="Buzo beige sobre fondo amarillo" width="280">
+                                <h3>Buzo Oasis</h3>
+                                <img src="imagenes/buzo-oasis.jpeg" alt="Buzo gris con capucha y el logo rectangular de Oasis en el frente." width="280">
                                 <p><strong>$57.100</strong></p>
-                                <p>Colores: Beige y negro.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-good-music-only.html">Ver Buzo Good Music Only</a></p>
+                                <p>Color: Gris.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-good-music-only.html">Ver Buzo Oasis</a></p>
                             </article>
                             <article class="producto" id="buzo-vinyl-society">
-                                <h3>Buzo Vinyl Society</h3>
-                                <img src="imagenes/buzo-escuchando-vinilos.jpeg" alt="Joven con un buzo mirando discos de vinilo" width="280">
+                                <h3>Buzo Pink Floyd</h3>
+                                <img src="imagenes/buzo-pink-floyd.jpeg" alt="Buzo negro con capucha y una estampa de Pink Floyd que combina un prisma, colores y el estilo de un cartel musical." width="280">
                                 <p class="estado">Nuevo</p>
                                 <p><strong>$61.500</strong></p>
-                                <p>Colores: Negro y menta.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-vinyl-society.html">Ver Buzo Vinyl Society</a></p>
+                                <p>Color: Negro.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-vinyl-society.html">Ver Buzo Pink Floyd</a></p>
                             </article>
                             <article class="producto" id="buzo-electric-soul">
-                                <h3>Buzo Electric Soul</h3>
-                                <img src="imagenes/buzo-franjas-colores.jpeg" alt="Buzo plegado con franjas de colores" width="280">
+                                <h3>Buzo Queen Escudo</h3>
+                                <img src="imagenes/buzo-queen.jpeg" alt="Buzo negro con capucha, el escudo de Queen en tonos cálidos y el nombre de la banda en rojo." width="280">
                                 <p><strong>$63.900</strong></p>
-                                <p>Colores: Menta y coral.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-electric-soul.html">Ver Buzo Electric Soul</a></p>
+                                <p>Color: Negro.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-electric-soul.html">Ver Buzo Queen Escudo</a></p>
                             </article>
                             <article class="producto" id="buzo-tour-memories">
-                                <h3>Buzo Tour Memories</h3>
-                                <img src="imagenes/buzo-amplio.jpeg" alt="Mujer con un buzo amplio" width="280">
+                                <h3>Buzo Radiohead</h3>
+                                <img src="imagenes/buzo-radiohead.jpeg" alt="Buzo gris oscuro de cuello redondo, con el nombre de Radiohead y una ilustración en blanco y negro en el frente." width="280">
                                 <p><strong>$58.200</strong></p>
-                                <p>Colores: Crudo y negro.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-tour-memories.html">Ver Buzo Tour Memories</a></p>
+                                <p>Color: Gris.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-tour-memories.html">Ver Buzo Radiohead</a></p>
                             </article>
                             <article class="producto" id="buzo-sunday-records">
-                                <h3>Buzo Sunday Records</h3>
-                                <img src="imagenes/buzo-lectura.jpeg" alt="Mujer con un buzo leyendo un libro" width="280">
+                                <h3>Buzo The Rolling Stones</h3>
+                                <img src="imagenes/buzo-rolling-stones.jpeg" alt="Buzo negro con capucha, el nombre de The Rolling Stones y una estampa con retratos y detalles rojos." width="280">
                                 <p><strong>$54.400</strong></p>
-                                <p>Colores: Crudo y menta.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-sunday-records.html">Ver Buzo Sunday Records</a></p>
+                                <p>Color: Negro.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-sunday-records.html">Ver Buzo The Rolling Stones</a></p>
                             </article>
                             <article class="producto" id="buzo-stereo-hearts">
-                                <h3>Buzo Stereo Hearts</h3>
-                                <img src="imagenes/buzo-gris-madera.jpeg" alt="Persona con un buzo gris frente a una pared de madera" width="280">
+                                <h3>Buzo The Beatles Come Together</h3>
+                                <img src="imagenes/buzo-the-beatles.jpeg" alt="Buzo gris con capucha, retratos de The Beatles, flores de colores y la inscripción Come Together." width="280">
                                 <p class="estado">Nuevo</p>
                                 <p><strong>$60.600</strong></p>
-                                <p>Colores: Gris y negro.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-stereo-hearts.html">Ver Buzo Stereo Hearts</a></p>
+                                <p>Color: Gris.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-stereo-hearts.html">Ver Buzo The Beatles Come Together</a></p>
                             </article>
                             <article class="producto" id="buzo-after-hours">
-                                <h3>Buzo After Hours</h3>
-                                <img src="imagenes/buzo-auriculares-noche.jpeg" alt="Mujer con buzo y auriculares en una calle de noche" width="280">
+                                <h3>Buzo The Cure</h3>
+                                <img src="imagenes/buzo-the-cure.jpeg" alt="Buzo gris oscuro con capucha, el nombre de The Cure y un retrato estampado en blanco en el frente." width="280">
                                 <p class="estado agotado">Agotado</p>
                                 <p><strong>$62.900</strong></p>
-                                <p>Colores: Negro y coral.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-after-hours.html">Ver Buzo After Hours</a></p>
+                                <p>Color: Gris.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-after-hours.html">Ver Buzo The Cure</a></p>
                             </article>
                         </div>
                     </section>

@@ -1,16 +1,16 @@
-// Géneros y artistas de ejemplo para la etapa de JavaScript.
-// Las imágenes, precios, talles y colores corresponden a los HTML existentes.
+// Nombres, artistas, colores y descripciones según las imágenes del catálogo.
+// Precios, talles y disponibilidad conservan los datos de la demostración.
 const productos = [
     {
         "id": "remera-highway-grooves",
-        "nombre": "Remera Highway Grooves",
-        "descripcion": "Una remera de la colección RetroWave para llevar la música a todos lados.",
+        "nombre": "Remera AC/DC Highway to Hell",
+        "descripcion": "Remera negra con el logo de AC/DC en rojo, un retrato de la banda y el texto Highway to Hell.",
         "categoria": "remeras",
         "genero": "rock",
-        "artista": "RetroWave Rock",
+        "artista": "AC/DC",
         "precio": 28900,
-        "imagen": "imagenes/remera-grafica-vintage.jpeg",
-        "alt": "Remera de una banda con estampado en celeste y amarillo",
+        "imagen": "imagenes/remera-acdc.jpeg",
+        "alt": "Remera negra con el logo de AC/DC en rojo, un retrato de la banda y el texto Highway to Hell.",
         "talles": [
             "S",
             "M",
@@ -18,8 +18,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Negro",
-            "Crudo"
+            "Negro"
         ],
         "disponible": true,
         "nuevo": true,
@@ -27,14 +26,14 @@ const productos = [
     },
     {
         "id": "remera-spin-forever",
-        "nombre": "Remera Spin Forever",
-        "descripcion": "Una remera de la colección RetroWave para llevar la música a todos lados.",
+        "nombre": "Remera Radiohead",
+        "descripcion": "Remera cruda con el nombre de Radiohead y una composición gráfica en blanco y negro en el frente.",
         "categoria": "remeras",
-        "genero": "pop",
-        "artista": "RetroWave Pop",
+        "genero": "alternativo",
+        "artista": "Radiohead",
         "precio": 31500,
-        "imagen": "imagenes/mujer-remera-grafica.jpeg",
-        "alt": "Mujer con una remera negra estampada junto a una pared de casetes",
+        "imagen": "imagenes/remera-radiohead.jpeg",
+        "alt": "Remera cruda con el nombre de Radiohead y una composición gráfica en blanco y negro en el frente.",
         "talles": [
             "S",
             "M",
@@ -42,8 +41,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Crudo",
-            "Coral"
+            "Crudo"
         ],
         "disponible": true,
         "nuevo": true,
@@ -51,14 +49,14 @@ const productos = [
     },
     {
         "id": "remera-music-heals",
-        "nombre": "Remera Music Heals",
-        "descripcion": "Una remera de la colección RetroWave para llevar la música a todos lados.",
+        "nombre": "Remera Kiss Rock 'n' Roll",
+        "descripcion": "Remera negra con el logo de Kiss, un retrato de la banda y una estampa de estilo rock en tonos rojos y claros.",
         "categoria": "remeras",
-        "genero": "clasicos",
-        "artista": "RetroWave Clásicos",
+        "genero": "rock",
+        "artista": "Kiss",
         "precio": 34900,
-        "imagen": "imagenes/remeras-blancas-perchas.jpeg",
-        "alt": "Remeras blancas en perchas de madera",
+        "imagen": "imagenes/remera-kiss.jpeg",
+        "alt": "Remera negra con el logo de Kiss, un retrato de la banda y una estampa de estilo rock en tonos rojos y claros.",
         "talles": [
             "S",
             "M",
@@ -66,8 +64,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Negro",
-            "Menta"
+            "Negro"
         ],
         "disponible": true,
         "nuevo": false,
@@ -75,14 +72,14 @@ const productos = [
     },
     {
         "id": "remera-stay-wild",
-        "nombre": "Remera Stay Wild",
-        "descripcion": "Una remera de la colección RetroWave para llevar la música a todos lados.",
+        "nombre": "Remera The 1975",
+        "descripcion": "Remera blanca con el nombre de The 1975 en rojo, una fotografía de la banda y detalles gráficos en negro.",
         "categoria": "remeras",
-        "genero": "alternativo",
-        "artista": "RetroWave Alternativo",
+        "genero": "pop",
+        "artista": "The 1975",
         "precio": 28900,
-        "imagen": "imagenes/mujer-remera-grafica.jpeg",
-        "alt": "Mujer con una remera negra estampada junto a una pared de casetes",
+        "imagen": "imagenes/remera-the-1975.jpeg",
+        "alt": "Remera blanca con el nombre de The 1975 en rojo, una fotografía de la banda y detalles gráficos en negro.",
         "talles": [
             "S",
             "M",
@@ -90,8 +87,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Coral",
-            "Crudo"
+            "Blanco"
         ],
         "disponible": true,
         "nuevo": true,
@@ -99,14 +95,14 @@ const productos = [
     },
     {
         "id": "remera-good-music-only",
-        "nombre": "Remera Good Music Only",
-        "descripcion": "Una remera de la colección RetroWave para llevar la música a todos lados.",
+        "nombre": "Remera The Smiths",
+        "descripcion": "Remera cruda con el nombre de The Smiths y una fotografía de los integrantes estampada en negro.",
         "categoria": "remeras",
-        "genero": "pop",
-        "artista": "RetroWave Pop",
+        "genero": "indie",
+        "artista": "The Smiths",
         "precio": 32900,
-        "imagen": "imagenes/remera-blanca-madera.jpeg",
-        "alt": "Remera blanca sobre un piso de madera",
+        "imagen": "imagenes/remera-the-smiths.jpeg",
+        "alt": "Remera cruda con el nombre de The Smiths y una fotografía de los integrantes estampada en negro.",
         "talles": [
             "S",
             "M",
@@ -114,8 +110,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Crudo",
-            "Negro"
+            "Crudo"
         ],
         "disponible": true,
         "nuevo": false,
@@ -123,14 +118,14 @@ const productos = [
     },
     {
         "id": "remera-vinyl-forever",
-        "nombre": "Remera Vinyl Forever",
-        "descripcion": "Una remera de la colección RetroWave para llevar la música a todos lados.",
+        "nombre": "Remera Nirvana In Utero",
+        "descripcion": "Remera cruda con el nombre de Nirvana, una figura alada en el centro y la inscripción In Utero.",
         "categoria": "remeras",
-        "genero": "clasicos",
-        "artista": "RetroWave Clásicos",
+        "genero": "grunge",
+        "artista": "Nirvana",
         "precio": 36500,
-        "imagen": "imagenes/remeras-perchero.jpeg",
-        "alt": "Remeras estampadas colgadas en un perchero",
+        "imagen": "imagenes/remera-nirvana.jpeg",
+        "alt": "Remera cruda con el nombre de Nirvana, una figura alada en el centro y la inscripción In Utero.",
         "talles": [
             "S",
             "M",
@@ -138,8 +133,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Negro",
-            "Menta"
+            "Crudo"
         ],
         "disponible": true,
         "nuevo": true,
@@ -147,14 +141,14 @@ const productos = [
     },
     {
         "id": "remera-midnight-radio",
-        "nombre": "Remera Midnight Radio",
-        "descripcion": "Una remera de la colección RetroWave para llevar la música a todos lados.",
+        "nombre": "Remera Metallica Damage Inc.",
+        "descripcion": "Remera negra con el logo de Metallica, una fotografía de la banda y la inscripción Damage Inc. 1986.",
         "categoria": "remeras",
-        "genero": "alternativo",
-        "artista": "RetroWave Alternativo",
+        "genero": "metal",
+        "artista": "Metallica",
         "precio": 38900,
-        "imagen": "imagenes/remera-midnight-radio.jpeg",
-        "alt": "Persona con una remera estampada oscura",
+        "imagen": "imagenes/remera-metallica.jpeg",
+        "alt": "Remera negra con el logo de Metallica, una fotografía de la banda y la inscripción Damage Inc. 1986.",
         "talles": [
             "S",
             "M",
@@ -170,14 +164,14 @@ const productos = [
     },
     {
         "id": "remera-electric-soul",
-        "nombre": "Remera Electric Soul",
-        "descripcion": "Una remera de la colección RetroWave para llevar la música a todos lados.",
+        "nombre": "Remera David Bowie",
+        "descripcion": "Remera cruda con un retrato de David Bowie, su nombre en rojo y un diseño enmarcado con estrellas.",
         "categoria": "remeras",
         "genero": "rock",
-        "artista": "RetroWave Rock",
+        "artista": "David Bowie",
         "precio": 29900,
-        "imagen": "imagenes/remeras-colores-plegadas.jpeg",
-        "alt": "Remeras de distintos colores plegadas",
+        "imagen": "imagenes/remera-david-bowie.jpeg",
+        "alt": "Remera cruda con un retrato de David Bowie, su nombre en rojo y un diseño enmarcado con estrellas.",
         "talles": [
             "S",
             "M",
@@ -185,8 +179,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Coral",
-            "Mostaza"
+            "Crudo"
         ],
         "disponible": true,
         "nuevo": false,
@@ -194,14 +187,14 @@ const productos = [
     },
     {
         "id": "remera-loud-free",
-        "nombre": "Remera Loud & Free",
-        "descripcion": "Una remera de la colección RetroWave para llevar la música a todos lados.",
+        "nombre": "Remera Sex Pistols Pretty Vacant",
+        "descripcion": "Remera cruda con una estampa de Sex Pistols, un detalle rosa y la inscripción Pretty Vacant.",
         "categoria": "remeras",
-        "genero": "rock",
-        "artista": "RetroWave Rock",
+        "genero": "punk",
+        "artista": "Sex Pistols",
         "precio": 41900,
-        "imagen": "imagenes/remera-grafica-vintage.jpeg",
-        "alt": "Remera de una banda con estampado en celeste y amarillo",
+        "imagen": "imagenes/remera-sex-pistols.jpeg",
+        "alt": "Remera cruda con una estampa de Sex Pistols, un detalle rosa y la inscripción Pretty Vacant.",
         "talles": [
             "S",
             "M",
@@ -209,7 +202,6 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Negro",
             "Crudo"
         ],
         "disponible": true,
@@ -218,14 +210,14 @@ const productos = [
     },
     {
         "id": "remera-backstage-club",
-        "nombre": "Remera Backstage Club",
-        "descripcion": "Una remera de la colección RetroWave para llevar la música a todos lados.",
+        "nombre": "Remera Queen",
+        "descripcion": "Remera gris clara con el nombre de Queen y una fotografía de los integrantes dentro de un recuadro.",
         "categoria": "remeras",
-        "genero": "pop",
-        "artista": "RetroWave Pop",
+        "genero": "clasicos",
+        "artista": "Queen",
         "precio": 33500,
-        "imagen": "imagenes/remera-blanca-fondo-neutro.jpeg",
-        "alt": "Remera blanca sobre un fondo neutro",
+        "imagen": "imagenes/remera-queen.jpeg",
+        "alt": "Remera gris clara con el nombre de Queen y una fotografía de los integrantes dentro de un recuadro.",
         "talles": [
             "S",
             "M",
@@ -233,8 +225,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Crudo",
-            "Menta"
+            "Gris"
         ],
         "disponible": true,
         "nuevo": true,
@@ -242,14 +233,14 @@ const productos = [
     },
     {
         "id": "remera-analog-heart",
-        "nombre": "Remera Analog Heart",
-        "descripcion": "Una remera de la colección RetroWave para llevar la música a todos lados.",
+        "nombre": "Remera The Beatles",
+        "descripcion": "Remera negra con el nombre de The Beatles en rojo y una composición de fotografías de la banda en blanco y negro.",
         "categoria": "remeras",
-        "genero": "indie",
-        "artista": "RetroWave Indie",
+        "genero": "clasicos",
+        "artista": "The Beatles",
         "precio": 35900,
-        "imagen": "imagenes/camara-remera-silla.jpeg",
-        "alt": "Remera y cámara analógica sobre una silla",
+        "imagen": "imagenes/remera-the-beatles.jpeg",
+        "alt": "Remera negra con el nombre de The Beatles en rojo y una composición de fotografías de la banda en blanco y negro.",
         "talles": [
             "S",
             "M",
@@ -257,7 +248,6 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Coral",
             "Negro"
         ],
         "disponible": true,
@@ -266,14 +256,14 @@ const productos = [
     },
     {
         "id": "remera-sunday-records",
-        "nombre": "Remera Sunday Records",
-        "descripcion": "Una remera de la colección RetroWave para llevar la música a todos lados.",
+        "nombre": "Remera Megadeth",
+        "descripcion": "Remera negra con el logo de Megadeth y una ilustración de una figura con balanza en tonos verde oliva.",
         "categoria": "remeras",
-        "genero": "indie",
-        "artista": "RetroWave Indie",
+        "genero": "metal",
+        "artista": "Megadeth",
         "precio": 30500,
-        "imagen": "imagenes/remeras-perchero.jpeg",
-        "alt": "Remeras estampadas colgadas en un perchero",
+        "imagen": "imagenes/remera-megadeth.jpeg",
+        "alt": "Remera negra con el logo de Megadeth y una ilustración de una figura con balanza en tonos verde oliva.",
         "talles": [
             "S",
             "M",
@@ -281,8 +271,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Crudo",
-            "Mostaza"
+            "Negro"
         ],
         "disponible": true,
         "nuevo": false,
@@ -290,14 +279,14 @@ const productos = [
     },
     {
         "id": "buzo-music-heals",
-        "nombre": "Buzo Music Heals",
-        "descripcion": "Una prenda de abrigo para acompañar tus canciones favoritas.",
+        "nombre": "Buzo Alice in Chains",
+        "descripcion": "Buzo gris oscuro con capucha, el nombre de Alice in Chains en el frente y una composición gráfica en la espalda.",
         "categoria": "buzos",
-        "genero": "clasicos",
-        "artista": "RetroWave Clásicos",
+        "genero": "grunge",
+        "artista": "Alice in Chains",
         "precio": 58900,
-        "imagen": "imagenes/buzos-colores.png",
-        "alt": "Buzos de distintos colores",
+        "imagen": "imagenes/buzo-alice-in-chains.jpeg",
+        "alt": "Buzo gris oscuro con capucha, el nombre de Alice in Chains en el frente y una composición gráfica en la espalda.",
         "talles": [
             "S",
             "M",
@@ -305,8 +294,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Negro",
-            "Crudo"
+            "Gris"
         ],
         "disponible": true,
         "nuevo": true,
@@ -314,14 +302,14 @@ const productos = [
     },
     {
         "id": "buzo-backstage-club",
-        "nombre": "Buzo Backstage Club",
-        "descripcion": "Una prenda de abrigo para acompañar tus canciones favoritas.",
+        "nombre": "Buzo Deftones",
+        "descripcion": "Buzo negro con capucha y una estampa roja de Deftones con la imagen de un búho en el frente.",
         "categoria": "buzos",
-        "genero": "pop",
-        "artista": "RetroWave Pop",
+        "genero": "metal",
+        "artista": "Deftones",
         "precio": 62400,
-        "imagen": "imagenes/buzos-pastel-perchero.jpeg",
-        "alt": "Buzos de colores claros en un perchero",
+        "imagen": "imagenes/buzo-deftones.jpeg",
+        "alt": "Buzo negro con capucha y una estampa roja de Deftones con la imagen de un búho en el frente.",
         "talles": [
             "S",
             "M",
@@ -329,8 +317,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Crudo",
-            "Menta"
+            "Negro"
         ],
         "disponible": true,
         "nuevo": true,
@@ -338,14 +325,14 @@ const productos = [
     },
     {
         "id": "buzo-analog-dreams",
-        "nombre": "Buzo Analog Dreams",
-        "descripcion": "Una prenda de abrigo para acompañar tus canciones favoritas.",
+        "nombre": "Buzo Fleetwood Mac Rumours",
+        "descripcion": "Buzo azul marino con capucha, el nombre de Fleetwood Mac y una estampa clara inspirada en Rumours.",
         "categoria": "buzos",
-        "genero": "indie",
-        "artista": "RetroWave Indie",
+        "genero": "clasicos",
+        "artista": "Fleetwood Mac",
         "precio": 56300,
-        "imagen": "imagenes/tejidos-marrones.jpeg",
-        "alt": "Prendas tejidas marrones apiladas",
+        "imagen": "imagenes/buzo-fleetwood-mac.jpeg",
+        "alt": "Buzo azul marino con capucha, el nombre de Fleetwood Mac y una estampa clara inspirada en Rumours.",
         "talles": [
             "S",
             "M",
@@ -353,8 +340,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Marrón",
-            "Crudo"
+            "Azul marino"
         ],
         "disponible": true,
         "nuevo": false,
@@ -362,14 +348,14 @@ const productos = [
     },
     {
         "id": "buzo-loud-free",
-        "nombre": "Buzo Loud & Free",
-        "descripcion": "Una prenda de abrigo para acompañar tus canciones favoritas.",
+        "nombre": "Buzo Led Zeppelin",
+        "descripcion": "Buzo negro con capucha, el nombre de Led Zeppelin, una figura alada y referencias gráficas a una gira.",
         "categoria": "buzos",
-        "genero": "rock",
-        "artista": "RetroWave Rock",
+        "genero": "clasicos",
+        "artista": "Led Zeppelin",
         "precio": 64800,
-        "imagen": "imagenes/buzo-naranja.png",
-        "alt": "Persona con un buzo naranja",
+        "imagen": "imagenes/buzo-led-zeppelin.jpeg",
+        "alt": "Buzo negro con capucha, el nombre de Led Zeppelin, una figura alada y referencias gráficas a una gira.",
         "talles": [
             "S",
             "M",
@@ -377,7 +363,6 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Naranja",
             "Negro"
         ],
         "disponible": true,
@@ -386,14 +371,14 @@ const productos = [
     },
     {
         "id": "buzo-midnight-radio",
-        "nombre": "Buzo Midnight Radio",
-        "descripcion": "Una prenda de abrigo para acompañar tus canciones favoritas.",
+        "nombre": "Buzo Nirvana In Utero",
+        "descripcion": "Buzo negro con capucha y diseños de Nirvana en el frente y la espalda, con una figura alada en la estampa principal.",
         "categoria": "buzos",
-        "genero": "alternativo",
-        "artista": "RetroWave Alternativo",
+        "genero": "grunge",
+        "artista": "Nirvana",
         "precio": 59900,
-        "imagen": "imagenes/prendas-abrigo.jpeg",
-        "alt": "Prendas de abrigo acomodadas sobre una superficie",
+        "imagen": "imagenes/buzo-nirvana.jpeg",
+        "alt": "Buzo negro con capucha y diseños de Nirvana en el frente y la espalda, con una figura alada en la estampa principal.",
         "talles": [
             "S",
             "M",
@@ -401,8 +386,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Negro",
-            "Crudo"
+            "Negro"
         ],
         "disponible": true,
         "nuevo": false,
@@ -410,14 +394,14 @@ const productos = [
     },
     {
         "id": "buzo-good-music-only",
-        "nombre": "Buzo Good Music Only",
-        "descripcion": "Una prenda de abrigo para acompañar tus canciones favoritas.",
+        "nombre": "Buzo Oasis",
+        "descripcion": "Buzo gris con capucha y el logo rectangular de Oasis en el frente.",
         "categoria": "buzos",
-        "genero": "pop",
-        "artista": "RetroWave Pop",
+        "genero": "alternativo",
+        "artista": "Oasis",
         "precio": 57100,
-        "imagen": "imagenes/buzo-beige.jpeg",
-        "alt": "Buzo beige sobre fondo amarillo",
+        "imagen": "imagenes/buzo-oasis.jpeg",
+        "alt": "Buzo gris con capucha y el logo rectangular de Oasis en el frente.",
         "talles": [
             "S",
             "M",
@@ -425,8 +409,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Beige",
-            "Negro"
+            "Gris"
         ],
         "disponible": true,
         "nuevo": false,
@@ -434,14 +417,14 @@ const productos = [
     },
     {
         "id": "buzo-vinyl-society",
-        "nombre": "Buzo Vinyl Society",
-        "descripcion": "Una prenda de abrigo para acompañar tus canciones favoritas.",
+        "nombre": "Buzo Pink Floyd",
+        "descripcion": "Buzo negro con capucha y una estampa de Pink Floyd que combina un prisma, colores y el estilo de un cartel musical.",
         "categoria": "buzos",
         "genero": "clasicos",
-        "artista": "RetroWave Clásicos",
+        "artista": "Pink Floyd",
         "precio": 61500,
-        "imagen": "imagenes/buzo-escuchando-vinilos.jpeg",
-        "alt": "Joven con un buzo mirando discos de vinilo",
+        "imagen": "imagenes/buzo-pink-floyd.jpeg",
+        "alt": "Buzo negro con capucha y una estampa de Pink Floyd que combina un prisma, colores y el estilo de un cartel musical.",
         "talles": [
             "S",
             "M",
@@ -449,8 +432,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Negro",
-            "Menta"
+            "Negro"
         ],
         "disponible": true,
         "nuevo": true,
@@ -458,14 +440,14 @@ const productos = [
     },
     {
         "id": "buzo-electric-soul",
-        "nombre": "Buzo Electric Soul",
-        "descripcion": "Una prenda de abrigo para acompañar tus canciones favoritas.",
+        "nombre": "Buzo Queen Escudo",
+        "descripcion": "Buzo negro con capucha, el escudo de Queen en tonos cálidos y el nombre de la banda en rojo.",
         "categoria": "buzos",
-        "genero": "rock",
-        "artista": "RetroWave Rock",
+        "genero": "clasicos",
+        "artista": "Queen",
         "precio": 63900,
-        "imagen": "imagenes/buzo-franjas-colores.jpeg",
-        "alt": "Buzo plegado con franjas de colores",
+        "imagen": "imagenes/buzo-queen.jpeg",
+        "alt": "Buzo negro con capucha, el escudo de Queen en tonos cálidos y el nombre de la banda en rojo.",
         "talles": [
             "S",
             "M",
@@ -473,8 +455,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Menta",
-            "Coral"
+            "Negro"
         ],
         "disponible": true,
         "nuevo": false,
@@ -482,14 +463,14 @@ const productos = [
     },
     {
         "id": "buzo-tour-memories",
-        "nombre": "Buzo Tour Memories",
-        "descripcion": "Una prenda de abrigo para acompañar tus canciones favoritas.",
+        "nombre": "Buzo Radiohead",
+        "descripcion": "Buzo gris oscuro de cuello redondo, con el nombre de Radiohead y una ilustración en blanco y negro en el frente.",
         "categoria": "buzos",
-        "genero": "rock",
-        "artista": "RetroWave Rock",
+        "genero": "alternativo",
+        "artista": "Radiohead",
         "precio": 58200,
-        "imagen": "imagenes/buzo-amplio.jpeg",
-        "alt": "Mujer con un buzo amplio",
+        "imagen": "imagenes/buzo-radiohead.jpeg",
+        "alt": "Buzo gris oscuro de cuello redondo, con el nombre de Radiohead y una ilustración en blanco y negro en el frente.",
         "talles": [
             "S",
             "M",
@@ -497,8 +478,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Crudo",
-            "Negro"
+            "Gris"
         ],
         "disponible": true,
         "nuevo": false,
@@ -506,14 +486,14 @@ const productos = [
     },
     {
         "id": "buzo-sunday-records",
-        "nombre": "Buzo Sunday Records",
-        "descripcion": "Una prenda de abrigo para acompañar tus canciones favoritas.",
+        "nombre": "Buzo The Rolling Stones",
+        "descripcion": "Buzo negro con capucha, el nombre de The Rolling Stones y una estampa con retratos y detalles rojos.",
         "categoria": "buzos",
-        "genero": "indie",
-        "artista": "RetroWave Indie",
+        "genero": "clasicos",
+        "artista": "The Rolling Stones",
         "precio": 54400,
-        "imagen": "imagenes/buzo-lectura.jpeg",
-        "alt": "Mujer con un buzo leyendo un libro",
+        "imagen": "imagenes/buzo-rolling-stones.jpeg",
+        "alt": "Buzo negro con capucha, el nombre de The Rolling Stones y una estampa con retratos y detalles rojos.",
         "talles": [
             "S",
             "M",
@@ -521,8 +501,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Crudo",
-            "Menta"
+            "Negro"
         ],
         "disponible": true,
         "nuevo": false,
@@ -530,14 +509,14 @@ const productos = [
     },
     {
         "id": "buzo-stereo-hearts",
-        "nombre": "Buzo Stereo Hearts",
-        "descripcion": "Una prenda de abrigo para acompañar tus canciones favoritas.",
+        "nombre": "Buzo The Beatles Come Together",
+        "descripcion": "Buzo gris con capucha, retratos de The Beatles, flores de colores y la inscripción Come Together.",
         "categoria": "buzos",
-        "genero": "pop",
-        "artista": "RetroWave Pop",
+        "genero": "clasicos",
+        "artista": "The Beatles",
         "precio": 60600,
-        "imagen": "imagenes/buzo-gris-madera.jpeg",
-        "alt": "Persona con un buzo gris frente a una pared de madera",
+        "imagen": "imagenes/buzo-the-beatles.jpeg",
+        "alt": "Buzo gris con capucha, retratos de The Beatles, flores de colores y la inscripción Come Together.",
         "talles": [
             "S",
             "M",
@@ -545,8 +524,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Gris",
-            "Negro"
+            "Gris"
         ],
         "disponible": true,
         "nuevo": true,
@@ -554,14 +532,14 @@ const productos = [
     },
     {
         "id": "buzo-after-hours",
-        "nombre": "Buzo After Hours",
-        "descripcion": "Una prenda de abrigo para acompañar tus canciones favoritas.",
+        "nombre": "Buzo The Cure",
+        "descripcion": "Buzo gris oscuro con capucha, el nombre de The Cure y un retrato estampado en blanco en el frente.",
         "categoria": "buzos",
         "genero": "alternativo",
-        "artista": "RetroWave Alternativo",
+        "artista": "The Cure",
         "precio": 62900,
-        "imagen": "imagenes/buzo-auriculares-noche.jpeg",
-        "alt": "Mujer con buzo y auriculares en una calle de noche",
+        "imagen": "imagenes/buzo-the-cure.jpeg",
+        "alt": "Buzo gris oscuro con capucha, el nombre de The Cure y un retrato estampado en blanco en el frente.",
         "talles": [
             "S",
             "M",
@@ -569,8 +547,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Negro",
-            "Coral"
+            "Gris"
         ],
         "disponible": false,
         "nuevo": false,
@@ -578,14 +555,14 @@ const productos = [
     },
     {
         "id": "campera-soundtrack",
-        "nombre": "Campera Soundtrack",
-        "descripcion": "Una campera inspirada en la música y las noches de recital.",
+        "nombre": "Campera Guns N' Roses",
+        "descripcion": "Campera de jean azul con una estampa de Guns N' Roses en la espalda, con rosas y una ilustración central.",
         "categoria": "camperas",
         "genero": "rock",
-        "artista": "RetroWave Rock",
+        "artista": "Guns N' Roses",
         "precio": 65000,
-        "imagen": "imagenes/campera-cuero-bordada.jpeg",
-        "alt": "Campera de cuero bordada vista desde atrás",
+        "imagen": "imagenes/campera-guns-n-roses.jpeg",
+        "alt": "Campera de jean azul con una estampa de Guns N' Roses en la espalda, con rosas y una ilustración central.",
         "talles": [
             "S",
             "M",
@@ -593,7 +570,7 @@ const productos = [
             "XL"
         ],
         "colores": [
-            "Negro"
+            "Azul"
         ],
         "disponible": true,
         "nuevo": false,
@@ -601,14 +578,14 @@ const productos = [
     },
     {
         "id": "tote-vinyl-forever",
-        "nombre": "Tote bag Vinyl Forever",
-        "descripcion": "Bolsa de tela para llevar tus discos, libros y objetos de todos los días.",
+        "nombre": "Tote bag My Chemical Romance",
+        "descripcion": "Tote bag cruda con asas largas, un corazón formado por texto y el logo de My Chemical Romance en negro.",
         "categoria": "accesorios",
-        "genero": "clasicos",
-        "artista": "RetroWave Clásicos",
+        "genero": "alternativo",
+        "artista": "My Chemical Romance",
         "precio": 18000,
-        "imagen": "imagenes/tote-vinyl-forever.jpg",
-        "alt": "Bolsa de tela color crudo con un diseño de disco de vinilo y tocadiscos",
+        "imagen": "imagenes/tote-my-chemical-romance.jpeg",
+        "alt": "Tote bag cruda con asas largas, un corazón formado por texto y el logo de My Chemical Romance en negro.",
         "talles": [
             "Único"
         ],
