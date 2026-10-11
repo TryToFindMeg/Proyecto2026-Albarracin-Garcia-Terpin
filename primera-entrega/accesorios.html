@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&amp;family=Shrikhand&amp;display=swap">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body class="pagina-accesorios">
+<body class="pagina-accesorios" data-categoria="accesorios" onload="iniciarPagina()">
     <div id="pagina">
         <header id="encabezado">
             <div class="contenedor">
@@ -28,7 +28,7 @@
                             <li><a href="nosotros.html">Nosotros</a></li>
                             <li><a href="contacto.html">Contacto</a></li>
                             <li><a href="cuenta.html">Mi cuenta</a></li>
-                            <li><a href="carrito.html">Carrito</a></li>
+                            <li><a href="carrito.html">Carrito <span class="contador-carrito" id="contador-carrito">0</span></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -53,8 +53,8 @@
                 <div class="catalogo-con-filtros">
                     <aside id="filtros">
                         <h2>Filtrar productos</h2>
-                        <p class="aviso-filtros" id="aviso-filtros">Filtros en preparación.</p>
-                        <form id="formulario-filtros" aria-describedby="aviso-filtros">
+                        <p class="aviso-filtros" id="aviso-filtros">Géneros y artistas de ejemplo para esta colección.</p>
+                        <form id="formulario-filtros" aria-describedby="aviso-filtros" novalidate="novalidate" onsubmit="return aplicarFiltros()">
                             <fieldset>
                                 <legend>Elegí tus preferencias</legend>
                                 <p>
@@ -109,19 +109,21 @@
                                         <option value="newest">Novedades</option>
                                         <option value="lowest">Menor precio</option>
                                         <option value="highest">Mayor precio</option>
+                                        <option value="name-asc">Nombre: A–Z</option>
+                                        <option value="name-desc">Nombre: Z–A</option>
                                     </select>
                                 </p>
                             </fieldset>
                             <p class="acciones-formulario">
-                                <button type="button" disabled="disabled">Aplicar filtros</button>
-                                <button type="reset">Limpiar filtros</button>
+                                <button type="submit">Aplicar filtros</button>
+                                <button type="button" class="boton-secundario" onclick="limpiarFiltros()">Limpiar filtros</button>
                             </p>
                         </form>
                     </aside>
                     <section id="catalogo">
                         <h2>Accesorios para llevar tu música</h2>
-                        <p>Una bolsa para acompañarte entre discos, libros y nuevos descubrimientos.</p>
-                        <div class="lista-productos">
+                        <p id="cantidad-resultados" role="status" aria-live="polite"></p>
+                        <div class="lista-productos" id="lista-catalogo">
                             <article class="producto" id="tote-vinyl-forever">
                                 <h3>Tote bag Vinyl Forever</h3>
                                 <img class="foto-tote" src="imagenes/tote-vinyl-forever.jpg" alt="Bolsa de tela color crudo con un diseño de disco de vinilo y tocadiscos" width="280">
@@ -158,19 +160,30 @@
                 </nav>
                 <section id="novedades">
                     <h2>Quedate en la frecuencia</h2>
-                    <p>Novedades, lanzamientos y música para vestir.</p>
-                    <form id="formulario-novedades" method="post">
+                    <p>Novedades, lanzamientos y música para vestir. Suscripción de prueba.</p>
+                    <form id="formulario-novedades" method="post" novalidate="novalidate" onsubmit="return suscribirNovedades(this)" onreset="limpiarMensajeFormulario(this)">
                         <p>
                             <label for="email-novedades">Tu email</label>
                             <input type="email" id="email-novedades" name="newsletterEmail" placeholder="nombre@ejemplo.com" size="28" maxlength="100" required="required">
                         </p>
-                        <button type="submit" disabled="disabled">Suscribirme</button>
+                        <button type="submit">Suscribirme</button>
                     </form>
+                    <p class="mensaje-formulario" id="mensaje-formulario-novedades" role="status" aria-live="polite"></p>
                 </section>
                 <p class="copyright"><small>© 2026 RetroWave</small></p>
                 <p class="volver-arriba"><a href="#encabezado">Volver arriba</a></p>
             </div>
         </footer>
     </div>
+    <dialog id="dialogo-aviso" aria-labelledby="titulo-aviso" aria-describedby="texto-aviso">
+        <h2 id="titulo-aviso">Aviso de RetroWave</h2>
+        <p id="texto-aviso"></p>
+        <button type="button" onclick="cerrarAviso()" autofocus="autofocus">Entendido</button>
+    </dialog>
+    <script src="js/datos-productos.js"></script>
+    <script src="js/funciones.js"></script>
+    <script src="js/catalogo.js"></script>
+    <script src="js/carrito.js"></script>
+    <script src="js/formularios.js"></script>
 </body>
 </html>
