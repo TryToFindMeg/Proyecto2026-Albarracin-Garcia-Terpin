@@ -53,7 +53,7 @@
                 <div class="catalogo-con-filtros">
                     <aside id="filtros">
                         <h2>Filtrar productos</h2>
-                        <p class="aviso-filtros" id="aviso-filtros">Géneros y artistas de ejemplo para esta colección.</p>
+                        <p class="aviso-filtros" id="aviso-filtros">Filtrá por el género musical o el artista de cada estampa.</p>
                         <form id="formulario-filtros" aria-describedby="aviso-filtros" novalidate="novalidate" onsubmit="return aplicarFiltros()">
                             <fieldset>
                                 <legend>Elegí tus preferencias</legend>
@@ -62,15 +62,18 @@
                                     <select id="genero" name="genre">
                                         <option value="all">Todos</option>
                                         <option value="rock">Rock</option>
-                                        <option value="pop">Pop</option>
+                                        <option value="pop">Pop / rock</option>
                                         <option value="indie">Indie</option>
-                                        <option value="alternativo">Alternativo</option>
-                                        <option value="clasicos">Clásicos</option>
+                                        <option value="alternativo">Rock alternativo</option>
+                                        <option value="clasicos">Rock clásico</option>
+                                        <option value="metal">Metal</option>
+                                        <option value="punk">Punk</option>
+                                        <option value="grunge">Grunge</option>
                                     </select>
                                 </p>
                                 <p>
                                     <label for="artista">Artista o banda</label>
-                                    <input type="search" id="artista" name="artist" placeholder="Nombre del artista" size="24" maxlength="80">
+                                    <input type="search" id="artista" name="artist" placeholder="Ejemplo: Nirvana" size="24" maxlength="80">
                                 </p>
                                 <p>
                                     <label for="precio-minimo">Precio mínimo en pesos</label>
@@ -94,9 +97,8 @@
                                         <option value="all">Todos</option>
                                         <option value="black">Negro</option>
                                         <option value="cream">Crudo</option>
-                                        <option value="coral">Coral</option>
-                                        <option value="mint">Menta</option>
-                                        <option value="mustard">Mostaza</option>
+                                        <option value="white">Blanco</option>
+                                        <option value="gray">Gris</option>
                                     </select>
                                 </p>
                                 <p>
@@ -132,94 +134,94 @@
                         <p id="cantidad-resultados" role="status" aria-live="polite"></p>
                         <div class="lista-productos" id="lista-catalogo">
                             <article class="producto" id="remera-highway-grooves">
-                                <h3>Remera Highway Grooves</h3>
-                                <img src="imagenes/remera-grafica-vintage.jpeg" alt="Remera de una banda con estampado en celeste y amarillo" width="280">
+                                <h3>Remera AC/DC Highway to Hell</h3>
+                                <img src="imagenes/remera-acdc.jpeg" alt="Remera negra con el logo de AC/DC en rojo, un retrato de la banda y el texto Highway to Hell." width="280">
                                 <p class="estado">Nuevo</p>
                                 <p><strong>$28.900</strong></p>
-                                <p>Colores: Negro y crudo.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-highway-grooves.html">Ver Remera Highway Grooves</a></p>
+                                <p>Color: Negro.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-highway-grooves.html">Ver Remera AC/DC Highway to Hell</a></p>
                             </article>
                             <article class="producto" id="remera-spin-forever">
-                                <h3>Remera Spin Forever</h3>
-                                <img src="imagenes/mujer-remera-grafica.jpeg" alt="Mujer con una remera negra estampada junto a una pared de casetes" width="280">
+                                <h3>Remera Radiohead</h3>
+                                <img src="imagenes/remera-radiohead.jpeg" alt="Remera cruda con el nombre de Radiohead y una composición gráfica en blanco y negro en el frente." width="280">
                                 <p class="estado">Nuevo</p>
                                 <p><strong>$31.500</strong></p>
-                                <p>Colores: Crudo y coral.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-spin-forever.html">Ver Remera Spin Forever</a></p>
+                                <p>Color: Crudo.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-spin-forever.html">Ver Remera Radiohead</a></p>
                             </article>
                             <article class="producto" id="remera-music-heals">
-                                <h3>Remera Music Heals</h3>
-                                <img src="imagenes/remeras-blancas-perchas.jpeg" alt="Remeras blancas en perchas de madera" width="280">
+                                <h3>Remera Kiss Rock 'n' Roll</h3>
+                                <img src="imagenes/remera-kiss.jpeg" alt="Remera negra con el logo de Kiss, un retrato de la banda y una estampa de estilo rock en tonos rojos y claros." width="280">
                                 <p><strong>$34.900</strong></p>
-                                <p>Colores: Negro y menta.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-music-heals.html">Ver Remera Music Heals</a></p>
+                                <p>Color: Negro.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-music-heals.html">Ver Remera Kiss Rock 'n' Roll</a></p>
                             </article>
                             <article class="producto" id="remera-stay-wild">
-                                <h3>Remera Stay Wild</h3>
-                                <img src="imagenes/mujer-remera-grafica.jpeg" alt="Mujer con una remera negra estampada junto a una pared de casetes" width="280">
+                                <h3>Remera The 1975</h3>
+                                <img src="imagenes/remera-the-1975.jpeg" alt="Remera blanca con el nombre de The 1975 en rojo, una fotografía de la banda y detalles gráficos en negro." width="280">
                                 <p class="estado">Nuevo</p>
                                 <p><strong>$28.900</strong></p>
-                                <p>Colores: Coral y crudo.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-stay-wild.html">Ver Remera Stay Wild</a></p>
+                                <p>Color: Blanco.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-stay-wild.html">Ver Remera The 1975</a></p>
                             </article>
                             <article class="producto" id="remera-good-music-only">
-                                <h3>Remera Good Music Only</h3>
-                                <img src="imagenes/remera-blanca-madera.jpeg" alt="Remera blanca sobre un piso de madera" width="280">
+                                <h3>Remera The Smiths</h3>
+                                <img src="imagenes/remera-the-smiths.jpeg" alt="Remera cruda con el nombre de The Smiths y una fotografía de los integrantes estampada en negro." width="280">
                                 <p><strong>$32.900</strong></p>
-                                <p>Colores: Crudo y negro.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-good-music-only.html">Ver Remera Good Music Only</a></p>
+                                <p>Color: Crudo.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-good-music-only.html">Ver Remera The Smiths</a></p>
                             </article>
                             <article class="producto" id="remera-vinyl-forever">
-                                <h3>Remera Vinyl Forever</h3>
-                                <img src="imagenes/remeras-perchero.jpeg" alt="Remeras estampadas colgadas en un perchero" width="280">
+                                <h3>Remera Nirvana In Utero</h3>
+                                <img src="imagenes/remera-nirvana.jpeg" alt="Remera cruda con el nombre de Nirvana, una figura alada en el centro y la inscripción In Utero." width="280">
                                 <p class="estado">Nuevo</p>
                                 <p><strong>$36.500</strong></p>
-                                <p>Colores: Negro y menta.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-vinyl-forever.html">Ver Remera Vinyl Forever</a></p>
+                                <p>Color: Crudo.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-vinyl-forever.html">Ver Remera Nirvana In Utero</a></p>
                             </article>
                             <article class="producto" id="remera-midnight-radio">
-                                <h3>Remera Midnight Radio</h3>
-                                <img src="imagenes/remera-midnight-radio.jpeg" alt="Persona con una remera estampada oscura" width="280">
+                                <h3>Remera Metallica Damage Inc.</h3>
+                                <img src="imagenes/remera-metallica.jpeg" alt="Remera negra con el logo de Metallica, una fotografía de la banda y la inscripción Damage Inc. 1986." width="280">
                                 <p class="estado agotado">Agotado</p>
                                 <p><strong>$38.900</strong></p>
-                                <p>Colores: Negro.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-midnight-radio.html">Ver Remera Midnight Radio</a></p>
+                                <p>Color: Negro.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-midnight-radio.html">Ver Remera Metallica Damage Inc.</a></p>
                             </article>
                             <article class="producto" id="remera-electric-soul">
-                                <h3>Remera Electric Soul</h3>
-                                <img src="imagenes/remeras-colores-plegadas.jpeg" alt="Remeras de distintos colores plegadas" width="280">
+                                <h3>Remera David Bowie</h3>
+                                <img src="imagenes/remera-david-bowie.jpeg" alt="Remera cruda con un retrato de David Bowie, su nombre en rojo y un diseño enmarcado con estrellas." width="280">
                                 <p><strong>$29.900</strong></p>
-                                <p>Colores: Coral y mostaza.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-electric-soul.html">Ver Remera Electric Soul</a></p>
+                                <p>Color: Crudo.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-electric-soul.html">Ver Remera David Bowie</a></p>
                             </article>
                             <article class="producto" id="remera-loud-free">
-                                <h3>Remera Loud &amp; Free</h3>
-                                <img src="imagenes/remera-grafica-vintage.jpeg" alt="Remera de una banda con estampado en celeste y amarillo" width="280">
+                                <h3>Remera Sex Pistols Pretty Vacant</h3>
+                                <img src="imagenes/remera-sex-pistols.jpeg" alt="Remera cruda con una estampa de Sex Pistols, un detalle rosa y la inscripción Pretty Vacant." width="280">
                                 <p><strong>$41.900</strong></p>
-                                <p>Colores: Negro y crudo.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-loud-free.html">Ver Remera Loud &amp; Free</a></p>
+                                <p>Color: Crudo.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-loud-free.html">Ver Remera Sex Pistols Pretty Vacant</a></p>
                             </article>
                             <article class="producto" id="remera-backstage-club">
-                                <h3>Remera Backstage Club</h3>
-                                <img src="imagenes/remera-blanca-fondo-neutro.jpeg" alt="Remera blanca sobre un fondo neutro" width="280">
+                                <h3>Remera Queen</h3>
+                                <img src="imagenes/remera-queen.jpeg" alt="Remera gris clara con el nombre de Queen y una fotografía de los integrantes dentro de un recuadro." width="280">
                                 <p class="estado">Nuevo</p>
                                 <p><strong>$33.500</strong></p>
-                                <p>Colores: Crudo y menta.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-backstage-club.html">Ver Remera Backstage Club</a></p>
+                                <p>Color: Gris.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-backstage-club.html">Ver Remera Queen</a></p>
                             </article>
                             <article class="producto" id="remera-analog-heart">
-                                <h3>Remera Analog Heart</h3>
-                                <img src="imagenes/camara-remera-silla.jpeg" alt="Remera y cámara analógica sobre una silla" width="280">
+                                <h3>Remera The Beatles</h3>
+                                <img src="imagenes/remera-the-beatles.jpeg" alt="Remera negra con el nombre de The Beatles en rojo y una composición de fotografías de la banda en blanco y negro." width="280">
                                 <p><strong>$35.900</strong></p>
-                                <p>Colores: Coral y negro.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-analog-heart.html">Ver Remera Analog Heart</a></p>
+                                <p>Color: Negro.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-analog-heart.html">Ver Remera The Beatles</a></p>
                             </article>
                             <article class="producto" id="remera-sunday-records">
-                                <h3>Remera Sunday Records</h3>
-                                <img src="imagenes/remeras-perchero.jpeg" alt="Remeras estampadas colgadas en un perchero" width="280">
+                                <h3>Remera Megadeth</h3>
+                                <img src="imagenes/remera-megadeth.jpeg" alt="Remera negra con el logo de Megadeth y una ilustración de una figura con balanza en tonos verde oliva." width="280">
                                 <p><strong>$30.500</strong></p>
-                                <p>Colores: Crudo y mostaza.</p>
-                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-sunday-records.html">Ver Remera Sunday Records</a></p>
+                                <p>Color: Negro.</p>
+                                <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-sunday-records.html">Ver Remera Megadeth</a></p>
                             </article>
                         </div>
                     </section>
