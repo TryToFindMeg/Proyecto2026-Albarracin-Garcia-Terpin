@@ -1,11 +1,12 @@
 let filtrosActuales = {};
 let ordenActual = "featured";
 const nombresGeneros = {
-    rock: "Rock", pop: "Pop", indie: "Indie", alternativo: "Alternativo", clasicos: "Clásicos"
+    rock: "Rock", pop: "Pop / rock", indie: "Indie", alternativo: "Rock alternativo",
+    clasicos: "Rock clásico", metal: "Metal", punk: "Punk", grunge: "Grunge"
 };
 const coloresFiltro = {
-    black: "negro", cream: "crudo", coral: "coral", mint: "menta", mustard: "mostaza",
-    orange: "naranja", brown: "marrón", gray: "gris"
+    black: "negro", cream: "crudo", white: "blanco", gray: "gris",
+    blue: "azul", navy: "azul marino"
 };
 
 /**
@@ -32,7 +33,9 @@ const cumpleFiltros = (producto) => {
     if (filtrosActuales.genero !== "all" && producto.genero !== filtrosActuales.genero) {
         return false;
     }
-    if (!producto.artista.toLowerCase().includes(filtrosActuales.artista)) {
+    const artistaProducto = producto.artista.toLowerCase().replace("/", "").replace("'", "");
+    const artistaBuscado = filtrosActuales.artista.replace("/", "").replace("'", "");
+    if (!artistaProducto.includes(artistaBuscado)) {
         return false;
     }
     if (producto.precio < filtrosActuales.minimo || producto.precio > filtrosActuales.maximo) {
@@ -109,7 +112,7 @@ const mostrarProductos = (seleccion) => {
             <img${claseFoto} src="${producto.imagen}" alt="${producto.alt}" width="280">
             ${estado}
             <p><strong>${formatearPrecio(producto.precio)}</strong></p>
-            <p>Colores: ${producto.colores.join(" y ")}.</p>
+            <p>Color: ${producto.colores.join(" y ")}.</p>
             <p class="clasificacion-producto">${nombresGeneros[producto.genero]} · ${producto.artista}</p>
             <p class="enlace-producto"><a class="boton boton-secundario" href="productos/${producto.id}.html">Ver ${producto.nombre}</a></p>
         </article>`;
@@ -129,6 +132,7 @@ const mostrarProductos = (seleccion) => {
  * @return {boolean} Siempre false para evitar enviar el formulario.
  */
 const aplicarFiltros = () => {
+    limpiarMensajeFormulario(document.getElementById("formulario-filtros"));
     const minimo = document.getElementById("precio-minimo");
     const maximo = document.getElementById("precio-maximo");
     if (minimo.validity.badInput) {
@@ -162,7 +166,7 @@ const aplicarFiltros = () => {
 };
 
 /**
- * Restablece los controles y vuelve a mostrar toda la categoría actual.
+ * Restablece los controles, limpia sus errores y muestra toda la categoría.
  * @method limpiarFiltros
  * @return {void}
  */
@@ -197,8 +201,7 @@ const iniciarFicha = (id) => {
     const producto = buscarProducto(id);
     document.querySelector(".informacion-producto strong").innerText = formatearPrecio(producto.precio);
     document.getElementById("descripcion-producto").innerText = producto.descripcion;
-    document.getElementById("clasificacion-producto").innerText = "Clasificación de ejemplo: "
-        + nombresGeneros[producto.genero] + " · " + producto.artista;
+    document.getElementById("clasificacion-producto").innerText = nombresGeneros[producto.genero] + " · " + producto.artista;
     const agregar = document.getElementById("agregar-producto");
     agregar.disabled = !producto.disponible;
     if (!producto.disponible) {
