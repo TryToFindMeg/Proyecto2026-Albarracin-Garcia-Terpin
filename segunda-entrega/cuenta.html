@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Albarracin, Garcia y Terpin" name="author">
+        <meta content="Tu espacio para seguir descubriendo música para vestir." name="description">
+        <meta content="RetroWave, música, ropa, remeras, buzos, accesorios" name="keywords">
+        <title>Mi cuenta | RetroWave</title>
+        <link href="imagenes/vinilo-tocadiscos.jpeg" rel="icon" type="image/jpeg">
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&amp;family=Shrikhand&amp;display=swap"
+            rel="stylesheet">
+        <link href="css/estilos.css" rel="stylesheet">
+    </head>
+    <body class="pagina-cuenta" onload="iniciarPagina()">
+        <div id="pagina">
+            <header id="encabezado">
+                <div class="contenedor">
+                    <div class="barra-superior">
+                        <div class="marca">
+                            <p>
+                                <a href="index.html">
+                                    <strong> RetroWave </strong>
+                                </a>
+                            </p>
+                            <p class="lema">Música · Ropa · Identidad</p>
+                        </div>
+                        <nav aria-label="Navegación principal" class="navegacion-principal">
+                            <ul>
+                                <li>
+                                    <a href="index.html"> Inicio </a>
+                                </li>
+                                <li>
+                                    <a href="productos.html?categoria=remeras"> Tienda </a>
+                                </li>
+                                <li>
+                                    <a href="index.html#estilos"> Artistas y estilos </a>
+                                </li>
+                                <li>
+                                    <a href="nosotros.html"> Nosotros </a>
+                                </li>
+                                <li>
+                                    <a href="contacto.html"> Contacto </a>
+                                </li>
+                                <li>
+                                    <a aria-current="page" class="activo" href="cuenta.html"> Mi cuenta </a>
+                                </li>
+                                <li>
+                                    <a href="carrito.html">
+                                        Carrito
+                                        <span class="contador-carrito" id="contador-carrito"> 0 </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="presentacion presentacion-con-imagen">
+                        <div class="presentacion-texto">
+                            <h1>Volvé a conectar con tu estilo</h1>
+                            <p>Tu espacio para seguir descubriendo música para vestir.</p>
+                        </div>
+                        <img
+                            alt="Personas recorriendo una tienda de discos"
+                            class="foto-presentacion"
+                            src="imagenes/personas-disqueria.jpeg"
+                            width="280">
+                    </div>
+                </div>
+            </header>
+            <main id="contenido">
+                <div class="contenedor">
+                    <section class="panel-formulario" id="iniciar-sesion">
+                        <h2>Ingresá a tu cuenta</h2>
+                        <p class="aviso-demo">Validación de prueba. No se inicia una sesión real. Recordarme guarda solamente el email.</p>
+                        <form
+                            id="formulario-ingreso"
+                            method="post"
+                            novalidate="novalidate"
+                            onreset="limpiarMensajeFormulario(this)"
+                            onsubmit="return validarIngreso(this);"
+                        >
+                            <fieldset>
+                                <legend>Datos de acceso</legend>
+                                <p>
+                                    <label for="email-ingreso"> Email </label>
+                                    <input
+                                        id="email-ingreso"
+                                        maxlength="100"
+                                        name="loginEmail"
+                                        placeholder="nombre@ejemplo.com"
+                                        required="required"
+                                        size="28"
+                                        type="email">
+                                </p>
+                                <p>
+                                    <label for="contrasena-ingreso"> Contraseña </label>
+                                    <input
+                                        id="contrasena-ingreso"
+                                        maxlength="64"
+                                        name="loginPassword"
+                                        placeholder="Tu contraseña"
+                                        required="required"
+                                        size="28"
+                                        type="password">
+                                </p>
+                                <p class="opcion-recordarme">
+                                    <input id="recordarme" name="rememberMe" type="checkbox" value="yes">
+                                    <label for="recordarme"> Recordarme </label>
+                                </p>
+                            </fieldset>
+                            <p class="acciones-formulario">
+                                <button type="submit">Iniciar sesión</button>
+                                <button type="reset">Limpiar campos</button>
+                            </p>
+                        </form>
+                        <p aria-live="polite" class="mensaje-formulario" id="mensaje-formulario-ingreso" role="status"></p>
+                        <p>
+                            <a href="#recuperar-contrasena"> Recuperar contraseña </a>
+                        </p>
+                        <p>
+                            ¿Todavía no tenés cuenta?
+                            <a href="#crear-cuenta"> Crear cuenta </a>
+                        </p>
+                    </section>
+                    <section class="panel-formulario" id="recuperar-contrasena">
+                        <h2>Recuperar contraseña</h2>
+                        <p class="aviso-demo">Validación de prueba. No se envía un correo.</p>
+                        <p>Ingresá el email asociado a tu cuenta.</p>
+                        <form
+                            id="formulario-recuperacion"
+                            method="post"
+                            novalidate="novalidate"
+                            onreset="limpiarMensajeFormulario(this)"
+                            onsubmit="return validarRecuperacion(this);"
+                        >
+                            <p>
+                                <label for="email-recuperacion"> Email de tu cuenta </label>
+                                <input
+                                    id="email-recuperacion"
+                                    maxlength="100"
+                                    name="recoveryEmail"
+                                    placeholder="nombre@ejemplo.com"
+                                    required="required"
+                                    size="28"
+                                    type="email">
+                            </p>
+                            <button type="submit">Recuperar acceso</button>
+                        </form>
+                        <p aria-live="polite" class="mensaje-formulario" id="mensaje-formulario-recuperacion" role="status"></p>
+                        <p>
+                            <a href="#iniciar-sesion"> Volver al ingreso </a>
+                        </p>
+                    </section>
+                    <section class="panel-formulario" id="crear-cuenta">
+                        <h2>Crear cuenta</h2>
+                        <p class="aviso-demo">Formulario de prueba. No se crean cuentas reales.</p>
+                        <form
+                            id="formulario-registro"
+                            method="post"
+                            novalidate="novalidate"
+                            onreset="limpiarMensajeFormulario(this)"
+                            onsubmit="return validarRegistro(this);"
+                        >
+                            <fieldset>
+                                <legend>Datos personales</legend>
+                                <p>
+                                    <label for="nombre-registro"> Nombre </label>
+                                    <input
+                                        id="nombre-registro"
+                                        maxlength="40"
+                                        name="firstName"
+                                        placeholder="Tu nombre"
+                                        required="required"
+                                        size="28"
+                                        type="text">
+                                </p>
+                                <p>
+                                    <label for="apellido-registro"> Apellido </label>
+                                    <input
+                                        id="apellido-registro"
+                                        maxlength="40"
+                                        name="lastName"
+                                        placeholder="Tu apellido"
+                                        required="required"
+                                        size="28"
+                                        type="text">
+                                </p>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Datos de la cuenta</legend>
+                                <p>
+                                    <label for="email-registro"> Email </label>
+                                    <input
+                                        id="email-registro"
+                                        maxlength="100"
+                                        name="registerEmail"
+                                        placeholder="nombre@ejemplo.com"
+                                        required="required"
+                                        size="28"
+                                        type="email">
+                                </p>
+                                <p>
+                                    <label for="contrasena-registro"> Contraseña </label>
+                                    <input
+                                        id="contrasena-registro"
+                                        maxlength="64"
+                                        name="registerPassword"
+                                        placeholder="Elegí una contraseña"
+                                        required="required"
+                                        size="28"
+                                        type="password">
+                                </p>
+                                <p>
+                                    <label for="confirmar-contrasena"> Repetir contraseña </label>
+                                    <input
+                                        id="confirmar-contrasena"
+                                        maxlength="64"
+                                        name="confirmPassword"
+                                        placeholder="Repetí tu contraseña"
+                                        required="required"
+                                        size="28"
+                                        type="password">
+                                </p>
+                            </fieldset>
+                            <p class="acciones-formulario">
+                                <button type="submit">Crear cuenta</button>
+                                <button type="reset">Limpiar campos</button>
+                            </p>
+                        </form>
+                        <p aria-live="polite" class="mensaje-formulario" id="mensaje-formulario-registro" role="status"></p>
+                    </section>
+                </div>
+            </main>
+            <footer id="pie">
+                <div class="contenedor">
+                    <p class="marca-pie">
+                        <strong> RetroWave </strong>
+                        La música también se lleva.
+                    </p>
+                    <nav aria-label="Enlaces del pie de página" class="navegacion-pie">
+                        <ul>
+                            <li>
+                                <a href="productos.html?categoria=remeras"> Remeras </a>
+                            </li>
+                            <li>
+                                <a href="productos.html?categoria=buzos"> Buzos </a>
+                            </li>
+                            <li>
+                                <a href="productos.html?categoria=accesorios"> Accesorios </a>
+                            </li>
+                            <li>
+                                <a href="nosotros.html"> Nuestra historia </a>
+                            </li>
+                            <li>
+                                <a href="contacto.html#preguntas"> Preguntas frecuentes </a>
+                            </li>
+                            <li>
+                                <a href="contacto.html#envios"> Envíos </a>
+                            </li>
+                            <li>
+                                <a href="contacto.html#cambios"> Cambios </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <section id="novedades">
+                        <h2>Quedate en la frecuencia</h2>
+                        <p>Novedades, lanzamientos y música para vestir. Suscripción de prueba.</p>
+                        <form
+                            id="formulario-novedades"
+                            method="post"
+                            novalidate="novalidate"
+                            onreset="limpiarMensajeFormulario(this)"
+                            onsubmit="return suscribirNovedades(this);"
+                        >
+                            <p>
+                                <label for="email-novedades"> Tu email </label>
+                                <input
+                                    id="email-novedades"
+                                    maxlength="100"
+                                    name="newsletterEmail"
+                                    placeholder="nombre@ejemplo.com"
+                                    required="required"
+                                    size="28"
+                                    type="email">
+                            </p>
+                            <button type="submit">Suscribirme</button>
+                        </form>
+                        <p aria-live="polite" class="mensaje-formulario" id="mensaje-formulario-novedades" role="status"></p>
+                    </section>
+                    <p class="copyright">
+                        <small> © 2026 RetroWave </small>
+                    </p>
+                    <p class="volver-arriba">
+                        <a href="#encabezado"> Volver arriba </a>
+                    </p>
+                </div>
+            </footer>
+        </div>
+        <dialog aria-describedby="texto-aviso" aria-labelledby="titulo-aviso" id="dialogo-aviso">
+            <h2 id="titulo-aviso">Aviso de RetroWave</h2>
+            <p id="texto-aviso"></p>
+            <button autofocus="autofocus" onclick="cerrarAviso()" type="button">Entendido</button>
+        </dialog>
+        <script src="js/datos-productos.js"></script>
+        <script src="js/funciones.js"></script>
+        <script src="js/catalogo.js"></script>
+        <script src="js/carrito.js"></script>
+        <script src="js/formularios.js"></script>
+    </body>
+</html>
