@@ -1,0 +1,137 @@
+@use "@styles/variables" as v;
+.carrito-contenido {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 1.5rem;
+    align-items: start;
+}
+.productos-carrito {
+    min-width: 0;
+    h2 {
+        font-size: 1.8rem;
+    }
+}
+.tabla-carrito-contenedor {
+    overflow-x: auto;
+}
+.tabla-carrito {
+    width: 100%;
+    border-collapse: collapse;
+    background: v.$color-papel;
+    caption {
+        padding: 1rem;
+        text-align: left;
+        font-weight: 700;
+    }
+    th,
+    td {
+        padding: 0.8rem;
+        border-bottom: 1px solid v.$color-borde;
+        text-align: left;
+        vertical-align: top;
+    }
+    th {
+        font-size: 0.85rem;
+    }
+    td {
+        font-size: 0.85rem;
+    }
+    td:first-child {
+        min-width: 180px;
+        max-width: 230px;
+    }
+    img {
+        margin: 0.75rem 0;
+        height: 110px;
+        width: 100px;
+        object-fit: contain;
+    }
+    .etiqueta-cantidad {
+        font-size: 0.8rem;
+    }
+    input {
+        min-width: 75px;
+        padding: 0.6rem;
+    }
+    .boton {
+        font-size: 0.8rem;
+        padding: 0.5rem;
+    }
+}
+.resumen-carrito {
+    padding: 1.5rem;
+    border: 1px solid v.$color-borde;
+    border-radius: 6px;
+    background: v.$color-papel;
+    h2 {
+        font-size: 1.7rem;
+    }
+}
+.importes-carrito {
+    margin: 1.5rem 0;
+    div {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.7rem;
+        padding: 0.7rem 0;
+        border-top: 1px solid v.$color-borde;
+    }
+    dd {
+        margin: 0;
+        white-space: nowrap;
+        font-weight: 700;
+    }
+    .total-carrito {
+        font-size: 1.1rem;
+    }
+}
+.acciones-carrito {
+    margin: 1.5rem 0;
+}
+.carrito-vacio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 480px;
+    padding: 3rem;
+    border: 1px solid v.$color-borde;
+    border-radius: 8px;
+    background: v.$color-papel;
+    text-align: center;
+    .acciones-formulario {
+        justify-content: center;
+    }
+}
+.disco-vacio {
+    display: block;
+    width: 130px;
+    height: 130px;
+    margin-bottom: 2rem;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        v.$color-crema 0 5%,
+        v.$color-coral 6% 23%,
+        v.$color-texto 24% 40%,
+        #554b40 41% 43%,
+        v.$color-texto 44% 54%,
+        #554b40 55% 57%,
+        v.$color-texto 58%
+    );
+    box-shadow: 6px 8px 0 v.$color-borde;
+}
+.dialogo-retrowave {
+    width: min(90%, 540px);
+    padding: 2rem;
+    border: 1px solid v.$color-texto;
+    border-radius: 8px;
+    background: v.$color-papel;
+    color: v.$color-texto;
+    h2 {
+        font-size: 1.8rem;
+    }
+    &::backdrop {
+        background: #302a2499;
+    }
+}
