@@ -1,0 +1,32 @@
+@use "@styles/variables" as v;
+
+.presentacion-nosotros {
+    background-color: #e8e0c8;
+}
+.seccion-nosotros {
+    margin-top: 3.25rem;
+}
+.lista-valores,
+.lista-colecciones {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+.lista-valores .tarjeta {
+    border-top: 4px solid v.$color-coral;
+    padding: 1.5rem;
+}
+.invitacion-tienda {
+    padding: 2.5rem;
+    background-color: v.$color-mostaza;
+    text-align: center;
+    .boton {
+        margin: 0.5rem;
+        background-color: v.$color-papel;
+    }
+    .boton:hover,
+    .boton:focus-visible {
+        background-color: v.$color-texto;
+        color: v.$color-papel;
+    }
+}

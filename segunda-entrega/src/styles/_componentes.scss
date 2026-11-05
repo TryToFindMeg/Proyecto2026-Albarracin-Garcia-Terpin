@@ -1,0 +1,70 @@
+@use "@styles/variables" as v;
+
+.boton {
+    display: inline-block;
+    padding: 0.8rem 1.2rem;
+    border: 1px solid v.$color-texto;
+    border-radius: 4px;
+    background-color: v.$color-mostaza;
+    color: v.$color-texto;
+    font: inherit;
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        background-color 0.2s,
+        color 0.2s;
+    &:hover,
+    &:focus-visible {
+        background-color: v.$color-texto;
+        color: v.$color-papel;
+    }
+}
+.boton-secundario {
+    background-color: transparent;
+}
+.tarjeta {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid v.$color-borde;
+    border-radius: 6px;
+    background-color: v.$color-papel;
+    > img {
+        width: 100%;
+        height: 230px;
+        margin-bottom: 1rem;
+        border-radius: 3px;
+        object-fit: cover;
+    }
+}
+.contenido-tarjeta {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.enlace-tarjeta {
+    width: 100%;
+    margin-top: auto;
+    padding-top: 1.25rem;
+}
+.enlace-tarjeta .boton {
+    width: 100%;
+    padding: 0.7rem 0.5rem;
+    font-size: 0.8rem;
+}
+.estado {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: 3px;
+    background-color: v.$color-menta;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+.precio {
+    font-size: 1.1rem;
+}
