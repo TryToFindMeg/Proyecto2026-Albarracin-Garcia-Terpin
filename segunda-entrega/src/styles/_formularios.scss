@@ -1,7 +1,8 @@
 @use "@styles/variables" as v;
 
 .filtros-catalogo,
-.formulario-producto {
+.formulario-producto,
+.formulario-react {
     fieldset {
         min-width: 0;
         margin: 0;
@@ -18,7 +19,8 @@
         font-weight: 700;
     }
     input,
-    select {
+    select,
+    textarea {
         width: 100%;
         margin: 0 0 1.1rem;
         padding: 0.8rem;
@@ -29,7 +31,8 @@
         font: inherit;
     }
     input:focus-visible,
-    select:focus-visible {
+    select:focus-visible,
+    textarea:focus-visible {
         outline: 3px solid v.$color-foco;
         outline-offset: 3px;
     }
@@ -48,4 +51,78 @@
     color: #65594c;
     border-color: v.$color-borde;
     cursor: not-allowed;
+}
+
+.formulario-react fieldset {
+    margin-bottom: 1.5rem;
+}
+.formulario-react textarea {
+    resize: vertical;
+}
+.formulario-react .opcion-recordarme {
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+    margin: 1rem 0;
+    input {
+        width: auto;
+        margin: 0;
+    }
+    label {
+        margin: 0;
+    }
+}
+.campo-formulario {
+    margin-bottom: 1rem;
+    input,
+    select,
+    textarea {
+        margin-bottom: 0;
+    }
+}
+.ayuda-campo {
+    margin: 0.4rem 0 0.8rem;
+    font-size: 0.85rem;
+    color: v.$color-secundario;
+}
+.acciones-formulario {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+}
+.mensaje-formulario {
+    margin: 1rem 0 0;
+    font-weight: 700;
+}
+.aviso-demo {
+    margin-top: 1rem;
+    color: v.$color-secundario;
+    font-size: 0.85rem;
+}
+.panel-formulario {
+    max-width: 860px;
+    margin: 2.5rem auto;
+    padding: 2.5rem;
+    border: 1px solid v.$color-borde;
+    border-radius: 6px;
+    background: v.$color-papel;
+}
+.presentacion-formularios .foto-presentacion {
+    height: 320px;
+}
+.enlaces-formularios {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+    font-weight: 700;
+}
+.preguntas-frecuentes {
+    max-width: 860px;
+    margin: 3rem auto;
+    article {
+        padding: 1.5rem 0;
+        border-bottom: 1px solid v.$color-borde;
+    }
 }

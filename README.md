@@ -26,23 +26,21 @@ Proyecto de una tienda de ropa y accesorios inspirados en la música para Taller
 | Ubicación | Estado |
 | --- | --- |
 | [primera-entrega](primera-entrega/index.html) | Versión anterior conservada. |
-| [segunda-entrega](segunda-entrega/README.md) | Etapas 1, 2 y 3: Inicio, Nosotros, catálogo y ficha en React, conectados a la API. |
-| [Sitio HTML con fixes](segunda-entrega/public/sitio-html/index.html) | Mantiene disponibles cuenta, contacto, suscripción y carrito durante la migración. |
+| [segunda-entrega](segunda-entrega/README.md) | Etapas 1 a 4: sitio migrado a React, con API de productos, carrito y formularios. |
 
-La segunda entrega se desarrolla por etapas. Inicio, Nosotros, el catálogo y la ficha de producto
-ya funcionan en React con una estructura compartida mediante Outlet. Un único catálogo muestra
-todas las categorías y una ficha reutilizable muestra el producto elegido.
-Los productos de Inicio, catálogo y ficha se obtienen con fetch y async/await desde json-server.
-Los filtros conservan la categoría y quedan guardados en la URL al recargar o volver desde una ficha.
-El carrito y los formularios siguen en HTML. La ficha React agrega productos al mismo localStorage
-y actualiza el contador de la cabecera al comprar.
+La segunda entrega se desarrolla por etapas. Todas las páginas actuales funcionan en React:
+Inicio, Nosotros, catálogo, ficha de producto, carrito, Cuenta y Contacto, además de Novedades en el pie.
+El catálogo comparte una página para todas las categorías y una ficha reutilizable por identificador.
+Los productos se obtienen de json-server mediante fetch y async/await.
+El carrito conserva las variantes y el descuento de las etapas anteriores y se sincroniza entre pestañas.
+Los formularios validan mientras se escribe y muestran mensajes accesibles.
 
 | Etapa | Contenido | Estado |
 | --- | --- | --- |
 | 1 | Vite, dependencias, alias, Sass y servicio simulado. | Preparada. |
 | 2 | Inicio, Nosotros, estructura compartida, rutas y navegación con HTML. | Implementada. |
 | 3 | Catálogo y ficha de producto en React, conectados a la API con fetch y async/await. | Implementada. |
-| 4 | Carrito y formularios en React, persistencia y validación en tiempo real. | Pendiente. |
+| 4 | Carrito y formularios en React, persistencia y validación en tiempo real. | Implementada. |
 | 5 | Revisión final y preparación de la publicación. | Pendiente. |
 
 ## Ejecución de la segunda entrega
@@ -96,9 +94,10 @@ Consultar [la guía de React](segunda-entrega/README.md) para ver scripts, alias
 - Sass con archivos `.scss` dentro de `src/styles`.
 - json-server para simular el servicio de productos.
 - ESLint y Prettier para revisión y formato del código.
-- HTML5, CSS3 y JavaScript en el sitio corregido que se conserva durante la migración.
+- HTML semántico mediante JSX y JavaScript con funciones flecha.
+- Formularios controlados con onChange y mensajes de error accesibles.
 - fetch y async/await para consultar la API de productos.
-- localStorage compartido por la ficha React y el carrito HTML durante la migración.
+- localStorage para carrito, descuento y email recordado, sin guardar contraseñas.
 - Google Fonts: Shrikhand y DM Sans.
 - Git, GitHub y Markdown.
 
@@ -108,8 +107,9 @@ El sitio incluye Inicio, catálogo por categorías, una ficha compartida de prod
 Nosotros, carrito, Mi cuenta y Contacto. El catálogo contiene 26 productos con fotografías locales,
 22 artistas o bandas y 8 géneros musicales.
 
-Los filtros conservan la categoría seleccionada. El carrito permite elegir talle y cantidad,
-actualizar, eliminar o vaciar productos y aplicar el código de demostración **RETRO10**.
+Los filtros conservan la categoría seleccionada y sus preferencias en la URL. El carrito permite elegir
+talle y color, editar cantidades, actualizar, eliminar o vaciar productos y aplicar **RETRO10**.
+Las cantidades se validan al escribir y se guardan al presionar Actualizar carrito. El vaciado pide confirmación.
 Ingreso, registro, recuperación, contacto y suscripción son demostraciones: no crean cuentas,
 no envían correos ni procesan pagos. Las contraseñas no se guardan.
 
@@ -121,17 +121,17 @@ Los [Sketch](primera-entrega/Sketch) y [Mockup](primera-entrega/Mockup) de la pr
 
 ## Pruebas
 
-La etapa 3 pasó ESLint, Prettier y la compilación de Vite. Se comprobaron las 26 fichas y sus imágenes,
-filtros combinados, recarga, vuelta al catálogo, precios inválidos, productos agotados y producto inexistente.
-También se probaron compras con variantes, cantidades acumuladas, compatibilidad con el carrito HTML,
-descuento RETRO10 y recuperación desde un error del servicio mediante el botón de reintento.
-Se realizaron 14 comprobaciones adicionales de lógica y del servicio de productos.
-La compilación se recorrió en el navegador integrado. No hubo errores de consola en esa revisión;
-la prueba separada con la API apagada generó los errores de conexión esperados.
-No se observó desborde horizontal en las vistas de escritorio comprobadas.
-`npm audit` informó 0 vulnerabilidades el 5 de noviembre de 2026, dentro de `segunda-entrega`.
+La etapa 4 pasó ESLint, Prettier y la compilación de Vite. Se probaron compras con variantes,
+cantidades inválidas, actualización, descuento, eliminación, restablecimiento y vaciado con confirmación.
+Se verificaron recarga, sincronización entre pestañas, error y recuperación del servicio sin borrar compras,
+ingreso con email recordado, registro, recuperación, contacto y suscripción de prueba.
+Se realizaron 15 comprobaciones adicionales de lógica, validaciones y almacenamiento, incluyendo
+compatibilidad con datos anteriores y errores de escritura.
+Las pruebas en el navegador integrado comprobaron desarrollo y compilación; los fallos de conexión
+provocados al apagar la API se registraron por separado.
+`npm audit` informó 0 vulnerabilidades el 5 de noviembre de 2026 dentro de segunda-entrega.
 
-Las pruebas de la migración completa y en otros navegadores se realizarán al terminar las siguientes etapas.
+La etapa 5 queda pendiente para la revisión final, las pruebas en otros navegadores y la publicación.
 
 ## Trabajo en equipo
 
@@ -141,3 +141,11 @@ Se utiliza conventional commits y se conservan las versiones exactas en `package
 
 La [publicación anterior en GitHub Pages](https://trytofindmeg.github.io/Proyecto2026-Albarracin-Garcia-Terpin/primera-entrega/)
 se conserva mientras se prepara la migración. El despliegue de React se configurará al completar esa etapa.
+
+
+## Conservación de versiones
+
+La primera entrega permanece separada. El HTML, CSS y JavaScript anteriores de la segunda entrega
+se retiraron de public después de migrar todas sus páginas a React. Sus fotos locales se conservan
+en public/sitio-html/imagenes. Los respaldos completos y los paquetes de cada etapa se guardan
+aparte en el escritorio de trabajo y no se suben como carpetas del sitio.
