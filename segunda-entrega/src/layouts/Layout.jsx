@@ -22,6 +22,18 @@ const Layout = ({ productos, unidades }) => {
                 descripcion: "La historia, la música y las personas que inspiran a RetroWave.",
             },
         };
+        paginas["/carrito"] = {
+            titulo: "Carrito",
+            descripcion: "Revisá tus prendas, cantidades y el total de tu selección.",
+        };
+        paginas["/cuenta"] = {
+            titulo: "Mi cuenta",
+            descripcion: "Tu espacio para seguir descubriendo música para vestir.",
+        };
+        paginas["/contacto"] = {
+            titulo: "Contacto",
+            descripcion: "Consultanos por prendas, talles, envíos y cambios.",
+        };
         const parametros = new URLSearchParams(ubicacion.search);
         const categoria = categorias.find((item) => item.id === parametros.get("categoria"));
         if (ubicacion.pathname === "/productos") {

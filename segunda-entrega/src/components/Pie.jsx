@@ -1,6 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import Boton from "@/components/Boton.jsx";
-import { crearEnlaceHTML } from "@/utils/rutas.js";
+import Novedades from "@/components/Novedades.jsx";
 
 /**
  * Reutiliza los enlaces y la presentación del pie de las páginas de React.
@@ -30,21 +29,17 @@ const Pie = () => {
                                 <Link to="/productos?categoria=accesorios">Accesorios</Link>
                             </li>
                             <li>
-                                <a href={crearEnlaceHTML("contacto.html#preguntas")}>Preguntas frecuentes</a>
+                                <Link to="/contacto#preguntas">Preguntas frecuentes</Link>
                             </li>
                             <li>
-                                <a href={crearEnlaceHTML("contacto.html#envios")}>Envíos</a>
+                                <Link to="/contacto#envios">Envíos</Link>
                             </li>
                             <li>
-                                <a href={crearEnlaceHTML("contacto.html#cambios")}>Cambios</a>
+                                <Link to="/contacto#cambios">Cambios</Link>
                             </li>
                         </ul>
                     </nav>
-                    <section className="novedades" id="novedades">
-                        <h2>Quedate en la frecuencia</h2>
-                        <p>Novedades, lanzamientos y música para vestir.</p>
-                        <Boton href={crearEnlaceHTML("index.html#novedades")}>Suscribirme</Boton>
-                    </section>
+                    <Novedades />
                 </div>
                 <div className="cierre-pie">
                     <small>© 2026 RetroWave</small>
