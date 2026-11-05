@@ -108,7 +108,7 @@ const Nosotros = () => {
             </section>
             <section className="invitacion-tienda seccion-nosotros">
                 <h2>La música no solo se escucha. También se lleva.</h2>
-                <Boton href={crearEnlaceHTML("productos.html?categoria=remeras")}>Explorar la tienda</Boton>
+                <Boton to="/productos?categoria=remeras">Explorar la tienda</Boton>
                 <Boton to="/" secundario>
                     Volver a Inicio
                 </Boton>

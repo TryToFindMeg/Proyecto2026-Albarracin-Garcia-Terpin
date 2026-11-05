@@ -46,7 +46,7 @@ const buscarProducto = (id) => {
  * @param {string} id - Identificador de la prenda.
  * @return {string} Dirección del detalle.
  */
-const enlaceFicha = (id) => "producto.html?id=" + encodeURIComponent(id);
+const enlaceFicha = (id) => "../index.html#/producto/" + encodeURIComponent(id);
 
 /**
  * Presenta un importe en pesos argentinos con dos decimales.

@@ -1,26 +1,13 @@
-import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { crearEnlaceHTML } from "@/utils/rutas.js";
-import { leerUnidadesCarrito } from "@/utils/carrito.js";
 
 /**
- * Muestra la navegación fija y las unidades del carrito compartido con HTML.
+ * Muestra la navegación fija y el contador que comparte la aplicación.
+ * @param {object} props - Cantidad de unidades del carrito.
  * @returns {import("react").ReactElement} Encabezado de RetroWave.
  */
-const Cabecera = () => {
-    const [unidades, setUnidades] = useState(leerUnidadesCarrito);
-
-    useEffect(() => {
-        /** Actualiza el contador al volver al sitio o cambiar el almacenamiento. */
-        const actualizarUnidades = () => setUnidades(leerUnidadesCarrito());
-        window.addEventListener("storage", actualizarUnidades);
-        window.addEventListener("focus", actualizarUnidades);
-        return () => {
-            window.removeEventListener("storage", actualizarUnidades);
-            window.removeEventListener("focus", actualizarUnidades);
-        };
-    }, []);
-
+const Cabecera = ({ unidades }) => {
+    const ubicacion = useLocation();
     return (
         <header className="barra-superior" id="encabezado" tabIndex="-1">
             <div className="contenedor barra-contenido">
@@ -38,7 +25,12 @@ const Cabecera = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <a href={crearEnlaceHTML("productos.html?categoria=remeras")}>Tienda</a>
+                            <Link
+                                to="/productos?categoria=remeras"
+                                aria-current={ubicacion.pathname.startsWith("/producto") ? "page" : undefined}
+                            >
+                                Tienda
+                            </Link>
                         </li>
                         <li>
                             <Link to="/#estilos">Artistas y estilos</Link>
