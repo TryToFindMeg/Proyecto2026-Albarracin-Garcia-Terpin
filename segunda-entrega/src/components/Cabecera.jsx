@@ -1,5 +1,4 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { crearEnlaceHTML } from "@/utils/rutas.js";
 
 /**
  * Muestra la navegación fija y el contador que comparte la aplicación.
@@ -39,13 +38,13 @@ const Cabecera = ({ unidades }) => {
                             <NavLink to="/nosotros">Nosotros</NavLink>
                         </li>
                         <li>
-                            <a href={crearEnlaceHTML("contacto.html")}>Contacto</a>
+                            <NavLink to="/contacto">Contacto</NavLink>
                         </li>
                         <li>
-                            <a href={crearEnlaceHTML("cuenta.html")}>Mi cuenta</a>
+                            <NavLink to="/cuenta">Mi cuenta</NavLink>
                         </li>
                         <li>
-                            <a href={crearEnlaceHTML("carrito.html")}>
+                            <NavLink to="/carrito">
                                 Carrito{" "}
                                 <span
                                     className="contador-carrito"
@@ -54,7 +53,7 @@ const Cabecera = ({ unidades }) => {
                                 >
                                     {unidades}
                                 </span>
-                            </a>
+                            </NavLink>
                         </li>
                     </ul>
                 </nav>

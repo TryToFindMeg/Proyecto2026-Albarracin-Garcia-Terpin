@@ -2,7 +2,7 @@ import { useState } from "react";
 import Boton from "@/components/Boton.jsx";
 import { crearEnlaceHTML } from "@/utils/rutas.js";
 import { formatearPrecio } from "@/utils/precios.js";
-import { agregarProducto, validarCantidad } from "@/utils/carrito.js";
+import { validarCantidad } from "@/utils/carrito.js";
 import { generos } from "@/data/catalogo.js";
 
 /**
@@ -19,15 +19,14 @@ const FichaProducto = ({ producto, regreso, alAgregar }) => {
     const errorCantidad = validarCantidad(cantidad);
     const genero = generos.find((item) => item.id === producto.genero)?.nombre || producto.genero;
 
-    /** Agrega la variante al almacenamiento y actualiza el contador de React. */
+    /** Comunica la compra al estado compartido de la aplicación. */
     const comprar = (evento) => {
         evento.preventDefault();
         setMensaje("");
         setErrorCompra("");
         if (errorCantidad) return;
         try {
-            agregarProducto(producto, talle, color, Number(cantidad));
-            alAgregar();
+            alAgregar(producto, talle, color, Number(cantidad));
             setMensaje(
                 `Agregaste ${cantidad} ${Number(cantidad) === 1 ? "unidad" : "unidades"} de ${producto.nombre} al carrito.`,
             );
@@ -144,7 +143,7 @@ const FichaProducto = ({ producto, regreso, alAgregar }) => {
                         <Boton to={regreso} secundario>
                             Volver al catálogo
                         </Boton>
-                        <Boton href={crearEnlaceHTML("carrito.html")}>Ver carrito</Boton>
+                        <Boton to="/carrito">Ver carrito</Boton>
                     </div>
                 </div>
             </section>

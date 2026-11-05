@@ -5,24 +5,24 @@ import Inicio from "@/pages/Inicio.jsx";
 import Nosotros from "@/pages/Nosotros.jsx";
 import Catalogo from "@/pages/Catalogo.jsx";
 import Producto from "@/pages/Producto.jsx";
+import Carrito from "@/pages/Carrito.jsx";
+import Cuenta from "@/pages/Cuenta.jsx";
+import Contacto from "@/pages/Contacto.jsx";
 import NoEncontrada from "@/pages/NoEncontrada.jsx";
 import { obtenerProductos } from "@/api/productos.js";
-import { leerUnidadesCarrito } from "@/utils/carrito.js";
+import { leerSeleccion, guardarSeleccion, sumarProducto } from "@/utils/carrito.js";
 
-/**
- * Carga los productos y comparte los datos entre las páginas de la tienda.
- * @returns {import("react").ReactElement} Aplicación y rutas de RetroWave.
- */
+/** Mantiene los productos y la selección de compra compartidos por las páginas de React. */
 const App = () => {
     const [productos, setProductos] = useState([]);
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState("");
     const [intento, setIntento] = useState(0);
-    const [unidades, setUnidades] = useState(leerUnidadesCarrito);
-
+    const [seleccion, setSeleccion] = useState(leerSeleccion);
+    const unidades = seleccion.carrito.reduce((total, item) => total + item.cantidad, 0);
     useEffect(() => {
         let activo = true;
-        /** Carga el servicio y evita actualizar una página que ya se cerró. */
+        /** Consulta los productos y evita actualizar un componente desmontado. */
         const cargar = async () => {
             try {
                 const lista = await obtenerProductos();
@@ -44,10 +44,9 @@ const App = () => {
             activo = false;
         };
     }, [intento]);
-
     useEffect(() => {
-        /** Sincroniza el contador al volver del carrito o desde otra pestaña. */
-        const sincronizar = () => setUnidades(leerUnidadesCarrito());
+        /** Sincroniza las compras al volver a la ventana o desde otra pestaña. */
+        const sincronizar = () => setSeleccion(leerSeleccion());
         window.addEventListener("storage", sincronizar);
         window.addEventListener("focus", sincronizar);
         window.addEventListener("pageshow", sincronizar);
@@ -57,16 +56,25 @@ const App = () => {
             window.removeEventListener("pageshow", sincronizar);
         };
     }, []);
-
-    /** Repite la consulta después de un error del servicio. */
+    /** Repite una consulta fallida de la API. */
     const reintentar = () => {
         setError("");
         setCargando(true);
         setIntento((valor) => valor + 1);
     };
-    /** Refleja en la cabecera una compra realizada desde la ficha de React. */
-    const actualizarContador = () => setUnidades(leerUnidadesCarrito());
-
+    /** Actualiza React solo después de guardar la compra correctamente. */
+    const cambiarSeleccion = (carrito, codigo) => {
+        const nueva = { carrito, codigo: carrito.length > 0 ? codigo : "" };
+        guardarSeleccion(nueva);
+        setSeleccion(nueva);
+    };
+    /** Agrega la variante desde la ficha y conserva el código aplicado. */
+    const agregar = (producto, talle, color, cantidad) => {
+        cambiarSeleccion(
+            sumarProducto(seleccion.carrito, producto, talle, color, cantidad),
+            seleccion.codigo,
+        );
+    };
     return (
         <HashRouter>
             <Routes>
@@ -102,15 +110,29 @@ const App = () => {
                                 cargando={cargando}
                                 error={error}
                                 reintentar={reintentar}
-                                alAgregar={actualizarContador}
+                                alAgregar={agregar}
                             />
                         }
                     />
+                    <Route
+                        path="carrito"
+                        element={
+                            <Carrito
+                                productos={productos}
+                                cargando={cargando}
+                                error={error}
+                                reintentar={reintentar}
+                                seleccion={seleccion}
+                                alGuardar={cambiarSeleccion}
+                            />
+                        }
+                    />
+                    <Route path="cuenta" element={<Cuenta />} />
+                    <Route path="contacto" element={<Contacto />} />
                     <Route path="*" element={<NoEncontrada />} />
                 </Route>
             </Routes>
         </HashRouter>
     );
 };
-
 export default App;

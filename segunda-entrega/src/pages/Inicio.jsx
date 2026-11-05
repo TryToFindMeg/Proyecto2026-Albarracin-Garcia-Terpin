@@ -94,11 +94,11 @@ const Inicio = ({ productos, cargando, error, reintentar }) => {
                 <div className="lista-servicios">
                     <Tarjeta titulo="Envíos">
                         <p>Consultá las opciones para recibir tu pedido.</p>
-                        <a href={crearEnlaceHTML("contacto.html#envios")}>Información de envíos</a>
+                        <Link to="/contacto#envios">Información de envíos</Link>
                     </Tarjeta>
                     <Tarjeta titulo="Cambios">
                         <p>Encontrá tu calce ideal.</p>
-                        <a href={crearEnlaceHTML("contacto.html#cambios")}>Consultar por un cambio</a>
+                        <Link to="/contacto#cambios">Consultar por un cambio</Link>
                     </Tarjeta>
                     <Tarjeta titulo="Pasión por la música">
                         <p>Prendas para fans y coleccionistas.</p>
