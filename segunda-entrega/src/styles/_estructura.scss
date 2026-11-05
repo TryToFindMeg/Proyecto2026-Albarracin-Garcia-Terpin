@@ -1,0 +1,235 @@
+@use "@styles/variables" as v;
+
+* {
+    box-sizing: border-box;
+}
+html {
+    scroll-padding-top: 126px;
+}
+body {
+    margin: 0;
+    padding-top: 106px;
+    background-color: v.$color-crema;
+    color: v.$color-texto;
+    font-family: v.$fuente-texto;
+    line-height: 1.6;
+}
+h1,
+h2,
+h3,
+p {
+    margin: 0 0 1rem;
+}
+h1,
+h2 {
+    font-family: v.$fuente-titulos;
+    font-weight: normal;
+    line-height: 1.15;
+}
+h1 {
+    font-size: 3.2rem;
+}
+h2 {
+    font-size: 2.2rem;
+}
+h3 {
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+a {
+    color: v.$color-texto;
+    text-underline-offset: 0.2em;
+}
+a:hover {
+    color: #9c352f;
+}
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid v.$color-foco;
+    outline-offset: 4px;
+}
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+.contenedor {
+    width: 92%;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+#contenido {
+    padding: 1.5rem 0 3rem;
+}
+.saltar-contenido {
+    position: fixed;
+    top: 8px;
+    left: 16px;
+    z-index: 100;
+    padding: 0.75rem 1rem;
+    background-color: v.$color-papel;
+    transform: translateY(-160%);
+    &:focus {
+        transform: translateY(0);
+    }
+}
+.barra-superior {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 30;
+    background-color: v.$color-crema;
+    border-bottom: 1px solid v.$color-borde;
+}
+.barra-contenido {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    height: 106px;
+}
+.marca {
+    flex-shrink: 0;
+    a {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-family: v.$fuente-titulos;
+        font-size: 2rem;
+        line-height: 1.1;
+        text-decoration: none;
+    }
+    strong {
+        font-weight: normal;
+    }
+    a::before {
+        content: "";
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: radial-gradient(
+            circle,
+            v.$color-coral 20%,
+            v.$color-texto 22%,
+            v.$color-texto 44%,
+            v.$color-crema 46%,
+            v.$color-texto 49%
+        );
+    }
+}
+.lema {
+    margin: 0.4rem 0 0;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+.navegacion-principal {
+    ul {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.3rem 1.1rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    a {
+        display: block;
+        padding: 0.5rem 0;
+        border-bottom: 2px solid transparent;
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-decoration: none;
+    }
+    a:hover,
+    a[aria-current="page"] {
+        border-bottom-color: v.$color-coral;
+    }
+}
+.contador-carrito {
+    display: inline-block;
+    min-width: 23px;
+    padding: 0 0.35rem;
+    border-radius: 50%;
+    background-color: v.$color-mostaza;
+    text-align: center;
+}
+.presentacion {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: v.$color-coral;
+}
+.presentacion-texto {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 3rem;
+}
+.foto-presentacion {
+    width: 100%;
+    height: 470px;
+    object-fit: cover;
+    object-position: center 20%;
+}
+.etiqueta-seccion {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+.bloque-historia {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3rem;
+}
+.bloque-historia > img {
+    width: 100%;
+    height: 370px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+.pie-pagina {
+    padding: 3rem 0 1.25rem;
+    border-top: 1px solid v.$color-borde;
+    background-color: v.$color-papel;
+}
+.columnas-pie {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.2fr;
+    gap: 3rem;
+    h2 {
+        font-family: v.$fuente-texto;
+        font-size: 1.15rem;
+        font-weight: 700;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    li {
+        margin-bottom: 0.5rem;
+    }
+}
+.marca-pie {
+    font-family: v.$fuente-titulos;
+    font-size: 2rem;
+}
+.novedades {
+    padding: 1.5rem;
+    border: 1px solid v.$color-borde;
+    background-color: v.$color-crema;
+}
+.cierre-pie {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid v.$color-borde;
+}
+.pagina-no-encontrada {
+    min-height: 55vh;
+    padding: 4rem 0;
+}
