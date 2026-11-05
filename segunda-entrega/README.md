@@ -4,26 +4,23 @@
 
 Integrantes: Octavio Albarracin, Emi Garcia y Clari Terpin.
 
-## Estado: etapa 2
+## Estado: etapa 3
 
-Inicio y Nosotros funcionan en React. Ambas páginas comparten una navbar fija, el pie y los
-componentes Boton y Tarjeta. La navegación usa React Router, rutas hijas y Outlet.
+Inicio, Nosotros, catálogo y ficha funcionan en React. Comparten cabecera fija, pie y Layout con Outlet.
 Se conservan el diseño de escritorio, la paleta y las fuentes Shrikhand y DM Sans.
+Un único catálogo muestra todas las categorías y la ruta `/producto/:id` muestra la ficha elegida,
+sin crear una página por prenda. Los productos se obtienen de json-server con fetch y async/await.
 
-El catálogo, las fichas de producto, el carrito y los formularios continúan funcionando en HTML
-dentro de `public/sitio-html`. Los enlaces de Inicio y del menú permiten acceder a esas secciones.
-Los enlaces de Inicio y Nosotros del sitio HTML vuelven a React.
-El contador de la cabecera de React lee el mismo carrito guardado por el sitio HTML.
-
-## Requisitos previos
-
-- Node.js compatible con el campo `engines` de `package.json`.
-- npm, incluido con Node.js.
-- Instalar los aportes de la etapa 1 antes de aplicar los de la etapa 2.
+Carrito, Cuenta, Contacto y suscripciones continúan en `public/sitio-html` hasta la etapa 4.
+La ficha React guarda las mismas variantes en localStorage y actualiza el contador al comprar.
+Los enlaces del HTML vuelven al catálogo y la ficha de React.
 
 ## Instalación y orden de ejecución
 
-### 1. Instalar las dependencias
+Se necesita Node.js compatible con `engines` de package.json y npm.
+Las etapas 1 y 2 completas de los tres integrantes deben estar integradas antes de esta etapa.
+
+### 1. Instalar dependencias
 
 Desde la raíz del repositorio:
 
@@ -32,11 +29,11 @@ cd segunda-entrega
 npm ci
 ```
 
-Si las dependencias ya están instaladas y el lockfile no cambió, se puede iniciar directamente.
-No se necesita instalar React ni Sass globalmente.
-En PowerShell también pueden utilizarse los comandos con `npm.cmd`.
+Si ya están instaladas y el lockfile no cambió, no hace falta repetirlo.
+La etapa 3 no agrega dependencias ni cambia versiones. No se necesita instalar React o Sass globalmente.
+En PowerShell se puede usar `npm.cmd` en lugar de `npm`.
 
-### 2. Iniciar el servicio simulado
+### 2. Iniciar la API
 
 En una terminal ubicada en `segunda-entrega`:
 
@@ -44,126 +41,136 @@ En una terminal ubicada en `segunda-entrega`:
 npm run services
 ```
 
-El servicio queda en http://127.0.0.1:4000/productos y devuelve los 26 productos de `src/data/db.json`.
-Esta terminal debe quedar abierta.
-La etapa 2 usa el JSON local para los destacados y mantiene la tienda HTML, por lo que el servicio
-todavía no es necesario para recorrer esas páginas. La etapa 3 conectará el catálogo de React a la API.
+Dejarla abierta. La API responde en http://127.0.0.1:4000/productos y lee `src/data/db.json`.
+Desde esta etapa el servicio es necesario para cargar los productos de React.
 
-### 3. Iniciar la aplicación
+### 3. Iniciar el sitio
 
-Abrir otra terminal en `segunda-entrega`:
+En otra terminal ubicada en `segunda-entrega`:
 
 ```powershell
 npm run dev
 ```
 
-Abrir la dirección que muestre Vite, normalmente http://127.0.0.1:5173/.
-Dejar ambas terminales abiertas mientras se usan los servidores.
-Para detener cada servidor, presionar `Ctrl+C` en su terminal.
-Si Vite usa otro puerto, utilizar la dirección informada en la terminal.
+Abrir la dirección que informa Vite, normalmente http://127.0.0.1:5173/.
+Dejar abiertas ambas terminales. Para detener cada servidor, presionar Ctrl+C en su terminal.
+Si Vite informa otro puerto, usar esa dirección. Live Server no procesa JSX.
 
-### Direcciones
+### Direcciones habituales
 
-| Página                | Dirección habitual con Vite activo              |
-| --------------------- | ----------------------------------------------- |
-| Inicio React          | http://127.0.0.1:5173/#/                        |
-| Nosotros React        | http://127.0.0.1:5173/#/nosotros                |
-| Catálogo HTML         | http://127.0.0.1:5173/sitio-html/productos.html |
-| Carrito HTML          | http://127.0.0.1:5173/sitio-html/carrito.html   |
-| Sitio HTML conservado | http://127.0.0.1:5173/sitio-html/index.html     |
-| Datos de la API       | http://127.0.0.1:4000/productos                 |
+| Página              | Dirección con Vite activo                               |
+| ------------------- | ------------------------------------------------------- |
+| Inicio              | http://127.0.0.1:5173/#/                                |
+| Nosotros            | http://127.0.0.1:5173/#/nosotros                        |
+| Todos los productos | http://127.0.0.1:5173/#/productos                       |
+| Remeras             | http://127.0.0.1:5173/#/productos?categoria=remeras     |
+| Ficha de ejemplo    | http://127.0.0.1:5173/#/producto/remera-highway-grooves |
+| Carrito HTML        | http://127.0.0.1:5173/sitio-html/carrito.html           |
+| API                 | http://127.0.0.1:4000/productos                         |
 
-El sitio se inicia con Vite. Live Server no procesa los archivos JSX de React.
+Si la API está apagada, aparece un aviso y un botón para reintentar.
+Iniciar el servicio y presionar ese botón permite recuperar los productos.
+El sitio no reemplaza una consulta fallida con un catálogo local.
 
-## Comandos disponibles
+### Otra dirección de API
 
-| Comando                | Uso                                   |
-| ---------------------- | ------------------------------------- |
-| `npm run dev`          | Iniciar Vite.                         |
-| `npm run services`     | Iniciar json-server.                  |
-| `npm run build`        | Compilar la aplicación en `dist`.     |
-| `npm run preview`      | Probar la compilación localmente.     |
-| `npm run lint`         | Revisar errores con ESLint.           |
-| `npm run format:check` | Comprobar el formato con Prettier.    |
-| `npm run format`       | Aplicar el formato del proyecto.      |
-| `npm audit`            | Consultar avisos de las dependencias. |
+Por defecto se usa http://127.0.0.1:4000. Para cambiarla, copiar `.env.example` a `.env`,
+modificar `VITE_API_URL` y reiniciar Vite. Los archivos .env locales no se suben.
+Las variables VITE_ son públicas: no deben contener claves ni contraseñas.
 
-## Organización del código
+### 3. Iniciar la aplicación
 
-| Ubicación                | Contenido                                                               |
-| ------------------------ | ----------------------------------------------------------------------- |
-| `src/App.jsx`            | HashRouter y definición de las rutas.                                   |
-| `src/components`         | Cabecera, Pie, Boton y Tarjeta.                                         |
-| `src/layouts/Layout.jsx` | Estructura compartida que muestra las rutas hijas con Outlet.           |
-| `src/pages`              | Inicio, Nosotros y NoEncontrada.                                        |
-| `src/styles`             | Variables y módulos Sass de estructura, componentes y páginas.          |
-| `src/data/db.json`       | Catálogo para el servicio y los destacados actuales.                    |
-| `src/data/inicio.js`     | Identificadores de destacados y estilos musicales.                      |
-| `src/utils`              | Enlaces al HTML, formato de precios y lectura del contador del carrito. |
-| `src/api`                | Carpeta preparada para la conexión de la etapa 3.                       |
-| `src/assets`             | Imagen importada desde Inicio.                                          |
-| `public`                 | Favicon y recursos estáticos.                                           |
-| `public/sitio-html`      | Páginas y recursos que siguen funcionando en HTML.                      |
+| Comando                | Uso                                                    |
+| ---------------------- | ------------------------------------------------------ |
+| `npm run services`     | Iniciar json-server.                                   |
+| `npm run dev`          | Iniciar React con Vite.                                |
+| `npm run build`        | Compilar en dist.                                      |
+| `npm run preview`      | Probar la compilación; también necesita la API activa. |
+| `npm run lint`         | Revisar errores con ESLint.                            |
+| `npm run format:check` | Comprobar formato con Prettier.                        |
+| `npm run format`       | Aplicar formato.                                       |
+| `npm audit`            | Consultar avisos de dependencias.                      |
 
-Los imports utilizan `@/` para `src` y `@styles/` para los estilos.
-Los archivos de configuración están junto a `package.json`, directamente en `segunda-entrega`.
+```powershell
+npm run dev
+```
 
-## Navegación y componentes
+| Ubicación                | Contenido                                                                                 |
+| ------------------------ | ----------------------------------------------------------------------------------------- |
+| `src/App.jsx`            | Rutas, carga de productos y estado compartido.                                            |
+| `src/api/productos.js`   | GET de productos con fetch y async/await.                                                 |
+| `src/components`         | Cabecera, Pie, Boton, Tarjeta, TarjetaProducto, Filtros, EstadoProductos y FichaProducto. |
+| `src/layouts/Layout.jsx` | Outlet, metadatos, foco y desplazamiento entre páginas.                                   |
+| `src/pages`              | Inicio, Nosotros, Catalogo, Producto y NoEncontrada.                                      |
+| `src/styles`             | Todos los estilos de React, separados en módulos Sass.                                    |
+| `src/data/db.json`       | Los 26 productos del servicio simulado.                                                   |
+| `src/data/catalogo.js`   | Categorías, géneros y órdenes disponibles.                                                |
+| `src/data/inicio.js`     | Destacados y estilos de Inicio.                                                           |
+| `src/utils`              | Filtros, precios, enlaces y compatibilidad del carrito.                                   |
+| `src/assets`             | Imagen importada desde Inicio.                                                            |
+| `public/sitio-html`      | Imágenes y secciones HTML conservadas durante la migración.                               |
 
-- HashRouter conserva la ruta después de `#`, por ejemplo `/#/nosotros`.
-- Layout conserva Cabecera y Pie y utiliza Outlet para mostrar la página elegida.
-- Link y NavLink navegan entre las páginas de React. NavLink identifica la página actual.
-- Los enlaces al HTML conservado mantienen disponibles las funciones pendientes de migración.
-- Boton reutiliza el diseño de los enlaces de acción.
-- Tarjeta recibe título, imagen opcional y contenido mediante children. Se utiliza en Inicio y Nosotros.
-- La ruta desconocida muestra un mensaje y un botón para volver a Inicio con useNavigate.
-- useEffect actualiza título, descripción, posición y foco al navegar.
-- useState mantiene el contador de la cabecera. Se sincroniza con el carrito existente al volver a React.
+Se usan los alias @/ para src y @styles/ para estilos. Las configuraciones de React
+están junto a package.json, dentro de segunda-entrega. El README general está en la raíz del repositorio.
 
-Se usa HashRouter para que la recarga de las rutas no requiera reglas especiales del servidor estático.
-Se puede consultar la [referencia de HashRouter](https://reactrouter.com/7.18.5/api/declarative-routers/HashRouter).
+## Catálogo, ficha y estado
+
+- App consulta GET /productos al iniciar. La ficha busca el identificador dentro de esa respuesta.
+- useState mantiene productos, carga, errores, reintentos y el contador del carrito.
+- useEffect consulta el servicio y sincroniza el contador al volver del HTML.
+- HashRouter permite recargar rutas sin reglas especiales del servidor estático.
+- useSearchParams conserva los filtros en la URL al recargar o regresar desde una ficha.
+- Los controles actualizan resultados con onChange. Los precios muestran errores en tiempo real.
+- Filtros: categoría, género, artista, precios, stock, color y talle, además del orden.
+- Limpiar filtros conserva la categoría. Cambiar de categoría reinicia las demás preferencias.
+- TarjetaProducto se reutiliza en Inicio y Catalogo, con props y children de Tarjeta.
+- FichaProducto controla talle, color y cantidad mediante useState.
+- Las cantidades deben ser enteras de 1 a 10. La misma variante puede acumular hasta 10 unidades.
+- Las variantes con otro talle o color ocupan filas distintas. No se puede comprar un producto agotado.
+- Un identificador inexistente muestra un aviso y el enlace al catálogo.
+
+El carrito guarda retrowave-carrito como una lista de `{ id, talle, color, cantidad }`.
+Se mantiene ese formato para que el carrito HTML lea las compras de React.
+utils/carrito.js consulta la copia del catálogo local solo para validar el almacenamiento heredado;
+la presentación de productos en React utiliza la API. Esta compatibilidad se revisará al migrar el carrito.
+El código RETRO10 sigue aplicando un 10 % en el carrito HTML.
+No hay pedidos, cobros ni cuentas reales, y no se guardan contraseñas.
 
 ## Estilos y accesibilidad
 
-Los estilos de React están en archivos `.scss` dentro de `src/styles`, importados mediante alias y `@use`.
-El HTML conservado mantiene su CSS mientras se migran las páginas restantes.
-La navbar es fija. Los enlaces a estilos y valores dejan espacio para que el encabezado no tape los títulos.
-Las imágenes tienen alt, los botones conservan contraste y los enlaces muestran el foco al usar teclado.
-Existe un enlace para saltar al contenido principal.
-`.gitattributes` mantiene los saltos de línea LF para compartir los archivos entre equipos.
+Los estilos de React están en src/styles y usan Sass con variables, anidación y @use.
+El HTML pendiente conserva su CSS. La navbar sigue fija y los botones conservan contraste en hover y foco.
+Las imágenes tienen alt, los campos tienen label y los errores usan aria-describedby y aria-invalid.
+Los mensajes de carga y compra utilizan regiones de estado. Se puede saltar al contenido con teclado.
+La posición y el foco cambian al navegar, sin saltar al inicio al escribir un filtro.
 
-## Verificación de esta etapa
+## Verificación de la etapa 3
 
-El 5 de noviembre de 2026 se comprobaron ESLint, Prettier y la compilación.
-Se realizaron 17 comprobaciones en el navegador integrado, en desarrollo y compilado, incluyendo
-recarga de rutas, historial, anclas, foco, enlaces por género y dos unidades del carrito HTML mostradas en React.
-Después de vaciar el carrito de prueba, la cabecera volvió a mostrar cero.
-No se observaron errores de consola ni desborde horizontal en las vistas de escritorio comprobadas.
-`npm audit` informó 0 vulnerabilidades en las dependencias del proyecto.
+El 5 de noviembre de 2026 se comprobaron ESLint, Prettier y la compilación de Vite.
+Se revisaron las 26 fichas, sus fotos y títulos, filtros combinados, recarga, regreso al catálogo,
+resultados vacíos, precios inválidos, producto inexistente y las dos prendas agotadas.
+Se probaron compras con variantes, acumulación y límite de cantidades, contador,
+carrito HTML, descuento RETRO10 y limpieza de los productos de prueba.
+La prueba con la API apagada mostró el error esperado y permitió recuperar la carga mediante reintento.
+Se realizaron 14 comprobaciones adicionales de lógica y del servicio.
+La revisión del compilado en el navegador integrado no mostró errores de consola ni desborde horizontal.
+Los fallos de conexión provocados al apagar la API se registraron por separado.
+npm audit informó 0 vulnerabilidades dentro de segunda-entrega. Las versiones no cambiaron.
 Las pruebas en otros navegadores quedan pendientes para la revisión final.
 
-## Seguridad de dependencias
+## Trabajo en equipo y próximos pasos
 
-Se mantienen ESLint y Prettier. El ajuste de `minimatch` 11.0.1 mediante overrides de la etapa 1 sigue vigente.
-Ese ajuste evita el [aviso GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249).
-Al cambiar dependencias, repetir la revisión, la compilación y `npm audit`.
+Los paquetes de la etapa 3 contienen solo sus diferencias respecto de la etapa 2 completa.
+Los tres aportes de las etapas anteriores deben estar integrados antes de subir estos cambios.
+Orden de integración de esta etapa: Emi, Clari y Octa. El último aporte activa las páginas preparadas.
+Subir solo el código y documentación indicados en el paquete de cada persona.
+node_modules, dist, ZIP, respaldos y archivos de entorno locales quedan fuera de los commits.
 
-## Próximas etapas
+- Etapa 4: migrar carrito y formularios a React, con persistencia y validación en tiempo real.
+- Etapa 5: revisión final y preparación de GitHub Pages y del servicio de productos.
 
-- Etapa 3: catálogo y ficha en React, con fetch y async/await hacia json-server.
-- Etapa 4: carrito y formularios en React, validación en tiempo real y persistencia del estado.
-- Etapa 5: revisión completa y preparación de la publicación en GitHub Pages.
-
-La segunda entrega todavía no está terminada. El carrito y los formularios continúan usando sus funciones HTML.
-Ingreso, registro, recuperación, contacto y suscripción son demostraciones y no crean cuentas ni procesan pagos.
-No se almacenan contraseñas.
-
-## Archivos que se suben
-
-Subir código, imágenes, datos, configuración y lockfile según la parte de cada integrante.
-`node_modules`, `dist` y los archivos `.env` locales están excluidos mediante `.gitignore`.
-Cada etapa tiene paquetes propios. Los de la etapa 2 contienen únicamente sus diferencias respecto de la etapa 1.
-El README general del repositorio se mantiene en la raíz.
+La segunda entrega todavía no está terminada. GitHub Pages por sí solo no ejecuta json-server;
+la publicación de React y la dirección de su API se prepararán en la etapa final.
 
 ## Material de clase
 
