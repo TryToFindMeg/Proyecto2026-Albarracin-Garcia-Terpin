@@ -1,0 +1,51 @@
+@use "@styles/variables" as v;
+
+.filtros-catalogo,
+.formulario-producto {
+    fieldset {
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+    legend {
+        margin-bottom: 1.25rem;
+        font-weight: 700;
+    }
+    label {
+        display: block;
+        margin: 0 0 0.4rem;
+        font-weight: 700;
+    }
+    input,
+    select {
+        width: 100%;
+        margin: 0 0 1.1rem;
+        padding: 0.8rem;
+        border: 1px solid v.$color-borde;
+        border-radius: 4px;
+        background: v.$color-papel;
+        color: v.$color-texto;
+        font: inherit;
+    }
+    input:focus-visible,
+    select:focus-visible {
+        outline: 3px solid v.$color-foco;
+        outline-offset: 3px;
+    }
+    [aria-invalid="true"] {
+        border-color: #9c352f;
+    }
+}
+.error-campo {
+    margin: 0.3rem 0 1rem;
+    color: #8b2622;
+    font-weight: 700;
+}
+.boton:disabled,
+.boton:disabled:hover {
+    background-color: #e4dcc8;
+    color: #65594c;
+    border-color: v.$color-borde;
+    cursor: not-allowed;
+}

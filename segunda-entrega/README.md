@@ -1,30 +1,26 @@
-# RetroWave — React
+# RetroWave — Segunda entrega
 
 **Música · Ropa · Identidad**
 
-Base de la segunda entrega de Taller de Desarrollo Web 2026.
 Integrantes: Octavio Albarracin, Emi Garcia y Clari Terpin.
 
-## Estado de esta etapa
+## Estado: etapa 3
 
-La etapa 1 prepara Vite con React y JavaScript, dependencias, alias, Sass y el servicio simulado.
-La pantalla inicial muestra la identidad de RetroWave para verificar React, las imágenes y los estilos.
-La navegación, las páginas completas, los filtros, el carrito y los formularios se migrarán en las próximas etapas.
-React Router está instalado; todavía no se configuraron las rutas ni los Hooks de la tienda.
-El servicio de productos funciona, pero esta presentación todavía no consume la API.
+Inicio, Nosotros, catálogo y ficha funcionan en React. Comparten cabecera fija, pie y Layout con Outlet.
+Se conservan el diseño de escritorio, la paleta y las fuentes Shrikhand y DM Sans.
+Un único catálogo muestra todas las categorías y la ruta `/producto/:id` muestra la ficha elegida,
+sin crear una página por prenda. Los productos se obtienen de json-server con fetch y async/await.
 
-El sitio HTML completo con los fixes se conserva en `public/sitio-html`.
-Con Vite iniciado, abrir http://127.0.0.1:5173/sitio-html/index.html para seguir usándolo.
-También puede abrirse su `index.html` con Live Server.
-La primera entrega se conserva sin cambios.
+Carrito, Cuenta, Contacto y suscripciones continúan en `public/sitio-html` hasta la etapa 4.
+La ficha React guarda las mismas variantes en localStorage y actualiza el contador al comprar.
+Los enlaces del HTML vuelven al catálogo y la ficha de React.
 
-## Requisitos
+## Instalación y orden de ejecución
 
-- Node.js 22.13 o posterior dentro de una versión compatible con el campo `engines` de `package.json`.
-- npm, que viene con Node.js.
-- Probado en esta PC con Node.js 26.10.0 y npm 12.2.0.
+Se necesita Node.js compatible con `engines` de package.json y npm.
+Las etapas 1 y 2 completas de los tres integrantes deben estar integradas antes de esta etapa.
 
-## Instalación
+### 1. Instalar dependencias
 
 Desde la raíz del repositorio:
 
@@ -33,105 +29,150 @@ cd segunda-entrega
 npm ci
 ```
 
-`npm ci` instala las versiones exactas de `package-lock.json`.
-No es necesario instalar React ni Sass globalmente.
-La URL prevista para la API figura en `.env.example`; se conectará al frontend en la etapa del catálogo.
+Si ya están instaladas y el lockfile no cambió, no hace falta repetirlo.
+La etapa 3 no agrega dependencias ni cambia versiones. No se necesita instalar React o Sass globalmente.
+En PowerShell se puede usar `npm.cmd` en lugar de `npm`.
 
-## Ejecución
+### 2. Iniciar la API
 
-En una terminal, ubicada en `segunda-entrega`:
-
-```powershell
-npm run dev
-```
-
-Abrir la dirección local que informa Vite, normalmente http://127.0.0.1:5173/.
-
-Para iniciar el servicio simulado, abrir una segunda terminal en la misma carpeta:
+En una terminal ubicada en `segunda-entrega`:
 
 ```powershell
 npm run services
 ```
 
-Consultar http://127.0.0.1:4000/productos para obtener los 26 productos.
-Los datos están en `src/data/db.json`. Se conserva el mismo catálogo del sitio HTML.
-Las rutas de las fotos en esos datos se adaptarán al conectar la tienda en React.
-El servicio simulado devuelve JSON; las fotos actuales están en `public/sitio-html/imagenes`.
+Dejarla abierta. La API responde en http://127.0.0.1:4000/productos y lee `src/data/db.json`.
+Desde esta etapa el servicio es necesario para cargar los productos de React.
+
+### 3. Iniciar el sitio
+
+En otra terminal ubicada en `segunda-entrega`:
+
+```powershell
+npm run dev
+```
+
+Abrir la dirección que informa Vite, normalmente http://127.0.0.1:5173/.
+Dejar abiertas ambas terminales. Para detener cada servidor, presionar Ctrl+C en su terminal.
+Si Vite informa otro puerto, usar esa dirección. Live Server no procesa JSX.
+
+### Direcciones habituales
+
+| Página              | Dirección con Vite activo                               |
+| ------------------- | ------------------------------------------------------- |
+| Inicio              | http://127.0.0.1:5173/#/                                |
+| Nosotros            | http://127.0.0.1:5173/#/nosotros                        |
+| Todos los productos | http://127.0.0.1:5173/#/productos                       |
+| Remeras             | http://127.0.0.1:5173/#/productos?categoria=remeras     |
+| Ficha de ejemplo    | http://127.0.0.1:5173/#/producto/remera-highway-grooves |
+| Carrito HTML        | http://127.0.0.1:5173/sitio-html/carrito.html           |
+| API                 | http://127.0.0.1:4000/productos                         |
+
+Si la API está apagada, aparece un aviso y un botón para reintentar.
+Iniciar el servicio y presionar ese botón permite recuperar los productos.
+El sitio no reemplaza una consulta fallida con un catálogo local.
+
+### Otra dirección de API
+
+Por defecto se usa http://127.0.0.1:4000. Para cambiarla, copiar `.env.example` a `.env`,
+modificar `VITE_API_URL` y reiniciar Vite. Los archivos .env locales no se suben.
+Las variables VITE_ son públicas: no deben contener claves ni contraseñas.
 
 ## Comandos
 
-| Comando                | Uso                                                |
-| ---------------------- | -------------------------------------------------- |
-| `npm run dev`          | Iniciar Vite para desarrollo.                      |
-| `npm run services`     | Iniciar json-server en el puerto 4000.             |
-| `npm run build`        | Generar la versión compilada dentro de `dist`.     |
-| `npm run preview`      | Probar localmente la versión compilada.            |
-| `npm run lint`         | Revisar el código con ESLint.                      |
-| `npm run format:check` | Comprobar el formato con Prettier.                 |
-| `npm run format`       | Aplicar el formato con Prettier.                   |
-| `npm audit`            | Consultar avisos de seguridad de las dependencias. |
+| Comando                | Uso                                                    |
+| ---------------------- | ------------------------------------------------------ |
+| `npm run services`     | Iniciar json-server.                                   |
+| `npm run dev`          | Iniciar React con Vite.                                |
+| `npm run build`        | Compilar en dist.                                      |
+| `npm run preview`      | Probar la compilación; también necesita la API activa. |
+| `npm run lint`         | Revisar errores con ESLint.                            |
+| `npm run format:check` | Comprobar formato con Prettier.                        |
+| `npm run format`       | Aplicar formato.                                       |
+| `npm audit`            | Consultar avisos de dependencias.                      |
 
 ## Organización
 
-| Carpeta o archivo  | Contenido                                                   |
-| ------------------ | ----------------------------------------------------------- |
-| `src/components`   | Componentes compartidos; se crearán al migrar las páginas.  |
-| `src/pages`        | Páginas de React; pendientes de migración.                  |
-| `src/layouts`      | Estructura compartida para la navegación con Outlet.        |
-| `src/api`          | Funciones de acceso al servicio; pendientes de implementar. |
-| `src/data/db.json` | Datos del catálogo para json-server.                        |
-| `src/utils`        | Funciones auxiliares que se reutilizarán.                   |
-| `src/styles`       | Estilos `.scss` y variables de Sass.                        |
-| `src/assets`       | Imágenes importadas desde el código.                        |
-| `public`           | Recursos estáticos, como la imagen del favicon.             |
+| Ubicación                | Contenido                                                                                 |
+| ------------------------ | ----------------------------------------------------------------------------------------- |
+| `src/App.jsx`            | Rutas, carga de productos y estado compartido.                                            |
+| `src/api/productos.js`   | GET de productos con fetch y async/await.                                                 |
+| `src/components`         | Cabecera, Pie, Boton, Tarjeta, TarjetaProducto, Filtros, EstadoProductos y FichaProducto. |
+| `src/layouts/Layout.jsx` | Outlet, metadatos, foco y desplazamiento entre páginas.                                   |
+| `src/pages`              | Inicio, Nosotros, Catalogo, Producto y NoEncontrada.                                      |
+| `src/styles`             | Todos los estilos de React, separados en módulos Sass.                                    |
+| `src/data/db.json`       | Los 26 productos del servicio simulado.                                                   |
+| `src/data/catalogo.js`   | Categorías, géneros y órdenes disponibles.                                                |
+| `src/data/inicio.js`     | Destacados y estilos de Inicio.                                                           |
+| `src/utils`              | Filtros, precios, enlaces y compatibilidad del carrito.                                   |
+| `src/assets`             | Imagen importada desde Inicio.                                                            |
+| `public/sitio-html`      | Imágenes y secciones HTML conservadas durante la migración.                               |
 
-Los archivos `.gitkeep` permiten subir las carpetas que todavía están vacías.
-`@/` apunta a `src` y `@styles/` a `src/styles`, tanto en Vite como en el editor.
-Sass se compila automáticamente mediante Vite.
+Se usan los alias @/ para src y @styles/ para estilos. Las configuraciones de React
+están junto a package.json, dentro de segunda-entrega. El README general está en la raíz del repositorio.
 
-## Tecnologías
+## Catálogo, ficha y estado
 
-- React, React DOM y JavaScript con JSX.
-- Vite y el plugin oficial de React.
-- React Router DOM, preparado para la próxima etapa.
-- Sass, ESLint y Prettier.
-- json-server para simular el servicio de productos.
-- Google Fonts: Shrikhand y DM Sans.
+- App consulta GET /productos al iniciar. La ficha busca el identificador dentro de esa respuesta.
+- useState mantiene productos, carga, errores, reintentos y el contador del carrito.
+- useEffect consulta el servicio y sincroniza el contador al volver del HTML.
+- HashRouter permite recargar rutas sin reglas especiales del servidor estático.
+- useSearchParams conserva los filtros en la URL al recargar o regresar desde una ficha.
+- Los controles actualizan resultados con onChange. Los precios muestran errores en tiempo real.
+- Filtros: categoría, género, artista, precios, stock, color y talle, además del orden.
+- Limpiar filtros conserva la categoría. Cambiar de categoría reinicia las demás preferencias.
+- TarjetaProducto se reutiliza en Inicio y Catalogo, con props y children de Tarjeta.
+- FichaProducto controla talle, color y cantidad mediante useState.
+- Las cantidades deben ser enteras de 1 a 10. La misma variante puede acumular hasta 10 unidades.
+- Las variantes con otro talle o color ocupan filas distintas. No se puede comprar un producto agotado.
+- Un identificador inexistente muestra un aviso y el enlace al catálogo.
 
-Se usa la versión publicada `1.0.0-beta.15` de json-server, fijada en el lockfile.
-El script `services` utiliza su sintaxis actual; no requiere `--watch`.
+El carrito guarda retrowave-carrito como una lista de `{ id, talle, color, cantidad }`.
+Se mantiene ese formato para que el carrito HTML lea las compras de React.
+utils/carrito.js consulta la copia del catálogo local solo para validar el almacenamiento heredado;
+la presentación de productos en React utiliza la API. Esta compatibilidad se revisará al migrar el carrito.
+El código RETRO10 sigue aplicando un 10 % en el carrito HTML.
+No hay pedidos, cobros ni cuentas reales, y no se guardan contraseñas.
 
-## Dependencias y seguridad
+## Estilos y accesibilidad
 
-Se mantienen ESLint y Prettier como herramientas de revisión y formato.
-En `package.json` se fija `minimatch` 11.0.1 para ESLint y `@eslint/config-array` mediante `overrides`.
-La versión evita el [aviso GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249).
-La compatibilidad se comprueba ejecutando ESLint, la compilación y las pruebas de arranque.
-Al actualizar dependencias, repetir estos controles y `npm audit`.
+Los estilos de React están en src/styles y usan Sass con variables, anidación y @use.
+El HTML pendiente conserva su CSS. La navbar sigue fija y los botones conservan contraste en hover y foco.
+Las imágenes tienen alt, los campos tienen label y los errores usan aria-describedby y aria-invalid.
+Los mensajes de carga y compra utilizan regiones de estado. Se puede saltar al contenido con teclado.
+La posición y el foco cambian al navegar, sin saltar al inicio al escribir un filtro.
 
-Verificación del 2 de noviembre de 2026: instalación limpia con `npm ci`, revisión con ESLint y
-compilación correctas. `npm audit` informó 0 vulnerabilidades en este proyecto.
-La pantalla se comprobó en el navegador integrado, en desarrollo y en la versión compilada,
-sin errores de consola ni imágenes rotas. El servicio respondió con los 26 productos.
-Estas pruebas no sustituyen una revisión en otros navegadores al completar la migración.
+## Verificación de la etapa 3
 
-## Control de versiones
+El 5 de noviembre de 2026 se comprobaron ESLint, Prettier y la compilación de Vite.
+Se revisaron las 26 fichas, sus fotos y títulos, filtros combinados, recarga, regreso al catálogo,
+resultados vacíos, precios inválidos, producto inexistente y las dos prendas agotadas.
+Se probaron compras con variantes, acumulación y límite de cantidades, contador,
+carrito HTML, descuento RETRO10 y limpieza de los productos de prueba.
+La prueba con la API apagada mostró el error esperado y permitió recuperar la carga mediante reintento.
+Se realizaron 14 comprobaciones adicionales de lógica y del servicio.
+La revisión del compilado en el navegador integrado no mostró errores de consola ni desborde horizontal.
+Los fallos de conexión provocados al apagar la API se registraron por separado.
+npm audit informó 0 vulnerabilidades dentro de segunda-entrega. Las versiones no cambiaron.
+Las pruebas en otros navegadores quedan pendientes para la revisión final.
 
-Subir el código fuente, los archivos de configuración y `package-lock.json`.
-`node_modules`, `dist`, los archivos locales `.env` y las configuraciones personales del editor se excluyen con `.gitignore`.
-La publicación de React en GitHub Pages se preparará al finalizar la migración.
-Todavía no corresponde reemplazar la publicación del sitio HTML por esta base.
+## Trabajo en equipo y próximos pasos
 
-## Referencias
+Los paquetes de la etapa 3 contienen solo sus diferencias respecto de la etapa 2 completa.
+Los tres aportes de las etapas anteriores deben estar integrados antes de subir estos cambios.
+Orden de integración de esta etapa: Emi, Clari y Octa. El último aporte activa las páginas preparadas.
+Subir solo el código y documentación indicados en el paquete de cada persona.
+node_modules, dist, ZIP, respaldos y archivos de entorno locales quedan fuera de los commits.
 
-- [Clases de React](https://ucc-tallerdesarrolloweb.github.io/filminas/U6_react.html#/).
-- [Consignas del proyecto](https://ucc-tallerdesarrolloweb.github.io/filminas/Proyecto.html#/).
-- [Clases de APIs simuladas](https://ucc-tallerdesarrolloweb.github.io/filminas/U7_mock-api.html#/).
+- Etapa 4: migrar carrito y formularios a React, con persistencia y validación en tiempo real.
+- Etapa 5: revisión final y preparación de GitHub Pages y del servicio de productos.
 
-## Carpeta principal de trabajo
+La segunda entrega todavía no está terminada. GitHub Pages por sí solo no ejecuta json-server;
+la publicación de React y la dirección de su API se prepararán en la etapa final.
 
-Esta base se ejecuta directamente desde `segunda-entrega` del repositorio principal.
-`package.json`, el lockfile, `jsconfig.json`, la configuración de Vite y la de ESLint están en esa carpeta.
-Los archivos de ejercicios Node que existían en la raíz del repositorio no se usan para iniciar esta aplicación.
-Los estilos y scripts del sitio HTML conservado quedan excluidos de ESLint y Prettier para preservar sus archivos.
-El README general del repositorio enlaza esta guía de ejecución.
+## Material de clase
+
+- [React](https://ucc-tallerdesarrolloweb.github.io/filminas/U6_react.html#/).
+- [Sass](https://ucc-tallerdesarrolloweb.github.io/filminas/U5_preprocesadoresCSS.html#/).
+- [APIs simuladas](https://ucc-tallerdesarrolloweb.github.io/filminas/U7_mock-api.html#/).
+- [Consignas](https://ucc-tallerdesarrolloweb.github.io/filminas/Proyecto.html#/).

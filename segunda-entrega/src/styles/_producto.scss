@@ -1,0 +1,45 @@
+@use "@styles/variables" as v;
+
+.detalle-producto {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 3rem;
+}
+.imagen-detalle {
+    padding: 1.5rem;
+    border: 1px solid v.$color-borde;
+    border-radius: 6px;
+    background-color: v.$color-papel;
+}
+.imagen-detalle img {
+    width: 100%;
+    height: 580px;
+    object-fit: contain;
+}
+.informacion-producto h2 {
+    font-size: 1.7rem;
+}
+.precio-detalle {
+    font-size: 1.7rem;
+}
+.formulario-producto {
+    margin-top: 1rem;
+}
+.importe-ficha {
+    padding: 1rem;
+    background-color: v.$color-papel;
+}
+.acciones-producto,
+.enlaces-ficha {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+.mensaje-compra {
+    margin-top: 1rem;
+    font-weight: 700;
+}
+.enlaces-ficha {
+    margin: 1.5rem 0 1rem;
+}
