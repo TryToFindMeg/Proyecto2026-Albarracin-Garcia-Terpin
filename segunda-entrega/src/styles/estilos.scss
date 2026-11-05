@@ -1,0 +1,70 @@
+@use "@styles/variables" as variables;
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: variables.$color-crema;
+    color: variables.$color-texto;
+    font-family: variables.$fuente-texto;
+    line-height: 1.6;
+}
+
+.presentacion {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+    width: 90%;
+    max-width: 1200px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 3rem 0;
+
+    &__texto {
+        padding: 2rem 0;
+    }
+
+    &__descripcion {
+        max-width: 31rem;
+        font-size: 1.2rem;
+    }
+
+    &__imagen {
+        display: block;
+        width: 100%;
+        height: 580px;
+        object-fit: cover;
+        border: 12px solid variables.$color-papel;
+        border-radius: 8px;
+    }
+}
+
+.marca,
+h1 {
+    margin: 0;
+    font-family: variables.$fuente-titulos;
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+.marca {
+    font-size: 2.5rem;
+}
+
+.lema {
+    margin: 0.75rem 0 3rem;
+    color: variables.$color-secundario;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+h1 {
+    padding-top: 1.5rem;
+    border-top: 5px solid variables.$color-coral;
+    font-size: 4rem;
+}
