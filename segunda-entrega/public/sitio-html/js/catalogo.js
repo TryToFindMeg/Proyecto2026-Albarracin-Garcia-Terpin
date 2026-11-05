@@ -215,7 +215,7 @@ const limpiarFiltros = () => {
  * @return {void}
  */
 const marcarCategoriaActual = (categoria) => {
-    const destino = categoria === "all" ? "productos.html" : "productos.html?categoria=" + categoria;
+    const destino = categoria === "all" ? "../index.html#/productos" : "../index.html#/productos?categoria=" + categoria;
     for (const enlace of document.querySelectorAll(".categorias a")) {
         const activo = enlace.getAttribute("href") === destino;
         enlace.classList.toggle("activo", activo);
@@ -345,7 +345,7 @@ const iniciarFicha = () => {
     const agregar = document.getElementById("agregar-producto");
     agregar.disabled = !producto.disponible;
     agregar.innerText = producto.disponible ? "Agregar al carrito" : "Producto agotado";
-    document.getElementById("volver-catalogo").href = "productos.html?categoria=" + producto.categoria;
+    document.getElementById("volver-catalogo").href = "../index.html#/productos?categoria=" + producto.categoria;
     marcarCategoriaActual(producto.categoria);
     actualizarImporteFicha(producto.id);
     document.getElementById("contenido-producto").hidden = false;

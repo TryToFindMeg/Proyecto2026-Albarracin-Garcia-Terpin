@@ -21,15 +21,13 @@ const Pie = () => {
                         <h2>Explorá la tienda</h2>
                         <ul>
                             <li>
-                                <a href={crearEnlaceHTML("productos.html?categoria=remeras")}>Remeras</a>
+                                <Link to="/productos?categoria=remeras">Remeras</Link>
                             </li>
                             <li>
-                                <a href={crearEnlaceHTML("productos.html?categoria=buzos")}>Buzos</a>
+                                <Link to="/productos?categoria=buzos">Buzos</Link>
                             </li>
                             <li>
-                                <a href={crearEnlaceHTML("productos.html?categoria=accesorios")}>
-                                    Accesorios
-                                </a>
+                                <Link to="/productos?categoria=accesorios">Accesorios</Link>
                             </li>
                             <li>
                                 <a href={crearEnlaceHTML("contacto.html#preguntas")}>Preguntas frecuentes</a>
@@ -50,7 +48,7 @@ const Pie = () => {
                 </div>
                 <div className="cierre-pie">
                     <small>© 2026 RetroWave</small>
-                    <Link to={`${ubicacion.pathname}#encabezado`}>Volver arriba</Link>
+                    <Link to={`${ubicacion.pathname}${ubicacion.search}#encabezado`}>Volver arriba</Link>
                 </div>
             </div>
         </footer>
