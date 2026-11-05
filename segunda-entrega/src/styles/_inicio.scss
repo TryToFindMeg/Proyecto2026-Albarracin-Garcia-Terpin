@@ -1,0 +1,51 @@
+.presentacion-inicio .presentacion-texto > p:not(.etiqueta-seccion) {
+    max-width: 27rem;
+}
+.seccion-inicio {
+    margin-top: 3.25rem;
+}
+.lista-destacados,
+.lista-estilos {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem;
+}
+.tarjeta-producto {
+    > img {
+        object-fit: contain;
+    }
+    h3 {
+        min-height: 3rem;
+        font-size: 1rem;
+    }
+    p {
+        font-size: 0.9rem;
+    }
+    .precio {
+        font-size: 1.15rem;
+    }
+}
+.ver-todos {
+    margin-top: 2rem;
+}
+.tarjeta-estilo {
+    > img {
+        height: 170px;
+    }
+    h3 {
+        min-height: 3rem;
+    }
+    .boton {
+        margin-top: auto;
+        padding: 0.65rem;
+        font-size: 0.85rem;
+    }
+}
+.otros-estilos {
+    margin-top: 1.5rem;
+}
+.lista-servicios {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+}
