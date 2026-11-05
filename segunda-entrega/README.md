@@ -78,7 +78,7 @@ Por defecto se usa http://127.0.0.1:4000. Para cambiarla, copiar `.env.example` 
 modificar `VITE_API_URL` y reiniciar Vite. Los archivos .env locales no se suben.
 Las variables VITE_ son públicas: no deben contener claves ni contraseñas.
 
-## Comandos
+### 3. Iniciar la aplicación
 
 | Comando                | Uso                                                    |
 | ---------------------- | ------------------------------------------------------ |
@@ -91,7 +91,9 @@ Las variables VITE_ son públicas: no deben contener claves ni contraseñas.
 | `npm run format`       | Aplicar formato.                                       |
 | `npm audit`            | Consultar avisos de dependencias.                      |
 
-## Organización
+```powershell
+npm run dev
+```
 
 | Ubicación                | Contenido                                                                                 |
 | ------------------------ | ----------------------------------------------------------------------------------------- |
