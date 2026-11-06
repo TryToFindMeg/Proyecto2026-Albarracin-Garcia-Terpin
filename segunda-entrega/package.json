@@ -2,19 +2,21 @@
     "name": "retrowave-react",
     "private": true,
     "version": "0.1.0",
-    "description": "RetroWave: base de React para la segunda entrega.",
+    "description": "RetroWave: tienda en React para la segunda entrega.",
     "type": "module",
     "engines": {
         "node": "^22.13.0 || >=24.0.0"
     },
     "scripts": {
         "dev": "vite --host 127.0.0.1",
-        "build": "vite build",
+        "build": "vite build && node scripts/preparar-publicacion.js",
         "preview": "vite preview --host 127.0.0.1",
         "services": "json-server src/data/db.json --host 127.0.0.1 --port 4000",
         "lint": "eslint . --max-warnings 0",
         "format": "prettier --write .",
-        "format:check": "prettier --check ."
+        "format:check": "prettier --check .",
+        "check:datos": "node scripts/verificar-datos.js",
+        "check": "npm run lint && npm run format:check && npm run build"
     },
     "dependencies": {
         "react": "19.3.1",

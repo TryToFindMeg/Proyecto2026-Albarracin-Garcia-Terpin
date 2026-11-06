@@ -1,5 +1,6 @@
+import EnlaceSeccion from "@/components/EnlaceSeccion.jsx";
 import { useEffect } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Cabecera from "@/components/Cabecera.jsx";
 import Pie from "@/components/Pie.jsx";
 import { categorias } from "@/data/catalogo.js";
@@ -10,6 +11,7 @@ import { categorias } from "@/data/catalogo.js";
  */
 const Layout = ({ productos, unidades }) => {
     const ubicacion = useLocation();
+    const seccion = new URLSearchParams(ubicacion.search).get("seccion") || ubicacion.hash.slice(1);
 
     useEffect(() => {
         const paginas = {
@@ -59,7 +61,6 @@ const Layout = ({ productos, unidades }) => {
     }, [ubicacion.pathname, ubicacion.search, productos]);
 
     useEffect(() => {
-        const seccion = ubicacion.hash.slice(1);
         const destino = document.getElementById(seccion || "contenido");
         if (!seccion || seccion === "encabezado") {
             window.scrollTo(0, 0);
@@ -67,13 +68,13 @@ const Layout = ({ productos, unidades }) => {
             destino?.scrollIntoView();
         }
         destino?.focus({ preventScroll: true });
-    }, [ubicacion.pathname, ubicacion.hash]);
+    }, [ubicacion.pathname, seccion]);
 
     return (
         <>
-            <Link className="saltar-contenido" to={`${ubicacion.pathname}${ubicacion.search}#contenido`}>
+            <EnlaceSeccion clase="saltar-contenido" to={ubicacion.pathname} seccion="contenido">
                 Saltar al contenido
-            </Link>
+            </EnlaceSeccion>
             <Cabecera unidades={unidades} />
             <main id="contenido" tabIndex="-1">
                 <Outlet />
