@@ -1,3 +1,4 @@
+import EnlaceSeccion from "@/components/EnlaceSeccion.jsx";
 import { Link, useLocation } from "react-router-dom";
 import Novedades from "@/components/Novedades.jsx";
 
@@ -29,13 +30,19 @@ const Pie = () => {
                                 <Link to="/productos?categoria=accesorios">Accesorios</Link>
                             </li>
                             <li>
-                                <Link to="/contacto#preguntas">Preguntas frecuentes</Link>
+                                <EnlaceSeccion to="/contacto" seccion="preguntas">
+                                    Preguntas frecuentes
+                                </EnlaceSeccion>
                             </li>
                             <li>
-                                <Link to="/contacto#envios">Envíos</Link>
+                                <EnlaceSeccion to="/contacto" seccion="envios">
+                                    Envíos
+                                </EnlaceSeccion>
                             </li>
                             <li>
-                                <Link to="/contacto#cambios">Cambios</Link>
+                                <EnlaceSeccion to="/contacto" seccion="cambios">
+                                    Cambios
+                                </EnlaceSeccion>
                             </li>
                         </ul>
                     </nav>
@@ -43,7 +50,9 @@ const Pie = () => {
                 </div>
                 <div className="cierre-pie">
                     <small>© 2026 RetroWave</small>
-                    <Link to={`${ubicacion.pathname}${ubicacion.search}#encabezado`}>Volver arriba</Link>
+                    <EnlaceSeccion to={ubicacion.pathname} seccion="encabezado">
+                        Volver arriba
+                    </EnlaceSeccion>
                 </div>
             </div>
         </footer>

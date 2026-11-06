@@ -1,9 +1,10 @@
+import EnlaceSeccion from "@/components/EnlaceSeccion.jsx";
 import { Link } from "react-router-dom";
 import Boton from "@/components/Boton.jsx";
 import Tarjeta from "@/components/Tarjeta.jsx";
 import fotoPresentacion from "@/assets/mujer-tienda-vinilos.jpeg";
 import { destacados, estilos } from "@/data/inicio.js";
-import { crearEnlaceHTML } from "@/utils/rutas.js";
+import { crearEnlaceImagen } from "@/utils/rutas.js";
 import TarjetaProducto from "@/components/TarjetaProducto.jsx";
 import EstadoProductos from "@/components/EstadoProductos.jsx";
 
@@ -56,7 +57,7 @@ const Inicio = ({ productos, cargando, error, reintentar }) => {
                         <Tarjeta
                             key={estilo.id}
                             titulo={estilo.nombre}
-                            imagen={crearEnlaceHTML(`imagenes/${estilo.imagen}`)}
+                            imagen={crearEnlaceImagen(`imagenes/${estilo.imagen}`)}
                             alt={estilo.alt}
                             clase="tarjeta-estilo"
                         >
@@ -74,7 +75,7 @@ const Inicio = ({ productos, cargando, error, reintentar }) => {
             </section>
             <section className="bloque-historia seccion-inicio" id="historia">
                 <img
-                    src={crearEnlaceHTML("imagenes/vinilos-apilados.jpeg")}
+                    src={crearEnlaceImagen("imagenes/vinilos-apilados.jpeg")}
                     alt="Discos de vinilo apilados"
                     width="560"
                     height="360"
@@ -94,15 +95,21 @@ const Inicio = ({ productos, cargando, error, reintentar }) => {
                 <div className="lista-servicios">
                     <Tarjeta titulo="Envíos">
                         <p>Consultá las opciones para recibir tu pedido.</p>
-                        <Link to="/contacto#envios">Información de envíos</Link>
+                        <EnlaceSeccion to="/contacto" seccion="envios">
+                            Información de envíos
+                        </EnlaceSeccion>
                     </Tarjeta>
                     <Tarjeta titulo="Cambios">
                         <p>Encontrá tu calce ideal.</p>
-                        <Link to="/contacto#cambios">Consultar por un cambio</Link>
+                        <EnlaceSeccion to="/contacto" seccion="cambios">
+                            Consultar por un cambio
+                        </EnlaceSeccion>
                     </Tarjeta>
                     <Tarjeta titulo="Pasión por la música">
                         <p>Prendas para fans y coleccionistas.</p>
-                        <Link to="/nosotros#valores">Lo que nos mueve</Link>
+                        <EnlaceSeccion to="/nosotros" seccion="valores">
+                            Lo que nos mueve
+                        </EnlaceSeccion>
                     </Tarjeta>
                 </div>
             </section>

@@ -1,3 +1,4 @@
+import EnlaceSeccion from "@/components/EnlaceSeccion.jsx";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 /**
@@ -32,7 +33,9 @@ const Cabecera = ({ unidades }) => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/#estilos">Artistas y estilos</Link>
+                            <EnlaceSeccion to="/" seccion="estilos">
+                                Artistas y estilos
+                            </EnlaceSeccion>
                         </li>
                         <li>
                             <NavLink to="/nosotros">Nosotros</NavLink>
@@ -48,7 +51,7 @@ const Cabecera = ({ unidades }) => {
                                 Carrito{" "}
                                 <span
                                     className="contador-carrito"
-                                    aria-live="polite"
+                                    role="status"
                                     aria-label={`${unidades} unidades en el carrito`}
                                 >
                                     {unidades}
