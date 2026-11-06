@@ -14,6 +14,11 @@ const Producto = ({ productos, cargando, error, reintentar, alAgregar }) => {
     const producto = productos.find((item) => item.id === id);
     return (
         <div className="contenedor pagina-producto">
+            {(cargando || error) && (
+                <header className="titulo-catalogo">
+                    <h1>Detalle del producto</h1>
+                </header>
+            )}
             <EstadoProductos cargando={cargando} error={error} reintentar={reintentar} />
             {!cargando &&
                 !error &&

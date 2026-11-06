@@ -50,9 +50,13 @@ const FormularioCuenta = ({ tipo }) => {
             setErrorGuardado(error.message);
         }
     };
-    /** Limpia el formulario y, en ingreso, elimina también el email recordado. */
+    /** Limpia siempre los campos; un bloqueo del navegador solo impide borrar la preferencia. */
     const limpiar = (evento) => {
         evento.preventDefault();
+        setValores({ ...configuracion.inicial });
+        setRecordar(false);
+        setTocados({});
+        setIntentado(false);
         setMensaje("");
         setErrorGuardado("");
         if (tipo === "ingreso") {
@@ -60,13 +64,8 @@ const FormularioCuenta = ({ tipo }) => {
                 recordarEmail("");
             } catch (error) {
                 setErrorGuardado(error.message);
-                return;
             }
         }
-        setValores({ ...configuracion.inicial });
-        setRecordar(false);
-        setTocados({});
-        setIntentado(false);
     };
     return (
         <section

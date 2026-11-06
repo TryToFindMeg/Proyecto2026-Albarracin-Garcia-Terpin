@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
+import EnlaceSeccion from "@/components/EnlaceSeccion.jsx";
 import FormularioContacto from "@/components/FormularioContacto.jsx";
 import { preguntas } from "@/data/contacto.js";
-import { crearEnlaceHTML } from "@/utils/rutas.js";
+import { crearEnlaceImagen } from "@/utils/rutas.js";
 
 /** Reúne el formulario de contacto y las preguntas frecuentes del sitio. */
 const Contacto = () => (
@@ -13,7 +13,7 @@ const Contacto = () => (
             </div>
             <img
                 className="foto-presentacion"
-                src={crearEnlaceHTML("imagenes/vinilo-tocadiscos.jpeg")}
+                src={crearEnlaceImagen("imagenes/vinilo-tocadiscos.jpeg")}
                 alt="Un disco de vinilo sobre un tocadiscos"
                 width="620"
                 height="320"
@@ -26,7 +26,9 @@ const Contacto = () => (
                 <article key={pregunta.id} id={pregunta.id} tabIndex="-1">
                     <h3>{pregunta.titulo}</h3>
                     <p>{pregunta.texto}</p>
-                    <Link to="/contacto#mensaje">{pregunta.enlace}</Link>
+                    <EnlaceSeccion to="/contacto" seccion="mensaje">
+                        {pregunta.enlace}
+                    </EnlaceSeccion>
                 </article>
             ))}
         </section>

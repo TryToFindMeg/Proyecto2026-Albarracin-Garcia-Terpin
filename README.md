@@ -26,12 +26,13 @@ Proyecto de una tienda de ropa y accesorios inspirados en la música para Taller
 | Ubicación | Estado |
 | --- | --- |
 | [primera-entrega](primera-entrega/index.html) | Versión anterior conservada. |
-| [segunda-entrega](segunda-entrega/README.md) | Etapas 1 a 4: sitio migrado a React, con API de productos, carrito y formularios. |
+| [segunda-entrega](segunda-entrega/README.md) | Etapas 1 a 5 preparadas: sitio React, API, carrito, formularios y publicación manual. |
 
 La segunda entrega se desarrolla por etapas. Todas las páginas actuales funcionan en React:
 Inicio, Nosotros, catálogo, ficha de producto, carrito, Cuenta y Contacto, además de Novedades en el pie.
 El catálogo comparte una página para todas las categorías y una ficha reutilizable por identificador.
-Los productos se obtienen de json-server mediante fetch y async/await.
+Los productos se obtienen mediante fetch y async/await: json-server durante el desarrollo y un mock JSON
+publicado junto al sitio en producción. La aplicación valida la respuesta antes de mostrarla.
 El carrito conserva las variantes y el descuento de las etapas anteriores y se sincroniza entre pestañas.
 Los formularios validan mientras se escribe y muestran mensajes accesibles.
 
@@ -41,7 +42,7 @@ Los formularios validan mientras se escribe y muestran mensajes accesibles.
 | 2 | Inicio, Nosotros, estructura compartida, rutas y navegación con HTML. | Implementada. |
 | 3 | Catálogo y ficha de producto en React, conectados a la API con fetch y async/await. | Implementada. |
 | 4 | Carrito y formularios en React, persistencia y validación en tiempo real. | Implementada. |
-| 5 | Revisión final y preparación de la publicación. | Pendiente. |
+| 5 | Revisión final, validación de datos y preparación de la publicación. | Preparada localmente; publicación y otros navegadores pendientes. |
 
 ## Ejecución de la segunda entrega
 
@@ -66,7 +67,8 @@ npm run services
 ```
 
 La API queda en http://127.0.0.1:4000/productos y obtiene sus 26 productos de `src/data/db.json`.
-Desde la etapa 3 este servicio es necesario para cargar los productos de React.
+Este servicio se utiliza al trabajar con npm run dev. La compilación de producción incluye
+su propio mock GET de productos y puede consultarlo sin json-server encendido.
 
 ### Iniciar React
 
@@ -86,6 +88,20 @@ Los archivos de configuración del proyecto React están junto a su `package.jso
 El README general y la carpeta `.git` pertenecen a la raíz del repositorio.
 Consultar [la guía de React](segunda-entrega/README.md) para ver scripts, alias y estructura de carpetas.
 
+### Probar la versión de publicación
+
+En segunda-entrega:
+
+```powershell
+npm run check
+npm run preview
+```
+
+Abrir la dirección que muestre Vite: la raíz redirige a segunda-entrega.
+Esta versión incluye el catálogo simulado y no requiere iniciar services.
+El build prepara dist con ambas entregas, la redirección y el JSON de productos.
+No modifica primera-entrega. No subir dist ni node_modules.
+
 ## Tecnologías
 
 - React y React DOM con JavaScript y JSX.
@@ -99,7 +115,7 @@ Consultar [la guía de React](segunda-entrega/README.md) para ver scripts, alias
 - fetch y async/await para consultar la API de productos.
 - localStorage para carrito, descuento y email recordado, sin guardar contraseñas.
 - Google Fonts: Shrikhand y DM Sans.
-- Git, GitHub y Markdown.
+- Git, GitHub, GitHub Actions y Markdown.
 
 ## Contenido del sitio
 
@@ -121,17 +137,18 @@ Los [Sketch](primera-entrega/Sketch) y [Mockup](primera-entrega/Mockup) de la pr
 
 ## Pruebas
 
-La etapa 4 pasó ESLint, Prettier y la compilación de Vite. Se probaron compras con variantes,
-cantidades inválidas, actualización, descuento, eliminación, restablecimiento y vaciado con confirmación.
-Se verificaron recarga, sincronización entre pestañas, error y recuperación del servicio sin borrar compras,
-ingreso con email recordado, registro, recuperación, contacto y suscripción de prueba.
-Se realizaron 15 comprobaciones adicionales de lógica, validaciones y almacenamiento, incluyendo
-compatibilidad con datos anteriores y errores de escritura.
-Las pruebas en el navegador integrado comprobaron desarrollo y compilación; los fallos de conexión
-provocados al apagar la API se registraron por separado.
-`npm audit` informó 0 vulnerabilidades el 5 de noviembre de 2026 dentro de segunda-entrega.
+La revisión local de etapa 5 pasó ESLint, Prettier, validación de datos y compilación.
+Se comprobaron 25 casos de lógica, almacenamiento, filtros, contrato HTTP y publicación,
+y se validó con Nu HTML Checker el HTML generado de las rutas principales y del error de API.
+En el navegador integrado se probaron filtros, stock, compra, cupón, recarga, vaciado,
+formularios, navegación por secciones, teclado y recuperación ante datos incorrectos.
+La compilación se recorrió bajo el prefijo real del repositorio, con consola sin errores.
+Las combinaciones principales de texto y el botón secundario con foco superaron 4.5:1 de contraste.
+`npm audit` informó 0 vulnerabilidades dentro de segunda-entrega el 5 de noviembre de 2026.
 
-La etapa 5 queda pendiente para la revisión final, las pruebas en otros navegadores y la publicación.
+Estas comprobaciones no equivalen a una auditoría completa de accesibilidad ni a pruebas en todos los navegadores.
+Chrome, Firefox y Edge deben comprobarse manualmente; no se instalaron navegadores nuevos.
+Ver [la revisión y sus pendientes](segunda-entrega/REVISION.md).
 
 ## Trabajo en equipo
 
@@ -139,8 +156,15 @@ Cada integrante prepara sus cambios en su rama y abre un Pull Request hacia `mai
 Se utiliza conventional commits y se conservan las versiones exactas en `package-lock.json`.
 `node_modules`, `dist` y los archivos locales de entorno se excluyen con `.gitignore`.
 
-La [publicación anterior en GitHub Pages](https://trytofindmeg.github.io/Proyecto2026-Albarracin-Garcia-Terpin/primera-entrega/)
-se conserva mientras se prepara la migración. El despliegue de React se configurará al completar esa etapa.
+La [primera entrega](https://trytofindmeg.github.io/Proyecto2026-Albarracin-Garcia-Terpin/primera-entrega/)
+se conserva en la preparación de la publicación. La dirección prevista para React es
+[segunda entrega](https://trytofindmeg.github.io/Proyecto2026-Albarracin-Garcia-Terpin/segunda-entrega/).
+Esta dirección debe verificarse después del despliegue: la etapa 5 no publica automáticamente.
+Consultar [la guía de publicación](segunda-entrega/PUBLICACION.md).
+
+El workflow revisa PR y cambios de main. Solo publica al ejecutar manualmente
+Revisar y publicar RetroWave desde main. Primero integrar las etapas anteriores del equipo;
+para la etapa 5, orden de merge: Emi, Clari y Octa.
 
 
 ## Conservación de versiones

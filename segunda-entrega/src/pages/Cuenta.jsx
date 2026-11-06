@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import EnlaceSeccion from "@/components/EnlaceSeccion.jsx";
 import FormularioCuenta from "@/components/FormularioCuenta.jsx";
-import { crearEnlaceHTML } from "@/utils/rutas.js";
+import { crearEnlaceImagen } from "@/utils/rutas.js";
 
 /** Presenta los tres formularios de cuenta sin crear una sesión o un usuario reales. */
 const Cuenta = () => (
@@ -12,16 +12,22 @@ const Cuenta = () => (
             </div>
             <img
                 className="foto-presentacion"
-                src={crearEnlaceHTML("imagenes/personas-disqueria.jpeg")}
+                src={crearEnlaceImagen("imagenes/personas-disqueria.jpeg")}
                 alt="Personas recorriendo una tienda de discos"
                 width="620"
                 height="320"
             />
         </header>
         <nav className="enlaces-formularios" aria-label="Opciones de cuenta">
-            <Link to="/cuenta#iniciar-sesion">Ingresar</Link>
-            <Link to="/cuenta#recuperar-contrasena">Recuperar contraseña</Link>
-            <Link to="/cuenta#crear-cuenta">Crear cuenta</Link>
+            <EnlaceSeccion to="/cuenta" seccion="iniciar-sesion">
+                Ingresar
+            </EnlaceSeccion>
+            <EnlaceSeccion to="/cuenta" seccion="recuperar-contrasena">
+                Recuperar contraseña
+            </EnlaceSeccion>
+            <EnlaceSeccion to="/cuenta" seccion="crear-cuenta">
+                Crear cuenta
+            </EnlaceSeccion>
         </nav>
         <FormularioCuenta tipo="ingreso" />
         <FormularioCuenta tipo="recuperacion" />
