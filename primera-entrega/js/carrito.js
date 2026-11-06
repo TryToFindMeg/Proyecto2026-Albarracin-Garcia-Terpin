@@ -105,7 +105,7 @@ const mostrarCarrito = () => {
         const producto = buscarProducto(item.id);
         const claseFoto = producto.categoria === "accesorios" ? ' class="foto-tote"' : "";
         filas += `<tr>
-            <td><p><a href="productos/${producto.id}.html">${producto.nombre}</a></p>
+            <td><p><a href="${enlaceFicha(producto.id)}">${producto.nombre}</a></p>
                 <img${claseFoto} src="${producto.imagen}" alt="${producto.alt}" width="120">
                 <p>Color: ${item.color}. Talle: ${item.talle}.</p></td>
             <td>${formatearPrecio(producto.precio)}</td>

@@ -8,6 +8,7 @@ Proyecto de una tienda de ropa y accesorios inspirados en la música para Taller
 
 - [Integrantes](#integrantes)
 - [Estado de las entregas](#estado-de-las-entregas)
+- [Correcciones de la primera entrega](#correcciones-de-la-primera-entrega)
 - [Ejecución de la segunda entrega](#ejecución-de-la-segunda-entrega)
 - [Tecnologías](#tecnologías)
 - [Contenido del sitio](#contenido-del-sitio)
@@ -25,7 +26,7 @@ Proyecto de una tienda de ropa y accesorios inspirados en la música para Taller
 
 | Ubicación | Estado |
 | --- | --- |
-| [primera-entrega](primera-entrega/index.html) | Versión anterior conservada. |
+| [primera-entrega](primera-entrega/index.html) | HTML, CSS y JavaScript: catálogo y ficha reutilizables; contraste corregido. |
 | [segunda-entrega](segunda-entrega/README.md) | Etapas 1 a 5 integradas; fixes de revisión final preparados. |
 
 La segunda entrega se desarrolla por etapas. Todas las páginas actuales funcionan en React:
@@ -43,6 +44,31 @@ Los formularios validan mientras se escribe y muestran mensajes accesibles.
 | 3 | Catálogo y ficha de producto en React, conectados a la API con fetch y async/await. | Implementada. |
 | 4 | Carrito y formularios en React, persistencia y validación en tiempo real. | Implementada. |
 | 5 | Revisión final, validación de datos y preparación de la publicación. | Integrada en main; publicación y otros navegadores pendientes. |
+
+## Correcciones de la primera entrega
+
+Las observaciones de duplicación de código y contraste se corrigen dentro de
+`primera-entrega`, usando HTML, CSS y JavaScript sin React:
+
+- `productos.html` comparte el catálogo de Remeras, Buzos, Camperas y Accesorios.
+  La categoría se recibe en la URL, por ejemplo `productos.html?categoria=remeras`.
+- `producto.html` muestra cualquiera de las 26 prendas a partir de su identificador,
+  por ejemplo `producto.html?id=remera-highway-grooves`. JavaScript completa la foto,
+  descripción, precio y opciones desde `js/datos-productos.js`.
+- Inicio y catálogo usan una misma función para crear las tarjetas. Se retiran
+  las 26 fichas individuales y las tres páginas que repetían el catálogo.
+- Los enlaces de navegación y carrito apuntan a las páginas compartidas.
+- Los botones secundarios y de restablecer conservan texto legible al pasar el
+  mouse y al recibir el foco con el teclado.
+
+Para probar esta versión, abrir `primera-entrega/index.html` con Live Server de
+Visual Studio Code, o servir esa carpeta con otro servidor estático. Se necesita
+JavaScript habilitado. No requiere React, instalar paquetes ni ejecutar una API.
+El carrito de esta entrega conserva sus datos en el navegador con localStorage.
+
+El fix se verificó el 6 de noviembre de 2026: ocho HTML sin mensajes del validador Nu,
+26 fichas dinámicas comprobadas y pruebas de filtros, carrito y contraste en el navegador
+integrado. La revisión en otros navegadores continúa pendiente.
 
 ## Ejecución de la segunda entrega
 
@@ -186,6 +212,6 @@ de Octavio, desde la rama albarracin.
 Se mantiene el mismo nivel de React y JavaScript y no se agregan dependencias.
 El detalle de requisitos, resultados y tareas pendientes está en [REVISION.md](segunda-entrega/REVISION.md).
 
-##Sitio publicado
+## Sitio publicado
 
 La segunda entrega de RetroWave está disponible en GitHub Pages: https://trytofindmeg.github.io/Proyecto2026-Albarracin-Garcia-Terpin/segunda-entrega/#/.

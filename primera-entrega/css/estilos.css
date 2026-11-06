@@ -14,7 +14,7 @@
     box-sizing: border-box;
 }
 
-[hidden] {
+body [hidden] {
     display: none;
 }
 
@@ -110,16 +110,23 @@ img {
     transition: background-color 0.2s, color 0.2s;
 }
 
-.boton:hover, button:hover {
+.boton:hover, .boton:focus, button:hover, button:focus {
     background-color: var(--color-texto);
     color: var(--color-papel);
 }
 
 .boton-secundario, button[type="reset"] {
     background-color: transparent;
+    color: var(--color-texto);
 }
 
-button:disabled, button:disabled:hover {
+.boton-secundario:hover, .boton-secundario:focus,
+button[type="reset"]:hover, button[type="reset"]:focus {
+    background-color: var(--color-texto);
+    color: var(--color-papel);
+}
+
+button:disabled, button:disabled:hover, button:disabled:focus {
     border-color: var(--color-borde);
     background-color: #e4dcc8;
     color: #65594c;

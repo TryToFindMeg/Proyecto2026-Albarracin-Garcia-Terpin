@@ -41,6 +41,14 @@ const buscarProducto = (id) => {
 };
 
 /**
+ * Construye la dirección de la ficha compartida de un producto.
+ * @method enlaceFicha
+ * @param {string} id - Identificador de la prenda.
+ * @return {string} Dirección del detalle.
+ */
+const enlaceFicha = (id) => "producto.html?id=" + encodeURIComponent(id);
+
+/**
  * Presenta un importe en pesos argentinos con dos decimales.
  * @method formatearPrecio
  * @param {number} importe - Importe a presentar.
@@ -205,16 +213,15 @@ const limpiarMensajeFormulario = (formulario) => {
  */
 const iniciarPagina = () => {
     actualizarContador();
-    for (const tarjeta of document.querySelectorAll("#destacados .producto")) {
-        const producto = buscarProducto(tarjeta.id);
-        tarjeta.querySelector("strong").innerText = formatearPrecio(producto.precio);
+    if (document.getElementById("lista-destacados") !== null) {
+        mostrarDestacados();
     }
     if (document.getElementById("formulario-filtros") !== null) {
         iniciarCatalogo();
     }
     const ficha = document.querySelector(".detalle-producto");
     if (ficha !== null) {
-        iniciarFicha(ficha.id);
+        iniciarFicha();
     }
     if (document.getElementById("formulario-carrito") !== null) {
         mostrarCarrito();

@@ -1,197 +1,257 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Albarracin, Garcia y Terpin">
-    <meta name="description" content="Prendas y accesorios para quienes llevan una canción en la piel.">
-    <meta name="keywords" content="RetroWave, música, ropa, remeras, buzos, accesorios">
-    <title>Inicio | RetroWave</title>
-    <link rel="icon" href="imagenes/vinilo-tocadiscos.jpeg" type="image/jpeg">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&amp;family=Shrikhand&amp;display=swap">
-    <link rel="stylesheet" href="css/estilos.css">
-</head>
-<body class="pagina-inicio" onload="iniciarPagina()">
-    <div id="pagina">
-        <header id="encabezado">
-            <div class="contenedor">
-                <div class="barra-superior">
-                    <div class="marca">
-                        <p><a href="index.html"><strong>RetroWave</strong></a></p>
-                        <p class="lema">Música · Ropa · Identidad</p>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Albarracin, Garcia y Terpin" name="author">
+        <meta content="Prendas y accesorios para quienes llevan una canción en la piel." name="description">
+        <meta content="RetroWave, música, ropa, remeras, buzos, accesorios" name="keywords">
+        <title>Inicio | RetroWave</title>
+        <link href="imagenes/vinilo-tocadiscos.jpeg" rel="icon" type="image/jpeg">
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&amp;family=Shrikhand&amp;display=swap"
+            rel="stylesheet">
+        <link href="css/estilos.css" rel="stylesheet">
+    </head>
+    <body class="pagina-inicio" onload="iniciarPagina()">
+        <div id="pagina">
+            <header id="encabezado">
+                <div class="contenedor">
+                    <div class="barra-superior">
+                        <div class="marca">
+                            <p>
+                                <a href="index.html">
+                                    <strong> RetroWave </strong>
+                                </a>
+                            </p>
+                            <p class="lema">Música · Ropa · Identidad</p>
+                        </div>
+                        <nav aria-label="Navegación principal" class="navegacion-principal">
+                            <ul>
+                                <li>
+                                    <a aria-current="page" class="activo" href="index.html"> Inicio </a>
+                                </li>
+                                <li>
+                                    <a href="productos.html?categoria=remeras"> Tienda </a>
+                                </li>
+                                <li>
+                                    <a href="index.html#estilos"> Artistas y estilos </a>
+                                </li>
+                                <li>
+                                    <a href="nosotros.html"> Nosotros </a>
+                                </li>
+                                <li>
+                                    <a href="contacto.html"> Contacto </a>
+                                </li>
+                                <li>
+                                    <a href="cuenta.html"> Mi cuenta </a>
+                                </li>
+                                <li>
+                                    <a href="carrito.html">
+                                        Carrito
+                                        <span class="contador-carrito" id="contador-carrito"> 0 </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
-                    <nav class="navegacion-principal" aria-label="Navegación principal">
+                    <div class="presentacion presentacion-con-imagen">
+                        <div class="presentacion-texto">
+                            <h1>Vestí la música</h1>
+                            <p>Prendas y accesorios para quienes llevan una canción en la piel.</p>
+                            <p>
+                                <a class="boton" href="productos.html?categoria=remeras"> Explorar la tienda </a>
+                            </p>
+                        </div>
+                        <img
+                            alt="Mujer mirando discos de vinilo en una disquería"
+                            class="foto-presentacion"
+                            src="imagenes/mujer-tienda-vinilos.jpeg"
+                            width="280">
+                    </div>
+                </div>
+            </header>
+            <main id="contenido">
+                <div class="contenedor">
+                    <section id="destacados">
+                        <h2>Productos destacados</h2>
+                        <div class="lista-productos" id="lista-destacados"></div>
+                        <noscript>
+                            <p>Activá JavaScript para consultar los productos destacados.</p>
+                        </noscript>
+                        <br>
+                        <p>
+                            <a class="boton boton-secundario" href="productos.html"> Ver todos los productos </a>
+                        </p>
+                    </section>
+                    <section id="estilos">
+                        <h2>Comprá por estilo</h2>
+                        <p class="aviso-filtros">Explorá las colecciones por género musical.</p>
+                        <div class="lista-estilos">
+                            <article>
+                                <h3>Rock</h3>
+                                <img alt="Público en un concierto" src="imagenes/publico-concierto.jpeg" width="280">
+                                <p>
+                                    <a class="boton boton-secundario" href="productos.html#rock"> Explorar Rock </a>
+                                </p>
+                            </article>
+                            <article>
+                                <h3>Pop / rock</h3>
+                                <img alt="Luces de neón en una escena nocturna" src="imagenes/luces-neon.jpeg" width="280">
+                                <p>
+                                    <a class="boton boton-secundario" href="productos.html#pop"> Explorar Pop / rock </a>
+                                </p>
+                            </article>
+                            <article>
+                                <h3>Indie</h3>
+                                <img alt="Disco de vinilo en un tocadiscos" src="imagenes/vinilo-tocadiscos.jpeg" width="280">
+                                <p>
+                                    <a class="boton boton-secundario" href="productos.html#indie"> Explorar Indie </a>
+                                </p>
+                            </article>
+                            <article>
+                                <h3>Rock alternativo</h3>
+                                <img
+                                    alt="Siluetas del público frente al escenario de un recital"
+                                    src="imagenes/siluetas-recital.jpeg"
+                                    width="280">
+                                <p>
+                                    <a class="boton boton-secundario" href="productos.html#alternativo"> Explorar Rock alternativo </a>
+                                </p>
+                            </article>
+                            <article>
+                                <h3>Rock clásico</h3>
+                                <img alt="Colección de discos de vinilo" src="imagenes/coleccion-vinilos.jpeg" width="280">
+                                <p>
+                                    <a class="boton boton-secundario" href="productos.html#clasicos"> Explorar Rock clásico </a>
+                                </p>
+                            </article>
+                        </div>
+                        <p>
+                            También podés explorar
+                            <a href="productos.html#metal"> Metal </a>
+                            ,
+                            <a href="productos.html#punk"> Punk </a>
+                            y
+                            <a href="productos.html#grunge"> Grunge </a>
+                            .
+                        </p>
+                    </section>
+                    <section class="bloque-historia" id="historia">
+                        <img alt="Discos de vinilo apilados" src="imagenes/vinilos-apilados.jpeg" width="280">
+                        <div class="texto-historia">
+                            <h2>Más que ropa. Una forma de vivir.</h2>
+                            <p>
+                                RetroWave nace del amor por los discos, las portadas inolvidables y la gente que convierte la música en
+                                parte de su identidad.
+                            </p>
+                            <p>
+                                <a class="boton" href="nosotros.html"> Conocé RetroWave </a>
+                            </p>
+                        </div>
+                    </section>
+                    <section id="servicios">
+                        <h2>Tu experiencia RetroWave</h2>
+                        <div class="lista-servicios">
+                            <article>
+                                <h3>Envíos</h3>
+                                <p>Consultá las opciones para recibir tu pedido.</p>
+                                <p>
+                                    <a href="contacto.html#envios"> Información de envíos </a>
+                                </p>
+                            </article>
+                            <article>
+                                <h3>Cambios</h3>
+                                <p>Encontrá tu calce ideal.</p>
+                                <p>
+                                    <a href="contacto.html#cambios"> Consultar por un cambio </a>
+                                </p>
+                            </article>
+                            <article>
+                                <h3>Pasión por la música</h3>
+                                <p>Prendas para fans y coleccionistas.</p>
+                                <p>
+                                    <a href="nosotros.html#valores"> Lo que nos mueve </a>
+                                </p>
+                            </article>
+                        </div>
+                    </section>
+                </div>
+            </main>
+            <footer id="pie">
+                <div class="contenedor">
+                    <p class="marca-pie">
+                        <strong> RetroWave </strong>
+                        La música también se lleva.
+                    </p>
+                    <nav aria-label="Enlaces del pie de página" class="navegacion-pie">
                         <ul>
-                            <li><a class="activo" href="index.html" aria-current="page">Inicio</a></li>
-                            <li><a href="tienda.html">Tienda</a></li>
-                            <li><a href="index.html#estilos">Artistas y estilos</a></li>
-                            <li><a href="nosotros.html">Nosotros</a></li>
-                            <li><a href="contacto.html">Contacto</a></li>
-                            <li><a href="cuenta.html">Mi cuenta</a></li>
-                            <li><a href="carrito.html">Carrito <span class="contador-carrito" id="contador-carrito">0</span></a></li>
+                            <li>
+                                <a href="productos.html?categoria=remeras"> Remeras </a>
+                            </li>
+                            <li>
+                                <a href="productos.html?categoria=buzos"> Buzos </a>
+                            </li>
+                            <li>
+                                <a href="productos.html?categoria=accesorios"> Accesorios </a>
+                            </li>
+                            <li>
+                                <a href="nosotros.html"> Nuestra historia </a>
+                            </li>
+                            <li>
+                                <a href="contacto.html#preguntas"> Preguntas frecuentes </a>
+                            </li>
+                            <li>
+                                <a href="contacto.html#envios"> Envíos </a>
+                            </li>
+                            <li>
+                                <a href="contacto.html#cambios"> Cambios </a>
+                            </li>
                         </ul>
                     </nav>
+                    <section id="novedades">
+                        <h2>Quedate en la frecuencia</h2>
+                        <p>Novedades, lanzamientos y música para vestir. Suscripción de prueba.</p>
+                        <form
+                            id="formulario-novedades"
+                            method="post"
+                            novalidate="novalidate"
+                            onreset="limpiarMensajeFormulario(this)"
+                            onsubmit="return suscribirNovedades(this);"
+                        >
+                            <p>
+                                <label for="email-novedades"> Tu email </label>
+                                <input
+                                    id="email-novedades"
+                                    maxlength="100"
+                                    name="newsletterEmail"
+                                    placeholder="nombre@ejemplo.com"
+                                    required="required"
+                                    size="28"
+                                    type="email">
+                            </p>
+                            <button type="submit">Suscribirme</button>
+                        </form>
+                        <p aria-live="polite" class="mensaje-formulario" id="mensaje-formulario-novedades" role="status"></p>
+                    </section>
+                    <p class="copyright">
+                        <small> © 2026 RetroWave </small>
+                    </p>
+                    <p class="volver-arriba">
+                        <a href="#encabezado"> Volver arriba </a>
+                    </p>
                 </div>
-                <div class="presentacion presentacion-con-imagen">
-                    <div class="presentacion-texto">
-                        <h1>Vestí la música</h1>
-                        <p>Prendas y accesorios para quienes llevan una canción en la piel.</p>
-                        <p><a class="boton" href="tienda.html">Explorar la tienda</a></p>
-                    </div>
-                    <img class="foto-presentacion" src="imagenes/mujer-tienda-vinilos.jpeg" alt="Mujer mirando discos de vinilo en una disquería" width="280">
-                </div>
-            </div>
-        </header>
-        <main id="contenido">
-            <div class="contenedor">
-                <section id="destacados">
-                    <h2>Productos destacados</h2>
-                    <div class="lista-productos">
-                        <article class="producto" id="remera-highway-grooves">
-                            <h3>Remera AC/DC Highway to Hell</h3>
-                            <img src="imagenes/remera-acdc.jpeg" alt="Remera negra con el logo de AC/DC en rojo, un retrato de la banda y el texto Highway to Hell." width="280">
-                            <p class="estado">Nuevo</p>
-                            <p><strong>$28.900</strong></p>
-                            <p>Color: Negro.</p>
-                            <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-highway-grooves.html">Ver Remera AC/DC Highway to Hell</a></p>
-                        </article>
-                        <article class="producto" id="remera-spin-forever">
-                            <h3>Remera Radiohead</h3>
-                            <img src="imagenes/remera-radiohead.jpeg" alt="Remera cruda con el nombre de Radiohead y una composición gráfica en blanco y negro en el frente." width="280">
-                            <p class="estado">Nuevo</p>
-                            <p><strong>$31.500</strong></p>
-                            <p>Color: Crudo.</p>
-                            <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-spin-forever.html">Ver Remera Radiohead</a></p>
-                        </article>
-                        <article class="producto" id="buzo-music-heals">
-                            <h3>Buzo Alice in Chains</h3>
-                            <img src="imagenes/buzo-alice-in-chains.jpeg" alt="Buzo gris oscuro con capucha, el nombre de Alice in Chains en el frente y una composición gráfica en la espalda." width="280">
-                            <p class="estado">Nuevo</p>
-                            <p><strong>$58.900</strong></p>
-                            <p>Color: Gris.</p>
-                            <p class="enlace-producto"><a class="boton boton-secundario" href="productos/buzo-music-heals.html">Ver Buzo Alice in Chains</a></p>
-                        </article>
-                        <article class="producto" id="campera-soundtrack">
-                            <h3>Campera Guns N' Roses</h3>
-                            <img src="imagenes/campera-guns-n-roses.jpeg" alt="Campera de jean azul con una estampa de Guns N&#x27; Roses en la espalda, con rosas y una ilustración central." width="280">
-                            <p><strong>$65.000</strong></p>
-                            <p>Color: Azul.</p>
-                            <p class="enlace-producto"><a class="boton boton-secundario" href="productos/campera-soundtrack.html">Ver Campera Guns N' Roses</a></p>
-                        </article>
-                        <article class="producto" id="remera-stay-wild">
-                            <h3>Remera The 1975</h3>
-                            <img src="imagenes/remera-the-1975.jpeg" alt="Remera blanca con el nombre de The 1975 en rojo, una fotografía de la banda y detalles gráficos en negro." width="280">
-                            <p class="estado">Nuevo</p>
-                            <p><strong>$28.900</strong></p>
-                            <p>Color: Blanco.</p>
-                            <p class="enlace-producto"><a class="boton boton-secundario" href="productos/remera-stay-wild.html">Ver Remera The 1975</a></p>
-                        </article>
-                    </div>
-                    <br>
-                    <p><a class="boton boton-secundario" href="productos.html">Ver todos los productos</a></p>
-                </section>
-                <section id="estilos">
-                    <h2>Comprá por estilo</h2>
-                    <p class="aviso-filtros">Explorá las colecciones por género musical.</p>
-                    <div class="lista-estilos">
-                        <article>
-                            <h3>Rock</h3>
-                            <img src="imagenes/publico-concierto.jpeg" alt="Público en un concierto" width="280">
-                            <p><a class="boton boton-secundario" href="productos.html#rock">Explorar Rock</a></p>
-                        </article>
-                        <article>
-                            <h3>Pop / rock</h3>
-                            <img src="imagenes/luces-neon.jpeg" alt="Luces de neón en una escena nocturna" width="280">
-                            <p><a class="boton boton-secundario" href="productos.html#pop">Explorar Pop / rock</a></p>
-                        </article>
-                        <article>
-                            <h3>Indie</h3>
-                            <img src="imagenes/vinilo-tocadiscos.jpeg" alt="Disco de vinilo en un tocadiscos" width="280">
-                            <p><a class="boton boton-secundario" href="productos.html#indie">Explorar Indie</a></p>
-                        </article>
-                        <article>
-                            <h3>Rock alternativo</h3>
-                            <img src="imagenes/siluetas-recital.jpeg" alt="Siluetas del público frente al escenario de un recital" width="280">
-                            <p><a class="boton boton-secundario" href="productos.html#alternativo">Explorar Rock alternativo</a></p>
-                        </article>
-                        <article>
-                            <h3>Rock clásico</h3>
-                            <img src="imagenes/coleccion-vinilos.jpeg" alt="Colección de discos de vinilo" width="280">
-                            <p><a class="boton boton-secundario" href="productos.html#clasicos">Explorar Rock clásico</a></p>
-                        </article>
-                    </div>
-                    <p>También podés explorar <a href="productos.html#metal">Metal</a>, <a href="productos.html#punk">Punk</a> y <a href="productos.html#grunge">Grunge</a>.</p>
-                </section>
-                <section class="bloque-historia" id="historia">
-                    <img src="imagenes/vinilos-apilados.jpeg" alt="Discos de vinilo apilados" width="280">
-                    <div class="texto-historia">
-                        <h2>Más que ropa. Una forma de vivir.</h2>
-                        <p>RetroWave nace del amor por los discos, las portadas inolvidables y la gente que convierte la música en parte de su identidad.</p>
-                        <p><a class="boton" href="nosotros.html">Conocé RetroWave</a></p>
-                    </div>
-                </section>
-                <section id="servicios">
-                    <h2>Tu experiencia RetroWave</h2>
-                    <div class="lista-servicios">
-                        <article>
-                            <h3>Envíos</h3>
-                            <p>Consultá las opciones para recibir tu pedido.</p>
-                            <p><a href="contacto.html#envios">Información de envíos</a></p>
-                        </article>
-                        <article>
-                            <h3>Cambios</h3>
-                            <p>Encontrá tu calce ideal.</p>
-                            <p><a href="contacto.html#cambios">Consultar por un cambio</a></p>
-                        </article>
-                        <article>
-                            <h3>Pasión por la música</h3>
-                            <p>Prendas para fans y coleccionistas.</p>
-                            <p><a href="nosotros.html#valores">Lo que nos mueve</a></p>
-                        </article>
-                    </div>
-                </section>
-            </div>
-        </main>
-        <footer id="pie">
-            <div class="contenedor">
-                <p class="marca-pie"><strong>RetroWave</strong> La música también se lleva.</p>
-                <nav class="navegacion-pie" aria-label="Enlaces del pie de página">
-                    <ul>
-                        <li><a href="tienda.html">Remeras</a></li>
-                        <li><a href="buzos.html">Buzos</a></li>
-                        <li><a href="accesorios.html">Accesorios</a></li>
-                        <li><a href="nosotros.html">Nuestra historia</a></li>
-                        <li><a href="contacto.html#preguntas">Preguntas frecuentes</a></li>
-                        <li><a href="contacto.html#envios">Envíos</a></li>
-                        <li><a href="contacto.html#cambios">Cambios</a></li>
-                    </ul>
-                </nav>
-                <section id="novedades">
-                    <h2>Quedate en la frecuencia</h2>
-                    <p>Novedades, lanzamientos y música para vestir. Suscripción de prueba.</p>
-                    <form id="formulario-novedades" method="post" novalidate="novalidate" onsubmit="return suscribirNovedades(this)" onreset="limpiarMensajeFormulario(this)">
-                        <p>
-                            <label for="email-novedades">Tu email</label>
-                            <input type="email" id="email-novedades" name="newsletterEmail" placeholder="nombre@ejemplo.com" size="28" maxlength="100" required="required">
-                        </p>
-                        <button type="submit">Suscribirme</button>
-                    </form>
-                    <p class="mensaje-formulario" id="mensaje-formulario-novedades" role="status" aria-live="polite"></p>
-                </section>
-                <p class="copyright"><small>© 2026 RetroWave</small></p>
-                <p class="volver-arriba"><a href="#encabezado">Volver arriba</a></p>
-            </div>
-        </footer>
-    </div>
-    <dialog id="dialogo-aviso" aria-labelledby="titulo-aviso" aria-describedby="texto-aviso">
-        <h2 id="titulo-aviso">Aviso de RetroWave</h2>
-        <p id="texto-aviso"></p>
-        <button type="button" onclick="cerrarAviso()" autofocus="autofocus">Entendido</button>
-    </dialog>
-    <script src="js/datos-productos.js"></script>
-    <script src="js/funciones.js"></script>
-    <script src="js/catalogo.js"></script>
-    <script src="js/carrito.js"></script>
-    <script src="js/formularios.js"></script>
-</body>
+            </footer>
+        </div>
+        <dialog aria-describedby="texto-aviso" aria-labelledby="titulo-aviso" id="dialogo-aviso">
+            <h2 id="titulo-aviso">Aviso de RetroWave</h2>
+            <p id="texto-aviso"></p>
+            <button autofocus="autofocus" onclick="cerrarAviso()" type="button">Entendido</button>
+        </dialog>
+        <script src="js/datos-productos.js"></script>
+        <script src="js/funciones.js"></script>
+        <script src="js/catalogo.js"></script>
+        <script src="js/carrito.js"></script>
+        <script src="js/formularios.js"></script>
+    </body>
 </html>
