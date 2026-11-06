@@ -185,3 +185,7 @@ Las etapas 1 a 5 ya están integradas en main. Los fixes de esta revisión se re
 de Octavio, desde la rama albarracin.
 Se mantiene el mismo nivel de React y JavaScript y no se agregan dependencias.
 El detalle de requisitos, resultados y tareas pendientes está en [REVISION.md](segunda-entrega/REVISION.md).
+
+##Sitio publicado
+
+La segunda entrega de RetroWave está disponible en GitHub Pages: https://trytofindmeg.github.io/Proyecto2026-Albarracin-Garcia-Terpin/segunda-entrega/#/.
