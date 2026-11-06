@@ -1,6 +1,6 @@
 import Tarjeta from "@/components/Tarjeta.jsx";
 import Boton from "@/components/Boton.jsx";
-import { crearEnlaceHTML } from "@/utils/rutas.js";
+import { crearEnlaceImagen } from "@/utils/rutas.js";
 import { formatearPrecio } from "@/utils/precios.js";
 import { generos } from "@/data/catalogo.js";
 
@@ -14,7 +14,7 @@ const TarjetaProducto = ({ producto, busqueda = "" }) => {
     return (
         <Tarjeta
             titulo={producto.nombre}
-            imagen={crearEnlaceHTML(producto.imagen)}
+            imagen={crearEnlaceImagen(producto.imagen)}
             alt={producto.alt}
             clase="tarjeta-producto"
         >

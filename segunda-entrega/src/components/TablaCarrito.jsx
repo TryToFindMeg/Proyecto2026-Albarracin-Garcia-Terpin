@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ResumenCarrito from "@/components/ResumenCarrito.jsx";
 import { calcularTotales, validarCantidad, varianteDisponible } from "@/utils/carrito.js";
 import { formatearPrecio } from "@/utils/precios.js";
-import { crearEnlaceHTML } from "@/utils/rutas.js";
+import { crearEnlaceImagen } from "@/utils/rutas.js";
 
 /** Edita cantidades con estado local, errores en tiempo real y guardado explícito. */
 const TablaCarrito = ({ carrito, productos, codigo, alGuardar, alResumen }) => {
@@ -72,7 +72,7 @@ const TablaCarrito = ({ carrito, productos, codigo, alGuardar, alResumen }) => {
                                                             {nombre}
                                                         </Link>
                                                         <img
-                                                            src={crearEnlaceHTML(producto.imagen)}
+                                                            src={crearEnlaceImagen(producto.imagen)}
                                                             alt={producto.alt}
                                                             width="100"
                                                             height="110"

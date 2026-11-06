@@ -27,7 +27,9 @@ export const leerFiltros = (parametros) => {
         artista: (parametros.get("artista") || "").slice(0, 80),
         minimo: parametros.get("minimo") || "",
         maximo: parametros.get("maximo") || "",
-        disponibilidad: parametros.get("disponibilidad") || "all",
+        disponibilidad: ["all", "available", "sold-out"].includes(parametros.get("disponibilidad"))
+            ? parametros.get("disponibilidad")
+            : "all",
         color: parametros.get("color") || "all",
         talle: parametros.get("talle") || "all",
         orden: ordenes.some((item) => item.id === orden) ? orden : "featured",
