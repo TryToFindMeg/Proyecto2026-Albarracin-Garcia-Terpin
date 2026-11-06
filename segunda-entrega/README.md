@@ -4,21 +4,27 @@
 
 Integrantes: Octavio Albarracin, Emi Garcia y Clari Terpin.
 
-## Estado: etapa 4
+## Estado: etapa 5 preparada
 
-El sitio actual funciona en React: Inicio, Nosotros, catálogo, ficha de producto, carrito,
-Cuenta, Contacto y el formulario de Novedades del pie. Se mantienen el diseño de escritorio,
-la navbar fija, las fuentes Shrikhand y DM Sans y las fotografías locales.
+Todo el sitio actual funciona en React: Inicio, Nosotros, catálogo, detalle, carrito,
+Cuenta, Contacto y Novedades. Conserva el diseño de escritorio, la navbar fija, las fuentes
+Shrikhand y DM Sans y las fotografías locales. La publicación está preparada para ejecutarla
+manualmente después de integrar los aportes del equipo. No se publicó desde esta copia local.
 
-La etapa 5 queda pendiente para la revisión final, otros navegadores y la publicación del sitio y su API.
+- [Instalación y ejecución](#instalación-y-ejecución)
+- [Comandos](#comandos)
+- [Organización](#organización)
+- [Catálogo y API](#catálogo-y-api)
+- [Carrito y formularios](#carrito-y-formularios)
+- [Revisión](#revisión)
+- [Trabajo en equipo](#trabajo-en-equipo)
 
-## Instalación y orden de ejecución
+## Instalación y ejecución
 
-Se necesitan Node.js compatible con engines de package.json y npm.
-Las etapas 1, 2 y 3 completas del equipo deben estar integradas antes de subir la etapa 4.
+### 1. Dependencias
 
-### 1. Instalar dependencias
-
+Se necesita Node.js compatible con engines de package.json y npm.
+Se comprobó el entorno con Node.js 26.10.0 y npm 12.2.0.
 Desde la raíz del repositorio:
 
 ```powershell
@@ -26,152 +32,177 @@ cd segunda-entrega
 npm ci
 ```
 
-Si ya están instaladas y el lockfile no cambió, no hace falta repetirlo.
-La etapa 4 no agrega dependencias ni cambia sus versiones.
-En PowerShell se puede usar npm.cmd en lugar de npm. React y Sass no necesitan instalación global.
+Si las dependencias ya están instaladas y el lockfile no cambió, no hace falta repetirlo.
+La etapa 5 no agrega dependencias ni cambia versiones: actualiza los scripts de comprobación y build.
+En PowerShell se puede usar npm.cmd. React y Sass no necesitan instalación global.
 
-### 2. Iniciar la API
+### 2. Desarrollo: API y React
 
-En una terminal ubicada en segunda-entrega:
+Abrir dos terminales, ambas en segunda-entrega.
+
+Terminal 1:
 
 ```powershell
 npm run services
 ```
 
-Dejarla abierta. json-server responde en http://127.0.0.1:4000/productos y lee src/data/db.json.
-La API es necesaria para mostrar productos y calcular el carrito con sus precios actuales.
+json-server lee src/data/db.json y responde en http://127.0.0.1:4000/productos.
 
-### 3. Iniciar el sitio
-
-En otra terminal ubicada en segunda-entrega:
+Terminal 2:
 
 ```powershell
 npm run dev
 ```
 
-Abrir la dirección que indique Vite, normalmente http://127.0.0.1:5173/.
-Dejar ambas terminales abiertas. Ctrl+C detiene cada servicio en su terminal.
-No utilizar Live Server ni abrir index.html con doble clic: Vite procesa el JSX de React.
-Usar la misma dirección y puerto para recuperar las preferencias de localStorage.
+Abrir la dirección que muestre Vite, normalmente http://127.0.0.1:5173/.
+Dejar ambas terminales abiertas. Ctrl+C detiene cada servicio.
+Usar Vite: Live Server y el doble clic sobre index.html no procesan JSX.
+Usar siempre el mismo origen del navegador para recuperar los datos guardados.
 
-### Rutas habituales
+### 3. Versión de publicación
 
-| Página   | Dirección con Vite activo                               |
-| -------- | ------------------------------------------------------- |
-| Inicio   | http://127.0.0.1:5173/#/                                |
-| Nosotros | http://127.0.0.1:5173/#/nosotros                        |
-| Catálogo | http://127.0.0.1:5173/#/productos                       |
-| Remeras  | http://127.0.0.1:5173/#/productos?categoria=remeras     |
-| Ficha    | http://127.0.0.1:5173/#/producto/remera-highway-grooves |
-| Carrito  | http://127.0.0.1:5173/#/carrito                         |
-| Cuenta   | http://127.0.0.1:5173/#/cuenta                          |
-| Contacto | http://127.0.0.1:5173/#/contacto                        |
+En segunda-entrega:
 
-Si el servicio está apagado, se presenta un error con botón de reintento. Las compras guardadas
-no se borran por un error de la API. Cuenta, Contacto y Novedades funcionan sin consultar ese servicio.
+```powershell
+npm run check
+npm run preview
+```
 
-Para otra dirección de API, copiar .env.example a .env, ajustar VITE_API_URL y reiniciar Vite.
-Los archivos .env locales no se suben. VITE_ contiene información pública, nunca claves o contraseñas.
+Abrir la dirección que indique preview, normalmente http://127.0.0.1:4173/.
+La raíz redirige a http://127.0.0.1:4173/segunda-entrega/.
+La compilación incluye un mock GET de productos: no necesita json-server encendido.
+La versión anterior se puede consultar en /primera-entrega/.
+
+El build prepara dist/segunda-entrega, dist/primera-entrega, un index de redirección y .nojekyll.
+El segundo script del build requiere que primera-entrega siga junto a segunda-entrega dentro del repositorio.
+Solo copia esa primera entrega al resultado; no modifica sus archivos originales.
+Los pasos de GitHub Pages están en [PUBLICACION.md](PUBLICACION.md).
+
+### Rutas
+
+| Página   | Ruta después de la dirección base   |
+| -------- | ----------------------------------- |
+| Inicio   | `#/`                                |
+| Nosotros | `#/nosotros`                        |
+| Catálogo | `#/productos`                       |
+| Remeras  | `#/productos?categoria=remeras`     |
+| Detalle  | `#/producto/remera-highway-grooves` |
+| Carrito  | `#/carrito`                         |
+| Cuenta   | `#/cuenta`                          |
+| Contacto | `#/contacto`                        |
+
+HashRouter permite recargar las rutas en GitHub Pages. Los enlaces a secciones usan un parámetro
+como `#/contacto?seccion=envios` y desplazan también el foco para navegar con teclado.
 
 ## Comandos
 
-| Comando                | Uso                                                             |
-| ---------------------- | --------------------------------------------------------------- |
-| `npm run services`     | Iniciar json-server.                                            |
-| `npm run dev`          | Iniciar React con Vite.                                         |
-| `npm run build`        | Compilar en dist.                                               |
-| `npm run preview`      | Probar la compilación; también requiere API para los productos. |
-| `npm run lint`         | Revisar con ESLint.                                             |
-| `npm run format:check` | Comprobar formato con Prettier.                                 |
-| `npm run format`       | Aplicar formato.                                                |
-| `npm audit`            | Consultar avisos de dependencias.                               |
+| Comando                | Uso                                                              |
+| ---------------------- | ---------------------------------------------------------------- |
+| `npm run services`     | Iniciar json-server para desarrollo.                             |
+| `npm run dev`          | Iniciar React con Vite.                                          |
+| `npm run check:datos`  | Validar los 26 productos y sus fotografías.                      |
+| `npm run lint`         | Revisar errores e imports sin uso con ESLint.                    |
+| `npm run format:check` | Comprobar formato con Prettier.                                  |
+| `npm run format`       | Aplicar formato.                                                 |
+| `npm run build`        | Compilar, validar datos y preparar ambas entregas para publicar. |
+| `npm run preview`      | Servir localmente la compilación ya preparada.                   |
+| `npm run check`        | Ejecutar lint, formato y build.                                  |
+| `npm audit`            | Consultar vulnerabilidades del proyecto React.                   |
 
 ## Organización
 
-| Ubicación        | Contenido                                                                                  |
-| ---------------- | ------------------------------------------------------------------------------------------ |
-| `src/App.jsx`    | Rutas, productos y selección de compra compartida.                                         |
-| `src/api`        | GET de productos mediante fetch y async/await.                                             |
-| `src/pages`      | Inicio, Nosotros, Catalogo, Producto, Carrito, Cuenta, Contacto y NoEncontrada.            |
-| `src/layouts`    | Layout con Outlet, metadatos, foco y desplazamiento.                                       |
-| `src/components` | Cabecera, Pie, Boton, Tarjeta, Campo, filtros, ficha, carrito y formularios reutilizables. |
-| `src/data`       | db.json, opciones de filtros, destacados y datos de formularios.                           |
-| `src/utils`      | Precios, filtros, validaciones, almacenamiento y operaciones del carrito.                  |
-| `src/styles`     | Todos los estilos, en módulos SCSS con variables y @use.                                   |
-| `src/assets`     | Imagen importada desde Inicio.                                                             |
-| `public`         | Favicon y fotografías estáticas locales.                                                   |
+| Ubicación        | Contenido                                                         |
+| ---------------- | ----------------------------------------------------------------- |
+| `src/App.jsx`    | Rutas, carga de productos y compra compartida mediante props.     |
+| `src/api`        | Consulta HTTP con fetch y async/await.                            |
+| `src/components` | Componentes reutilizables, filtros, formularios, ficha y carrito. |
+| `src/pages`      | Las páginas React y la vista no encontrada.                       |
+| `src/layouts`    | Layout con Outlet, metadatos, foco y desplazamiento.              |
+| `src/data`       | db.json y opciones/contenido de la interfaz.                      |
+| `src/utils`      | Precios, filtros, validaciones y almacenamiento.                  |
+| `src/styles`     | Todos los estilos en archivos .scss con variables y @use.         |
+| `src/assets`     | Imagen importada desde Inicio.                                    |
+| `public`         | Favicon y fotografías locales.                                    |
+| `scripts`        | Verificación de datos y preparación de publicación con Node.      |
 
-Los imports usan los alias @/ y @styles/. La configuración de React está junto a package.json,
-directamente en segunda-entrega. El README general pertenece a la raíz del repositorio.
-Los archivos HTML, CSS y JavaScript antiguos de public/sitio-html se retiraron al completar la migración.
-Sus imágenes permanecen en public/sitio-html/imagenes; los enlaces actuales usan las rutas React.
+React usa los alias @/ y @styles/. Los scripts de Node usan rutas relativas porque no se ejecutan con Vite.
+La configuración y package.json de React están en segunda-entrega. El README general está en la raíz del repo.
+Las 58 imágenes de public/sitio-html/imagenes se conservan; el HTML, CSS y JS antiguos ya se retiraron.
 
-## Carrito y persistencia
+## Catálogo y API
 
-App mantiene la selección con useState y la comparte mediante props. Las operaciones del carrito
-crean copias del estado. No se importa una copia local del catálogo en el frontend: los precios y
-la disponibilidad se comprueban con los productos recibidos de la API.
+El catálogo contiene 26 productos: 12 remeras, 12 buzos, una campera y una tote bag.
+Una sola página muestra las categorías y una sola ficha muestra el producto solicitado por id.
+Los filtros combinan categoría, género, artista, precio, stock, color, talle y orden, conservando preferencias en la URL.
 
-- Una variante se identifica por producto, talle y color. La misma variante acumula hasta 10 unidades.
-- Las cantidades se validan con onChange, deben ser enteras de 1 a 10 y se guardan con Actualizar carrito.
-- Los importes reflejan las cantidades editadas; el contador de la navbar refleja las unidades guardadas.
-- Eliminar una fila conserva las cantidades guardadas de las otras. Restablecer devuelve todas a 1.
-- RETRO10 aplica un 10 %. Dejar el campo vacío y aplicar quita el cupón.
-- Vaciar solicita confirmación. Escape o Cancelar conserva las compras.
-- El resumen es una demostración: no crea pedidos ni pagos.
-- Si una variante dejó de estar disponible, se informa y se puede eliminar. Un error de API no borra compras.
-- Las pestañas se sincronizan mediante el evento storage y al volver a la ventana.
+El frontend obtiene el catálogo por HTTP; no importa db.json directamente.
+Antes de renderizarlo verifica campos, importes, opciones e identificadores únicos.
+Un error HTTP o datos incompletos muestran un aviso y permiten reintentar, sin borrar el carrito.
 
-Se conserva retrowave-carrito como `{ id, talle, color, cantidad }[]` y retrowave-descuento como texto.
-Los datos de las etapas anteriores siguen siendo compatibles si se usa el mismo origen del navegador.
-Los errores de escritura se muestran sin anunciar un guardado exitoso. Si una de las dos claves falla,
-se intenta restaurar su contenido anterior.
+| Modo        | GET usado de forma predeterminada                              |
+| ----------- | -------------------------------------------------------------- |
+| Desarrollo  | `http://127.0.0.1:4000/productos` mediante json-server.        |
+| Compilación | `api/productos.json`, relativo a la segunda entrega publicada. |
 
-## Formularios y accesibilidad
+El JSON público se genera desde src/data/db.json durante cada build. Es un mock de lectura;
+no es un backend con usuarios, pedidos ni escritura remota. Cambiar db.json y volver a compilar actualiza el catálogo publicado.
 
-Campo reutiliza label, ayudas y errores en Cuenta, Contacto y Novedades. Los controles son React
-controlados; los errores aparecen al editar o al intentar enviar y se asocian mediante aria-invalid,
-aria-describedby y role=alert. Un envío inválido enfoca el primer campo a corregir.
+Para usar otra API, copiar .env.example a .env y definir VITE_API_URL con su dirección base,
+sin /productos al final. Esa API debe responder a GET /productos con un array de productos
+y permitir las consultas del navegador. Reiniciar Vite y volver a compilar para aplicar la configuración.
+Una API configurada que falla muestra el error: no se sustituye silenciosamente por el catálogo local.
+No subir .env. Las variables VITE_ son públicas; nunca colocar claves o contraseñas.
 
-Ingreso valida email y contraseña de prueba de 8 a 64 caracteres. Recordarme guarda solo el email
-en retrowave-email-recordado. Limpiar campos también elimina esa preferencia. El registro comprueba
-la coincidencia de contraseñas. No se guardan contraseñas ni se crean cuentas o sesiones reales.
-Recuperación, Contacto y Novedades muestran confirmaciones de demostración y no envían correos.
+## Carrito y formularios
 
-El diálogo de vaciado y resumen utiliza dialog con foco contenido y cierre por Escape.
-Los botones mantienen contraste al pasar el mouse y foco visible. Las imágenes tienen alt,
-las tablas tienen encabezados y el sitio ofrece un enlace para saltar al contenido.
+App comparte la selección con useState y props. Las operaciones crean copias del estado.
+Los precios y la disponibilidad se toman de los productos recibidos por HTTP.
 
-## Verificación de esta etapa
+- Producto, talle y color identifican una variante; la misma variante acumula hasta 10 unidades.
+- Las cantidades se validan al escribir y se guardan con Actualizar carrito.
+- Los importes muestran las cantidades editadas; el contador refleja las unidades guardadas.
+- Eliminar una fila conserva las cantidades guardadas de las demás; Restablecer las devuelve a 1.
+- RETRO10 aplica 10 %. Aplicar un código vacío quita el descuento.
+- Vaciar pide confirmación; Cancelar o Escape conserva las compras.
+- localStorage conserva carrito, cupón y el email que se pidió recordar. Nunca contraseñas.
+- Las pestañas se sincronizan y los errores de guardado se informan sin anunciar un éxito falso.
 
-El 5 de noviembre de 2026 se comprobaron ESLint, formato, compilación y el navegador integrado.
-Se probaron variantes, límites y actualización de cantidades, cupón, recarga, eliminación,
-restablecimiento, vaciado con cancelación, resumen, sincronización entre pestañas y recuperación de API.
-También se verificaron los formularios, sus errores en tiempo real, el email recordado y su limpieza.
-Se realizaron 15 comprobaciones adicionales de lógica, validaciones y almacenamiento.
-La compilación se recorrió por las rutas principales y se revisó la consola por separado de la
-prueba con la API apagada. Las pruebas en otros navegadores quedan para la etapa 5.
-npm audit informó 0 vulnerabilidades dentro de segunda-entrega. Package y lockfile no cambiaron.
+Campo reutiliza etiquetas, ayudas y errores en formularios controlados con onChange.
+Los errores se asocian con aria-invalid, aria-describedby y role=alert; enviar vacío enfoca el primer campo incorrecto.
+Limpiar Cuenta vacía sus campos incluso si el navegador impide borrar la preferencia guardada; ese fallo se informa.
+El diálogo usa dialog y admite Escape. Hay foco visible, salto al contenido, alt y encabezados de tabla.
+
+Ingreso, registro, recuperación, contacto, suscripción y resumen son demostraciones:
+no crean sesiones o cuentas, no envían correos ni generan pedidos o pagos. Usar datos de prueba.
+
+## Revisión
+
+El 5 de noviembre de 2026 pasaron lint, formato, validación de datos y build, con 25 comprobaciones
+adicionales de lógica, almacenamiento, filtros, contrato HTTP y recursos publicados.
+Se validó el HTML generado de las rutas principales y del error de API con Nu HTML Checker.
+Se recorrió el compilado bajo el prefijo del repositorio y se comprobó la recuperación ante datos incompletos.
+En la revisión del compilado, la consola del navegador integrado no mostró errores ni avisos.
+Las combinaciones principales de texto comprobadas superaron 4.5:1; esto no es una certificación de accesibilidad.
+npm audit informó 0 vulnerabilidades dentro de segunda-entrega. Las dependencias y el lockfile no cambiaron.
+
+Ver [REVISION.md](REVISION.md) para relacionar comprobaciones y requisitos.
+Quedan pendientes las pruebas manuales en Chrome, Firefox y Edge, integrar los aportes en main,
+ejecutar el workflow y comprobar el sitio publicado. No se instalaron otros navegadores ni se publicaron cambios.
 
 ## Trabajo en equipo
 
-Los paquetes de esta etapa contienen solo las diferencias respecto del sitio completo de etapa 3.
-Cada integrante sube su parte desde su cuenta y su rama. Primero deben estar integradas las etapas
-anteriores de los tres. Orden de merge de etapa 4: Emi, Clari y Octa.
-Octa activa las páginas del conjunto y retira los 14 archivos antiguos; esas eliminaciones están
-incluidas expresamente en sus instrucciones. Las fotos se conservan.
-Los paquetes y copias de etapas anteriores permanecen separados para evitar mezclar versiones.
-node_modules, dist, ZIP, respaldos y archivos .env locales no se suben.
+Primero integrar las etapas 1 a 4 completas del equipo. Cada paquete de etapa 5 contiene solo
+sus diferencias respecto del sitio completo de etapa 4. Cada integrante sube desde su cuenta y rama.
+Orden de merge: Emi, Clari y Octa. Los paquetes anteriores permanecen separados.
 
-## Pendiente: etapa 5
+El workflow de la raíz revisa PR y push a main. Su publicación se activa solo manualmente desde main.
+No subir node_modules, dist, archivos .env, ZIP ni respaldos. Sí subir los archivos fuente,
+las dos guías, los README y el workflow asignados en cada paquete.
 
-Revisión final de requisitos y accesibilidad, pruebas en otros navegadores y publicación.
-GitHub Pages no ejecuta json-server: el despliegue necesita una dirección de API accesible.
-El proyecto todavía no se considera publicado ni con la revisión final terminada.
+## Material
 
-## Material de clase
-
-- [React](https://ucc-tallerdesarrolloweb.github.io/filminas/U6_react.html#/).
-- [Sass](https://ucc-tallerdesarrolloweb.github.io/filminas/U5_preprocesadoresCSS.html#/).
-- [APIs simuladas](https://ucc-tallerdesarrolloweb.github.io/filminas/U7_mock-api.html#/).
 - [Consignas](https://ucc-tallerdesarrolloweb.github.io/filminas/Proyecto.html#/).
+- [React](https://ucc-tallerdesarrolloweb.github.io/filminas/U6_react.html#/).
+- [APIs simuladas](https://ucc-tallerdesarrolloweb.github.io/filminas/U7_mock-api.html#/).
+- [Publicación con Vite](https://vite.dev/guide/static-deploy.html).
+- [Variables y modos de Vite](https://vite.dev/guide/env-and-mode.html).

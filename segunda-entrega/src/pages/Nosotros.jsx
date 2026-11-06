@@ -1,6 +1,6 @@
 import Boton from "@/components/Boton.jsx";
 import Tarjeta from "@/components/Tarjeta.jsx";
-import { crearEnlaceHTML } from "@/utils/rutas.js";
+import { crearEnlaceImagen } from "@/utils/rutas.js";
 
 /**
  * Cuenta la historia y los valores de RetroWave.
@@ -20,7 +20,7 @@ const Nosotros = () => {
                 </div>
                 <img
                     className="foto-presentacion"
-                    src={crearEnlaceHTML("imagenes/personas-disqueria.jpeg")}
+                    src={crearEnlaceImagen("imagenes/personas-disqueria.jpeg")}
                     alt="Personas recorriendo una tienda de discos"
                     width="620"
                     height="470"
@@ -28,7 +28,7 @@ const Nosotros = () => {
             </header>
             <section className="bloque-historia seccion-nosotros" id="historia">
                 <img
-                    src={crearEnlaceHTML("imagenes/remeras-perchero.jpeg")}
+                    src={crearEnlaceImagen("imagenes/remeras-perchero.jpeg")}
                     alt="Remeras estampadas colgadas en un perchero"
                     width="560"
                     height="380"
@@ -76,7 +76,7 @@ const Nosotros = () => {
                 <div className="lista-colecciones">
                     <Tarjeta
                         titulo="El pulso de los discos"
-                        imagen={crearEnlaceHTML("imagenes/vinilo-tocadiscos.jpeg")}
+                        imagen={crearEnlaceImagen("imagenes/vinilo-tocadiscos.jpeg")}
                         alt="Disco de vinilo en un tocadiscos"
                     >
                         <p>
@@ -86,7 +86,7 @@ const Nosotros = () => {
                     </Tarjeta>
                     <Tarjeta
                         titulo="Detalles para mirar de cerca"
-                        imagen={crearEnlaceHTML("imagenes/remera-grafica-vintage.jpeg")}
+                        imagen={crearEnlaceImagen("imagenes/remera-grafica-vintage.jpeg")}
                         alt="Remera de una banda con estampado en celeste y amarillo"
                     >
                         <p>
@@ -96,7 +96,7 @@ const Nosotros = () => {
                     </Tarjeta>
                     <Tarjeta
                         titulo="La energía de estar ahí"
-                        imagen={crearEnlaceHTML("imagenes/publico-concierto.jpeg")}
+                        imagen={crearEnlaceImagen("imagenes/publico-concierto.jpeg")}
                         alt="Público en un concierto"
                     >
                         <p>
