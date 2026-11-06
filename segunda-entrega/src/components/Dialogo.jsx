@@ -1,10 +1,12 @@
 import { useEffect } from "react";
+import { enfocarTrasActualizar } from "@/utils/foco.js";
 
 /** Abre un diálogo nativo con foco contenido, cierre por Escape y contenido reutilizable. */
 const Dialogo = ({
     titulo,
     children,
     alCerrar,
+    focoAlCerrar,
     confirmar,
     textoConfirmar = "Confirmar",
     textoCerrar = "Cancelar",
@@ -14,8 +16,9 @@ const Dialogo = ({
         if (!cuadro.open) cuadro.showModal();
         return () => {
             if (cuadro.open) cuadro.close();
+            enfocarTrasActualizar(focoAlCerrar);
         };
-    }, []);
+    }, [focoAlCerrar]);
     return (
         <dialog
             id="dialogo-carrito"

@@ -4,7 +4,7 @@
 
 Integrantes: Octavio Albarracin, Emi Garcia y Clari Terpin.
 
-## Estado: etapa 5 preparada
+## Estado: etapa 5 integrada y fixes finales preparados
 
 Todo el sitio actual funciona en React: Inicio, Nosotros, catálogo, detalle, carrito,
 Cuenta, Contacto y Novedades. Conserva el diseño de escritorio, la navbar fija, las fuentes
@@ -159,11 +159,12 @@ App comparte la selección con useState y props. Las operaciones crean copias de
 Los precios y la disponibilidad se toman de los productos recibidos por HTTP.
 
 - Producto, talle y color identifican una variante; la misma variante acumula hasta 10 unidades.
-- Las cantidades se validan al escribir y se guardan con Actualizar carrito.
+- Las cantidades se validan al escribir y se guardan con Actualizar carrito, conservando el foco del teclado.
 - Los importes muestran las cantidades editadas; el contador refleja las unidades guardadas.
 - Eliminar una fila conserva las cantidades guardadas de las demás; Restablecer las devuelve a 1.
 - RETRO10 aplica 10 %. Aplicar un código vacío quita el descuento.
-- Vaciar pide confirmación; Cancelar o Escape conserva las compras.
+- Vaciar pide confirmación; Cancelar o Escape conserva las compras y devuelve el foco al botón.
+- Eliminar la última fila o confirmar el vaciado enfoca el contenido; cerrar el resumen devuelve el foco a su botón.
 - localStorage conserva carrito, cupón y el email que se pidió recordar. Nunca contraseñas.
 - Las pestañas se sincronizan y los errores de guardado se informan sin anunciar un éxito falso.
 
@@ -171,15 +172,20 @@ Campo reutiliza etiquetas, ayudas y errores en formularios controlados con onCha
 Los errores se asocian con aria-invalid, aria-describedby y role=alert; enviar vacío enfoca el primer campo incorrecto.
 Limpiar Cuenta vacía sus campos incluso si el navegador impide borrar la preferencia guardada; ese fallo se informa.
 El diálogo usa dialog y admite Escape. Hay foco visible, salto al contenido, alt y encabezados de tabla.
+Las cantidades y cupones inválidos reciben el foco al intentar confirmarlos. Los filtros de precio conservan
+lo escrito y muestran error en tiempo real si no es un número decimal entre 0 y 100000.
+Se escriben sin separadores de miles; el punto indica decimales. Esta validación se realiza en JavaScript.
 
 Ingreso, registro, recuperación, contacto, suscripción y resumen son demostraciones:
 no crean sesiones o cuentas, no envían correos ni generan pedidos o pagos. Usar datos de prueba.
 
 ## Revisión
 
-El 5 de noviembre de 2026 pasaron lint, formato, validación de datos y build, con 25 comprobaciones
+El 5 de noviembre de 2026 pasaron lint, formato, validación de datos y build, con 27 comprobaciones
 adicionales de lógica, almacenamiento, filtros, contrato HTTP y recursos publicados.
-Se validó el HTML generado de las rutas principales y del error de API con Nu HTML Checker.
+Se validaron 41 vistas de HTML generado con Nu HTML Checker: rutas principales, las 26 fichas
+y estados de error de contacto, precio y API. Las 26 fotografías de productos son distintas.
+Se revisaron 42 archivos JavaScript/JSX y sus 132 imports, sin imports sin uso.
 Se recorrió el compilado bajo el prefijo del repositorio y se comprobó la recuperación ante datos incompletos.
 En la revisión del compilado, la consola del navegador integrado no mostró errores ni avisos.
 Las combinaciones principales de texto comprobadas superaron 4.5:1; esto no es una certificación de accesibilidad.
@@ -191,13 +197,14 @@ ejecutar el workflow y comprobar el sitio publicado. No se instalaron otros nave
 
 ## Trabajo en equipo
 
-Primero integrar las etapas 1 a 4 completas del equipo. Cada paquete de etapa 5 contiene solo
-sus diferencias respecto del sitio completo de etapa 4. Cada integrante sube desde su cuenta y rama.
-Orden de merge: Emi, Clari y Octa. Los paquetes anteriores permanecen separados.
+Las etapas 1 a 5 quedaron integradas mediante los aportes de Emi, Clari y Octa.
+Los fixes posteriores de la revisión final se reúnen en un único paquete que sube Octavio
+por la rama albarracin, después de actualizarla desde main. El PR de etapa 5 ya está mergeado.
+Los paquetes anteriores permanecen separados y conservan sus versiones.
 
-El workflow de la raíz revisa PR y push a main. Su publicación se activa solo manualmente desde main.
-No subir node_modules, dist, archivos .env, ZIP ni respaldos. Sí subir los archivos fuente,
-las dos guías, los README y el workflow asignados en cada paquete.
+El workflow de la raíz revisa PR y push a main; la publicación se ejecuta solo manualmente desde main.
+No subir node_modules, dist, .env, ZIP, respaldos ni instructivos. Se suben los once archivos
+incluidos en el paquete de fixes, entre ellos los dos README y REVISION.md.
 
 ## Material
 

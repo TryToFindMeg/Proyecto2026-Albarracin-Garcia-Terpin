@@ -47,7 +47,7 @@ export const validarPrecios = (filtros) => {
         const valor = filtros[campo];
         if (
             valor !== "" &&
-            (!Number.isFinite(Number(valor)) || Number(valor) < 0 || Number(valor) > 100000)
+            (!/^\d+(\.\d+)?$/.test(valor) || !Number.isFinite(Number(valor)) || Number(valor) > 100000)
         ) {
             errores[campo] = "Ingresá un precio entre 0 y 100000 pesos.";
         }

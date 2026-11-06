@@ -24,7 +24,10 @@ const FichaProducto = ({ producto, regreso, alAgregar }) => {
         evento.preventDefault();
         setMensaje("");
         setErrorCompra("");
-        if (errorCantidad) return;
+        if (errorCantidad) {
+            document.getElementById("cantidad-producto").focus();
+            return;
+        }
         try {
             alAgregar(producto, talle, color, Number(cantidad));
             setMensaje(

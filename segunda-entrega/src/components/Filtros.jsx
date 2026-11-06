@@ -45,19 +45,21 @@ const Filtros = ({ filtros, errores, productos, deshabilitado, alCambiar, alLimp
                         value={filtros.artista}
                         onChange={cambiar}
                     />
+                    <p className="ayuda-campo" id="ayuda-precios">
+                        Sin separadores de miles. Para decimales, usá punto.
+                    </p>
                     <label htmlFor="minimo">Precio mínimo en pesos</label>
                     <input
                         id="minimo"
                         name="minimo"
-                        type="number"
-                        min="0"
-                        max="100000"
-                        step="100"
+                        type="text"
+                        inputMode="decimal"
+                        maxLength="12"
                         placeholder="20000"
                         value={filtros.minimo}
                         onChange={cambiar}
                         aria-invalid={!!errores.minimo}
-                        aria-describedby={errores.minimo ? "error-minimo" : undefined}
+                        aria-describedby={errores.minimo ? "ayuda-precios error-minimo" : "ayuda-precios"}
                     />
                     {errores.minimo && (
                         <p className="error-campo" id="error-minimo" role="alert">
@@ -68,15 +70,14 @@ const Filtros = ({ filtros, errores, productos, deshabilitado, alCambiar, alLimp
                     <input
                         id="maximo"
                         name="maximo"
-                        type="number"
-                        min="0"
-                        max="100000"
-                        step="100"
+                        type="text"
+                        inputMode="decimal"
+                        maxLength="12"
                         placeholder="70000"
                         value={filtros.maximo}
                         onChange={cambiar}
                         aria-invalid={!!errores.maximo}
-                        aria-describedby={errores.maximo ? "error-maximo" : undefined}
+                        aria-describedby={errores.maximo ? "ayuda-precios error-maximo" : "ayuda-precios"}
                     />
                     {errores.maximo && (
                         <p className="error-campo" id="error-maximo" role="alert">
