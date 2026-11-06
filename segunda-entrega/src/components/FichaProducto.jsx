@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Boton from "@/components/Boton.jsx";
-import { crearEnlaceHTML } from "@/utils/rutas.js";
+import { crearEnlaceImagen } from "@/utils/rutas.js";
 import { formatearPrecio } from "@/utils/precios.js";
 import { validarCantidad } from "@/utils/carrito.js";
 import { generos } from "@/data/catalogo.js";
@@ -51,7 +51,12 @@ const FichaProducto = ({ producto, regreso, alAgregar }) => {
             </header>
             <section className="detalle-producto">
                 <div className="imagen-detalle">
-                    <img src={crearEnlaceHTML(producto.imagen)} alt={producto.alt} width="620" height="620" />
+                    <img
+                        src={crearEnlaceImagen(producto.imagen)}
+                        alt={producto.alt}
+                        width="620"
+                        height="620"
+                    />
                 </div>
                 <div className="informacion-producto">
                     <h2>Detalles y opciones</h2>
