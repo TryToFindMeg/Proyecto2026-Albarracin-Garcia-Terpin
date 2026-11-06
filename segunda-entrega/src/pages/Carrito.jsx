@@ -5,6 +5,7 @@ import EstadoProductos from "@/components/EstadoProductos.jsx";
 import TablaCarrito from "@/components/TablaCarrito.jsx";
 import Dialogo from "@/components/Dialogo.jsx";
 import { formatearPrecio } from "@/utils/precios.js";
+import { enfocarTrasActualizar } from "@/utils/foco.js";
 
 /** Presenta el carrito compartido, conserva las compras y confirma su vaciado. */
 const Carrito = ({ productos, cargando, error, reintentar, seleccion, alGuardar }) => {
@@ -17,8 +18,10 @@ const Carrito = ({ productos, cargando, error, reintentar, seleccion, alGuardar 
         setFallo("");
         setAviso("");
         try {
+            const idControl = document.activeElement.id;
             alGuardar(carrito, codigo);
             setAviso(mensaje);
+            enfocarTrasActualizar(idControl);
             return true;
         } catch (problema) {
             setFallo(problema.message);
@@ -57,6 +60,7 @@ const Carrito = ({ productos, cargando, error, reintentar, seleccion, alGuardar 
                     )}
                     <div className="acciones-formulario acciones-carrito">
                         <button
+                            id="vaciar-carrito"
                             className="boton boton-secundario"
                             type="button"
                             onClick={() => {
@@ -83,6 +87,7 @@ const Carrito = ({ productos, cargando, error, reintentar, seleccion, alGuardar 
             {dialogo === "vaciar" && (
                 <Dialogo
                     titulo="¿Vaciar el carrito?"
+                    focoAlCerrar="vaciar-carrito"
                     alCerrar={() => setDialogo("")}
                     confirmar={confirmarVaciado}
                     textoConfirmar="Sí, vaciar carrito"
@@ -98,6 +103,7 @@ const Carrito = ({ productos, cargando, error, reintentar, seleccion, alGuardar 
             {dialogo === "resumen" && (
                 <Dialogo
                     titulo="Resumen de prueba"
+                    focoAlCerrar="ver-resumen"
                     alCerrar={() => setDialogo("")}
                     textoCerrar="Cerrar resumen"
                 >

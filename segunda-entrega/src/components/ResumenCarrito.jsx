@@ -11,7 +11,10 @@ const ResumenCarrito = ({ totales, codigoAplicado, valido, alAplicar, alResumen 
     const aplicar = (evento) => {
         evento.preventDefault();
         setEditado(true);
-        if (validarCodigo(codigo)) return;
+        if (validarCodigo(codigo)) {
+            document.getElementById("codigo-descuento").focus();
+            return;
+        }
         alAplicar(codigo.trim().toUpperCase());
     };
     return (
@@ -38,7 +41,7 @@ const ResumenCarrito = ({ totales, codigoAplicado, valido, alAplicar, alResumen 
                         {error}
                     </p>
                 )}
-                <button className="boton boton-secundario" type="submit">
+                <button id="aplicar-descuento" className="boton boton-secundario" type="submit">
                     Aplicar descuento
                 </button>
             </form>
@@ -65,7 +68,7 @@ const ResumenCarrito = ({ totales, codigoAplicado, valido, alAplicar, alResumen 
                 Envío no incluido. Los importes se calculan con las cantidades que estás viendo; Actualizar
                 carrito las guarda.
             </p>
-            <button className="boton" type="button" onClick={alResumen} disabled={!valido}>
+            <button id="ver-resumen" className="boton" type="button" onClick={alResumen} disabled={!valido}>
                 Ver resumen de prueba
             </button>
             <p className="aviso-demo">Demostración: no se generan pedidos ni pagos.</p>

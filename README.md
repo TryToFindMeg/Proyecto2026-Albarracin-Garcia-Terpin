@@ -26,7 +26,7 @@ Proyecto de una tienda de ropa y accesorios inspirados en la música para Taller
 | Ubicación | Estado |
 | --- | --- |
 | [primera-entrega](primera-entrega/index.html) | Versión anterior conservada. |
-| [segunda-entrega](segunda-entrega/README.md) | Etapas 1 a 5 preparadas: sitio React, API, carrito, formularios y publicación manual. |
+| [segunda-entrega](segunda-entrega/README.md) | Etapas 1 a 5 integradas; fixes de revisión final preparados. |
 
 La segunda entrega se desarrolla por etapas. Todas las páginas actuales funcionan en React:
 Inicio, Nosotros, catálogo, ficha de producto, carrito, Cuenta y Contacto, además de Novedades en el pie.
@@ -42,7 +42,7 @@ Los formularios validan mientras se escribe y muestran mensajes accesibles.
 | 2 | Inicio, Nosotros, estructura compartida, rutas y navegación con HTML. | Implementada. |
 | 3 | Catálogo y ficha de producto en React, conectados a la API con fetch y async/await. | Implementada. |
 | 4 | Carrito y formularios en React, persistencia y validación en tiempo real. | Implementada. |
-| 5 | Revisión final, validación de datos y preparación de la publicación. | Preparada localmente; publicación y otros navegadores pendientes. |
+| 5 | Revisión final, validación de datos y preparación de la publicación. | Integrada en main; publicación y otros navegadores pendientes. |
 
 ## Ejecución de la segunda entrega
 
@@ -137,11 +137,14 @@ Los [Sketch](primera-entrega/Sketch) y [Mockup](primera-entrega/Mockup) de la pr
 
 ## Pruebas
 
-La revisión local de etapa 5 pasó ESLint, Prettier, validación de datos y compilación.
-Se comprobaron 25 casos de lógica, almacenamiento, filtros, contrato HTTP y publicación,
-y se validó con Nu HTML Checker el HTML generado de las rutas principales y del error de API.
+La revisión final posterior a etapa 5 pasó ESLint, Prettier, validación de datos y compilación.
+Se comprobaron 27 casos de lógica, almacenamiento, filtros, contrato HTTP y publicación,
+y se validaron 41 vistas de HTML generado con Nu HTML Checker, incluidas las 26 fichas y los errores de formulario y API.
 En el navegador integrado se probaron filtros, stock, compra, cupón, recarga, vaciado,
 formularios, navegación por secciones, teclado y recuperación ante datos incorrectos.
+Se corrigió el foco al actualizar, eliminar, restablecer o vaciar el carrito y al cerrar sus diálogos.
+Cantidad y cupón inválidos enfocan su campo; los precios incompletos muestran un error accesible
+sin aplicar filtros incorrectos. Las 26 fotos de productos son distintas y los 132 imports revisados están usados.
 La compilación se recorrió bajo el prefijo real del repositorio, con consola sin errores.
 Las combinaciones principales de texto y el botón secundario con foco superaron 4.5:1 de contraste.
 `npm audit` informó 0 vulnerabilidades dentro de segunda-entrega el 5 de noviembre de 2026.
@@ -173,3 +176,12 @@ La primera entrega permanece separada. El HTML, CSS y JavaScript anteriores de l
 se retiraron de public después de migrar todas sus páginas a React. Sus fotos locales se conservan
 en public/sitio-html/imagenes. Los respaldos completos y los paquetes de cada etapa se guardan
 aparte en el escritorio de trabajo y no se suben como carpetas del sitio.
+
+
+## Fixes de la revisión final
+
+Estos cambios se prepararon después de la etapa 5, manteniendo sus paquetes anteriores separados.
+Las etapas 1 a 5 ya están integradas en main. Los fixes de esta revisión se reúnen en un único aporte
+de Octavio, desde la rama albarracin.
+Se mantiene el mismo nivel de React y JavaScript y no se agregan dependencias.
+El detalle de requisitos, resultados y tareas pendientes está en [REVISION.md](segunda-entrega/REVISION.md).

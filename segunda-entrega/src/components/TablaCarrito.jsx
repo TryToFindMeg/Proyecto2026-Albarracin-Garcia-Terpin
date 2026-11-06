@@ -139,6 +139,7 @@ const TablaCarrito = ({ carrito, productos, codigo, alGuardar, alResumen }) => {
                                             </td>
                                             <td>
                                                 <button
+                                                    id={`eliminar-carrito-${indice}`}
                                                     className="boton boton-secundario"
                                                     type="button"
                                                     onClick={() =>
@@ -162,10 +163,16 @@ const TablaCarrito = ({ carrito, productos, codigo, alGuardar, alResumen }) => {
                         </table>
                     </div>
                     <div className="acciones-formulario">
-                        <button className="boton" type="submit" disabled={!variantesValidas}>
+                        <button
+                            id="actualizar-carrito"
+                            className="boton"
+                            type="submit"
+                            disabled={!variantesValidas}
+                        >
                             Actualizar carrito
                         </button>
                         <button
+                            id="restablecer-cantidades"
                             className="boton boton-secundario"
                             type="button"
                             onClick={() =>
