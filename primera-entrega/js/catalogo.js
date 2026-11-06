@@ -1,5 +1,10 @@
 let filtrosActuales = {};
 let ordenActual = "featured";
+let productoActual = null;
+const nombresCategorias = {
+    all: "Todos los productos", remeras: "Remeras", buzos: "Buzos",
+    camperas: "Camperas", accesorios: "Accesorios"
+};
 const nombresGeneros = {
     rock: "Rock", pop: "Pop / rock", indie: "Indie", alternativo: "Rock alternativo",
     clasicos: "Rock clásico", metal: "Metal", punk: "Punk", grunge: "Grunge"
@@ -96,7 +101,43 @@ const compararProductos = (primero, segundo) => {
 };
 
 /**
- * Crea las tarjetas de los productos filtrados y actualiza el contador.
+ * Genera una tarjeta que se reutiliza en Inicio y en el catálogo.
+ * @method crearTarjetaProducto
+ * @param {object} producto - Datos de la prenda.
+ * @return {string} HTML de una tarjeta.
+ */
+const crearTarjetaProducto = (producto) => {
+    const estado = !producto.disponible ? '<p class="estado agotado">Agotado</p>'
+        : producto.nuevo ? '<p class="estado">Nuevo</p>' : "";
+    const claseFoto = producto.categoria === "accesorios" ? ' class="foto-tote"' : "";
+    return `<article class="producto" id="tarjeta-${producto.id}">
+        <h3>${producto.nombre}</h3>
+        <img${claseFoto} src="${producto.imagen}" alt="${producto.alt}" width="280">
+        ${estado}
+        <p><strong>${formatearPrecio(producto.precio)}</strong></p>
+        <p>Color: ${producto.colores.join(" y ")}.</p>
+        <p class="clasificacion-producto">${nombresGeneros[producto.genero]} · ${producto.artista}</p>
+        <p class="enlace-producto"><a class="boton boton-secundario" href="${enlaceFicha(producto.id)}">Ver ${producto.nombre}</a></p>
+    </article>`;
+};
+
+/**
+ * Completa Inicio usando la plantilla compartida de tarjetas.
+ * @method mostrarDestacados
+ * @return {void}
+ */
+const mostrarDestacados = () => {
+    const destacados = ["remera-highway-grooves", "remera-spin-forever", "buzo-music-heals",
+        "campera-soundtrack", "remera-stay-wild"];
+    let tarjetas = "";
+    for (const id of destacados) {
+        tarjetas += crearTarjetaProducto(buscarProducto(id));
+    }
+    document.getElementById("lista-destacados").innerHTML = tarjetas;
+};
+
+/**
+ * Crea las tarjetas filtradas con una única plantilla y actualiza el contador.
  * @method mostrarProductos
  * @param {Array} seleccion - Productos que se mostrarán.
  * @return {void}
@@ -104,18 +145,7 @@ const compararProductos = (primero, segundo) => {
 const mostrarProductos = (seleccion) => {
     let tarjetas = "";
     for (const producto of seleccion) {
-        const estado = !producto.disponible ? '<p class="estado agotado">Agotado</p>'
-            : producto.nuevo ? '<p class="estado">Nuevo</p>' : "";
-        const claseFoto = producto.categoria === "accesorios" ? ' class="foto-tote"' : "";
-        tarjetas += `<article class="producto" id="tarjeta-${producto.id}">
-            <h3>${producto.nombre}</h3>
-            <img${claseFoto} src="${producto.imagen}" alt="${producto.alt}" width="280">
-            ${estado}
-            <p><strong>${formatearPrecio(producto.precio)}</strong></p>
-            <p>Color: ${producto.colores.join(" y ")}.</p>
-            <p class="clasificacion-producto">${nombresGeneros[producto.genero]} · ${producto.artista}</p>
-            <p class="enlace-producto"><a class="boton boton-secundario" href="productos/${producto.id}.html">Ver ${producto.nombre}</a></p>
-        </article>`;
+        tarjetas += crearTarjetaProducto(producto);
     }
     const lista = document.getElementById("lista-catalogo");
     lista.innerHTML = tarjetas;
@@ -179,11 +209,84 @@ const limpiarFiltros = () => {
 };
 
 /**
- * Aplica el género del enlace del inicio al cargar el catálogo.
+ * Señala la categoría actual en la navegación compartida.
+ * @method marcarCategoriaActual
+ * @param {string} categoria - Categoría de la vista.
+ * @return {void}
+ */
+const marcarCategoriaActual = (categoria) => {
+    const destino = categoria === "all" ? "productos.html" : "productos.html?categoria=" + categoria;
+    for (const enlace of document.querySelectorAll(".categorias a")) {
+        const activo = enlace.getAttribute("href") === destino;
+        enlace.classList.toggle("activo", activo);
+        enlace.removeAttribute("aria-current");
+        if (activo) {
+            enlace.setAttribute("aria-current", "page");
+        }
+    }
+};
+
+/**
+ * Completa los filtros de color y talle con las opciones de la categoría.
+ * @method prepararOpcionesFiltros
+ * @param {string} categoria - Categoría actual o all.
+ * @return {void}
+ */
+const prepararOpcionesFiltros = (categoria) => {
+    const colores = [];
+    const talles = [];
+    for (const producto of productos) {
+        if (categoria === "all" || producto.categoria === categoria) {
+            for (const color of producto.colores) {
+                if (!colores.includes(color)) {
+                    colores.push(color);
+                }
+            }
+            for (const talle of producto.talles) {
+                if (!talles.includes(talle)) {
+                    talles.push(talle);
+                }
+            }
+        }
+    }
+    let opcionesColor = '<option value="all">Todos</option>';
+    for (const clave in coloresFiltro) {
+        for (const color of colores) {
+            if (color.toLowerCase() === coloresFiltro[clave]) {
+                opcionesColor += `<option value="${clave}">${color}</option>`;
+            }
+        }
+    }
+    let opcionesTalle = '<option value="all">Todos</option>';
+    for (const talle of talles) {
+        const valor = talle === "Único" ? "unico" : talle;
+        opcionesTalle += `<option value="${valor}">${talle}</option>`;
+    }
+    document.getElementById("color").innerHTML = opcionesColor;
+    document.getElementById("talle").innerHTML = opcionesTalle;
+};
+
+/**
+ * Configura el único catálogo según la categoría de la URL y el género del enlace.
  * @method iniciarCatalogo
  * @return {void}
  */
 const iniciarCatalogo = () => {
+    const parametros = new URLSearchParams(window.location.search);
+    let categoria = parametros.get("categoria");
+    if (!["all", "remeras", "buzos", "camperas", "accesorios"].includes(categoria)) {
+        categoria = "all";
+    }
+    document.body.setAttribute("data-categoria", categoria);
+    document.body.classList.toggle("pagina-accesorios", categoria === "accesorios");
+    document.querySelector("h1").innerText = nombresCategorias[categoria];
+    document.getElementById("titulo-catalogo").innerText = categoria === "all"
+        ? "Catálogo de productos" : "Catálogo de " + nombresCategorias[categoria].toLowerCase();
+    document.title = nombresCategorias[categoria] + " | RetroWave";
+    document.getElementById("filtro-categoria").hidden = categoria !== "all";
+    document.getElementById("categoria").value = categoria;
+    marcarCategoriaActual(categoria);
+    prepararOpcionesFiltros(categoria);
     const genero = window.location.hash.slice(1);
     if (nombresGeneros[genero] !== undefined) {
         document.getElementById("genero").value = genero;
@@ -192,22 +295,60 @@ const iniciarCatalogo = () => {
 };
 
 /**
- * Presenta precio, clasificación y disponibilidad en una ficha individual.
+ * Completa la única ficha con el producto solicitado y prepara sus controles.
  * @method iniciarFicha
- * @param {string} id - Identificador del producto.
  * @return {void}
  */
-const iniciarFicha = (id) => {
-    const producto = buscarProducto(id);
-    document.querySelector(".informacion-producto strong").innerText = formatearPrecio(producto.precio);
+const iniciarFicha = () => {
+    const parametros = new URLSearchParams(window.location.search);
+    productoActual = buscarProducto(parametros.get("id"));
+    if (productoActual === null) {
+        document.getElementById("titulo-producto").innerText = "Producto no encontrado";
+        document.title = "Producto no encontrado | RetroWave";
+        document.getElementById("producto-no-encontrado").hidden = false;
+        return;
+    }
+    const producto = productoActual;
+    const ficha = document.querySelector(".detalle-producto");
+    ficha.id = producto.id;
+    document.getElementById("titulo-producto").innerText = producto.nombre;
+    document.title = producto.nombre + " | RetroWave";
+    document.querySelector('meta[name="description"]').setAttribute("content", producto.descripcion);
+    const imagen = ficha.querySelector("img");
+    imagen.src = producto.imagen;
+    imagen.alt = producto.alt;
+    imagen.classList.toggle("foto-tote", producto.categoria === "accesorios");
+    ficha.querySelector(".informacion-producto strong").innerText = formatearPrecio(producto.precio);
     document.getElementById("descripcion-producto").innerText = producto.descripcion;
     document.getElementById("clasificacion-producto").innerText = nombresGeneros[producto.genero] + " · " + producto.artista;
+    const estado = document.getElementById("estado-producto");
+    estado.innerText = !producto.disponible ? "Agotado" : producto.nuevo ? "Nuevo" : "";
+    estado.hidden = estado.innerText === "";
+    estado.classList.toggle("agotado", !producto.disponible);
+    const formulario = ficha.querySelector("form");
+    formulario.id = "formulario-" + producto.id;
+    formulario.querySelector("legend").innerText = "Elegí las opciones de " + producto.nombre;
+    for (const nombre of ["talle", "color", "cantidad"]) {
+        const campo = document.getElementById(nombre + "-producto");
+        const etiqueta = formulario.querySelector('label[for="' + campo.id + '"]');
+        campo.id = nombre + "-" + producto.id;
+        etiqueta.setAttribute("for", campo.id);
+        if (nombre !== "cantidad") {
+            const opciones = nombre === "talle" ? producto.talles : producto.colores;
+            let contenido = "";
+            for (const opcion of opciones) {
+                contenido += `<option value="${opcion}">${opcion}</option>`;
+            }
+            campo.innerHTML = contenido;
+        }
+    }
     const agregar = document.getElementById("agregar-producto");
     agregar.disabled = !producto.disponible;
-    if (!producto.disponible) {
-        agregar.innerText = "Producto agotado";
-    }
-    actualizarImporteFicha(id);
+    agregar.innerText = producto.disponible ? "Agregar al carrito" : "Producto agotado";
+    document.getElementById("volver-catalogo").href = "productos.html?categoria=" + producto.categoria;
+    marcarCategoriaActual(producto.categoria);
+    actualizarImporteFicha(producto.id);
+    document.getElementById("contenido-producto").hidden = false;
 };
 
 /**
@@ -233,7 +374,9 @@ const actualizarImporteFicha = (id) => {
  * @return {void}
  */
 const restablecerFicha = (id) => {
-    document.getElementById("formulario-" + id).reset();
+    const formulario = document.getElementById("formulario-" + id);
+    formulario.reset();
+    limpiarMensajeFormulario(formulario);
     document.getElementById("mensaje-producto").innerText = "";
     actualizarImporteFicha(id);
 };
