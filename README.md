@@ -206,32 +206,12 @@ se retiraron de public después de migrar todas sus páginas a React. Sus fotos 
 en public/sitio-html/imagenes. Los respaldos completos y los paquetes de cada etapa se guardan
 aparte en el escritorio de trabajo y no se suben como carpetas del sitio.
 
-## Fixes de la revisión final
-
-En primera-entrega se corrigieron la duplicación de catálogos y fichas, el contraste
-de los botones y la ubicación de los bocetos. La versión sigue usando HTML, CSS y
-JavaScript sin React.
-
-En segunda-entrega se corrigieron validación de precios y foco del teclado y se
-conectó el carrito a json-server local. Las filas se consultan y guardan en db.json
-mediante GET, POST, PATCH y DELETE. El navegador conserva solamente la sesión y el cupón,
-además del email que se pidió recordar.
-
-Estos fixes mantienen el nivel de código trabajado en clase y no agregan dependencias.
-La API se ejecuta localmente, como confirmó la profesora para esta entrega.
-
 ## Sitio publicado
 
 El proyecto ofrece ambas entregas con enlaces separados dentro de la misma publicación:
 
 - **Primera entrega:** [HTML, CSS y JavaScript](https://trytofindmeg.github.io/Proyecto2026-Albarracin-Garcia-Terpin/primera-entrega/).
 - **Segunda entrega:** [React](https://trytofindmeg.github.io/Proyecto2026-Albarracin-Garcia-Terpin/segunda-entrega/#/).
-
-Después de integrar cambios en `main`, actualizar la publicación desde GitHub:
-
-1. Abrir **Actions → Revisar y publicar RetroWave**.
-2. Presionar **Run workflow** y seleccionar **main**.
-3. Confirmar la ejecución y esperar que finalicen **revisar** y **publicar**.
 
 Los PR y los push ejecutan las comprobaciones; la publicación requiere esa ejecución manual.
 El proceso incluye las dos carpetas y conserva sus direcciones.
