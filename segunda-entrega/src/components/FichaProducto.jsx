@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Boton from "@/components/Boton.jsx";
+import EstadoCarrito from "@/components/EstadoCarrito.jsx";
 import { crearEnlaceImagen } from "@/utils/rutas.js";
 import { formatearPrecio } from "@/utils/precios.js";
 import { validarCantidad } from "@/utils/carrito.js";
@@ -10,17 +11,18 @@ import { generos } from "@/data/catalogo.js";
  * @param {object} props - Producto, regreso al catálogo y actualización del contador.
  * @returns {import("react").ReactElement} Ficha reutilizable con formulario controlado.
  */
-const FichaProducto = ({ producto, regreso, alAgregar }) => {
+const FichaProducto = ({ producto, regreso, alAgregar, estadoCarrito }) => {
     const [talle, setTalle] = useState(producto.talles[0]);
     const [color, setColor] = useState(producto.colores[0]);
     const [cantidad, setCantidad] = useState("1");
     const [mensaje, setMensaje] = useState("");
     const [errorCompra, setErrorCompra] = useState("");
     const errorCantidad = validarCantidad(cantidad);
+    const bloqueado = estadoCarrito.cargando || estadoCarrito.guardando || !!estadoCarrito.error;
     const genero = generos.find((item) => item.id === producto.genero)?.nombre || producto.genero;
 
     /** Comunica la compra al estado compartido de la aplicación. */
-    const comprar = (evento) => {
+    const comprar = async (evento) => {
         evento.preventDefault();
         setMensaje("");
         setErrorCompra("");
@@ -29,7 +31,7 @@ const FichaProducto = ({ producto, regreso, alAgregar }) => {
             return;
         }
         try {
-            alAgregar(producto, talle, color, Number(cantidad));
+            await alAgregar(producto, talle, color, Number(cantidad));
             setMensaje(
                 `Agregaste ${cantidad} ${Number(cantidad) === 1 ? "unidad" : "unidades"} de ${producto.nombre} al carrito.`,
             );
@@ -44,6 +46,12 @@ const FichaProducto = ({ producto, regreso, alAgregar }) => {
         setCantidad("1");
         setMensaje("");
         setErrorCompra("");
+    };
+    /** Limpia el aviso de compra antes de volver a consultar la API. */
+    const consultar = () => {
+        setMensaje("");
+        setErrorCompra("");
+        estadoCarrito.reintentar();
     };
 
     return (
@@ -75,8 +83,12 @@ const FichaProducto = ({ producto, regreso, alAgregar }) => {
                     ) : (
                         producto.nuevo && <p className="estado">Nuevo</p>
                     )}
+                    <EstadoCarrito
+                        {...estadoCarrito}
+                        reintentar={estadoCarrito.reintentar ? consultar : null}
+                    />
                     <form className="formulario-producto" onSubmit={comprar} noValidate>
-                        <fieldset disabled={!producto.disponible}>
+                        <fieldset disabled={!producto.disponible || bloqueado}>
                             <legend>Elegí las opciones de {producto.nombre}</legend>
                             <label htmlFor="talle-producto">Talle</label>
                             <select
@@ -131,10 +143,19 @@ const FichaProducto = ({ producto, regreso, alAgregar }) => {
                             </strong>
                         </p>
                         <div className="acciones-producto">
-                            <button className="boton" type="submit" disabled={!producto.disponible}>
+                            <button
+                                className="boton"
+                                type="submit"
+                                disabled={!producto.disponible || bloqueado}
+                            >
                                 Agregar al carrito
                             </button>
-                            <button className="boton boton-secundario" type="button" onClick={restablecer}>
+                            <button
+                                className="boton boton-secundario"
+                                type="button"
+                                onClick={restablecer}
+                                disabled={estadoCarrito.guardando}
+                            >
                                 Restablecer opciones
                             </button>
                         </div>

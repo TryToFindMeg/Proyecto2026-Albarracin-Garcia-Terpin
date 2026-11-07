@@ -53,7 +53,10 @@ Después de que el workflow termine, verificar en el navegador:
 | [Primera entrega](https://trytofindmeg.github.io/Proyecto2026-Albarracin-Garcia-Terpin/primera-entrega/)                     | Conserva la versión HTML.          |
 
 Estas son las direcciones esperadas; hay que comprobarlas al publicar.
-Probar recarga del catálogo y de una ficha, filtros, fotos, compra, cupón y formularios de demostración.
+Probar recarga del catálogo y de una ficha, filtros, fotos y formularios de demostración.
+Con VITE_API_URL vacío, comprobar que el carrito explique que se prueba en la versión local
+y que no permita agregar compras. Las operaciones de compra, cupón y vaciado se prueban
+localmente con json-server y Vite siguiendo el README.
 Hacer la revisión en Chrome, Firefox y Edge y registrar versión, fecha y resultado en REVISION.md.
 Una prueba local no reemplaza esta comprobación pública.
 
@@ -62,10 +65,13 @@ Una prueba local no reemplaza esta comprobación pública.
 GitHub Pages sirve archivos y no ejecuta json-server. Por eso el build genera un mock de lectura
 en segunda-entrega/api/productos.json desde src/data/db.json, consultado con fetch y async/await.
 El visitante no depende de la PC del equipo ni del puerto 4000. Cambiar db.json requiere otro build y despliegue.
+El carrito se conecta a json-server en la ejecución local. La publicación estática no ofrece
+ese servicio de escritura: muestra un aviso y no utiliza localStorage como sustituto del carrito API.
 No se ofrecen escrituras de catálogo, autenticación, correos ni pagos.
 
 El workflow deja VITE_API_URL vacío para usar este mock publicado. Para una API externa, modificar
-esa configuración deliberadamente con una dirección pública HTTPS que responda a GET /productos.
+esa configuración deliberadamente con una dirección pública HTTPS que responda a GET /productos
+y GET, POST, PATCH y DELETE del recurso /carrito. Ese alojamiento no forma parte del fix local.
 Las [variables VITE_ son públicas](https://vite.dev/guide/env-and-mode.html); no deben contener secretos.
 
 ## Si falla

@@ -6,7 +6,7 @@ import { formatearPrecio } from "@/utils/precios.js";
 import { crearEnlaceImagen } from "@/utils/rutas.js";
 
 /** Edita cantidades con estado local, errores en tiempo real y guardado explícito. */
-const TablaCarrito = ({ carrito, productos, codigo, alGuardar, alResumen }) => {
+const TablaCarrito = ({ carrito, productos, codigo, alGuardar, alResumen, ocupado }) => {
     const [cantidades, setCantidades] = useState(() => carrito.map((item) => String(item.cantidad)));
     const errores = cantidades.map(validarCantidad);
     const variantesValidas = carrito.every((item) => varianteDisponible(item, productos));
@@ -16,7 +16,7 @@ const TablaCarrito = ({ carrito, productos, codigo, alGuardar, alResumen }) => {
         ? calcularTotales(nuevos, productos, codigo)
         : { subtotal: 0, descuento: 0, total: 0 };
     /** Guarda todas las cantidades válidas, manteniendo el cupón elegido. */
-    const guardar = (nuevoCodigo = codigo) => {
+    const guardar = async (nuevoCodigo = codigo) => {
         const indiceError = errores.findIndex(Boolean);
         if (indiceError >= 0) {
             document.getElementById(`cantidad-carrito-${indiceError}`).focus();
@@ -26,16 +26,16 @@ const TablaCarrito = ({ carrito, productos, codigo, alGuardar, alResumen }) => {
         return alGuardar(nuevos, nuevoCodigo, "Carrito actualizado.");
     };
     /** Evita el envío del formulario y guarda la selección. */
-    const actualizar = (evento) => {
+    const actualizar = async (evento) => {
         evento.preventDefault();
-        guardar();
+        await guardar();
     };
     /** Guarda antes de abrir un resumen que no genera pedidos ni pagos. */
-    const resumir = () => {
-        if (guardar()) alResumen(totales);
+    const resumir = async () => {
+        if (await guardar()) alResumen(totales);
     };
     return (
-        <div className="carrito-contenido">
+        <div className="carrito-contenido" aria-busy={ocupado}>
             <section className="productos-carrito" aria-labelledby="titulo-productos-carrito">
                 <h2 id="titulo-productos-carrito">Productos elegidos</h2>
                 <p>Modificá las cantidades y presioná Actualizar carrito para guardarlas.</p>
@@ -104,6 +104,7 @@ const TablaCarrito = ({ carrito, productos, codigo, alGuardar, alResumen }) => {
                                                     max="10"
                                                     step="1"
                                                     value={cantidades[indice]}
+                                                    disabled={ocupado}
                                                     onChange={(evento) =>
                                                         setCantidades(
                                                             cantidades.map((valor, posicion) =>
@@ -140,6 +141,7 @@ const TablaCarrito = ({ carrito, productos, codigo, alGuardar, alResumen }) => {
                                             <td>
                                                 <button
                                                     id={`eliminar-carrito-${indice}`}
+                                                    disabled={ocupado}
                                                     className="boton boton-secundario"
                                                     type="button"
                                                     onClick={() =>
@@ -167,12 +169,13 @@ const TablaCarrito = ({ carrito, productos, codigo, alGuardar, alResumen }) => {
                             id="actualizar-carrito"
                             className="boton"
                             type="submit"
-                            disabled={!variantesValidas}
+                            disabled={!variantesValidas || ocupado}
                         >
                             Actualizar carrito
                         </button>
                         <button
                             id="restablecer-cantidades"
+                            disabled={ocupado}
                             className="boton boton-secundario"
                             type="button"
                             onClick={() =>
@@ -194,6 +197,7 @@ const TablaCarrito = ({ carrito, productos, codigo, alGuardar, alResumen }) => {
                 valido={valido}
                 alAplicar={guardar}
                 alResumen={resumir}
+                ocupado={ocupado}
             />
         </div>
     );

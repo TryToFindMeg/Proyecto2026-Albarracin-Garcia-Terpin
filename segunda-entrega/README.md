@@ -4,7 +4,7 @@
 
 Integrantes: Octavio Albarracin, Emi Garcia y Clari Terpin.
 
-## Estado: etapa 5 integrada y fixes finales preparados
+## Estado: etapas integradas y carrito conectado a la API local
 
 Todo el sitio actual funciona en React: Inicio, Nosotros, catálogo, detalle, carrito,
 Cuenta, Contacto y Novedades. Conserva el diseño de escritorio, la navbar fija, las fuentes
@@ -15,6 +15,7 @@ manualmente después de integrar los aportes del equipo. No se publicó desde es
 - [Comandos](#comandos)
 - [Organización](#organización)
 - [Catálogo y API](#catálogo-y-api)
+- [Carrito conectado a la API local](#carrito-conectado-a-la-api-local)
 - [Carrito y formularios](#carrito-y-formularios)
 - [Revisión](#revisión)
 - [Trabajo en equipo](#trabajo-en-equipo)
@@ -46,7 +47,8 @@ Terminal 1:
 npm run services
 ```
 
-json-server lee src/data/db.json y responde en http://127.0.0.1:4000/productos.
+json-server lee src/data/db.json y responde en http://127.0.0.1:4000/productos y /carrito.
+El recurso carrito permite GET, POST, PATCH y DELETE y guarda sus cambios en ese archivo.
 
 Terminal 2:
 
@@ -70,7 +72,9 @@ npm run preview
 
 Abrir la dirección que indique preview, normalmente http://127.0.0.1:4173/.
 La raíz redirige a http://127.0.0.1:4173/segunda-entrega/.
-La compilación incluye un mock GET de productos: no necesita json-server encendido.
+La compilación incluye un mock GET de productos: el catálogo no necesita json-server encendido.
+El carrito con API se prueba con npm run dev y npm run services; en la publicación estática
+queda informado como disponible en la versión local, sin simular escrituras en el navegador.
 La versión anterior se puede consultar en /primera-entrega/.
 
 El build prepara dist/segunda-entrega, dist/primera-entrega, un index de redirección y .nojekyll.
@@ -149,9 +153,82 @@ no es un backend con usuarios, pedidos ni escritura remota. Cambiar db.json y vo
 
 Para usar otra API, copiar .env.example a .env y definir VITE_API_URL con su dirección base,
 sin /productos al final. Esa API debe responder a GET /productos con un array de productos
-y permitir las consultas del navegador. Reiniciar Vite y volver a compilar para aplicar la configuración.
+y soportar también el recurso carrito con GET, POST, PATCH y DELETE, permitiendo las consultas del navegador. Reiniciar Vite y volver a compilar para aplicar la configuración.
 Una API configurada que falla muestra el error: no se sustituye silenciosamente por el catálogo local.
 No subir .env. Las variables VITE_ son públicas; nunca colocar claves o contraseñas.
+
+## Carrito conectado a la API local
+
+Corrección del 7 de noviembre de 2026: las compras de la segunda entrega se guardan
+en `segunda-entrega/src/data/db.json`, recurso `carrito`, mediante json-server.
+
+| Operación | Petición                          | Comportamiento                                        |
+| --------- | --------------------------------- | ----------------------------------------------------- |
+| Consultar | GET /carrito?sesion=...           | Recuperar el carrito de este navegador.               |
+| Agregar   | POST /carrito                     | Crear una fila con producto, talle, color y cantidad. |
+| Modificar | PATCH /carrito/:id                | Actualizar la cantidad de una fila.                   |
+| Eliminar  | DELETE /carrito/:id               | Quitar una variante.                                  |
+| Vaciar    | DELETE /carrito/:id por cada fila | Quitar las filas de esa sesión después de confirmar.  |
+
+Cada fila tiene un `id` asignado por la API y un `productoId` que identifica la prenda.
+En React se usan `registroId` e `id`, respectivamente. El navegador conserva solo
+`retrowave-api-sesion` y la preferencia `retrowave-api-descuento`; las compras no se
+guardan en localStorage. El identificador separa navegadores de esta demostración:
+no es un sistema de autenticación ni de cuentas.
+
+La base entregada tiene `carrito: []`. Las compras que se hagan localmente se conservan
+en ese archivo al cerrar y reiniciar json-server. El carrito anterior de primera entrega
+no se borra ni se importa automáticamente; sus claves de almacenamiento se conservan.
+No subir carritos de prueba al repositorio: entregar el recurso vacío.
+
+Antes de confirmar una compra, React espera la escritura y vuelve a consultar el servicio.
+Si falla, informa el error y recupera lo que realmente quedó guardado cuando la API responde.
+json-server no ofrece transacciones: si una actualización de varias filas falla a mitad de camino,
+puede haber cambios parciales. No se anuncia éxito y se vuelve a leer la selección real.
+Se bloquean acciones repetidas mientras se guarda. Consultar carrito guardado permite
+recuperar cambios realizados desde otra pestaña; recargar también consulta la API.
+
+### Cómo probar la corrección
+
+Desde la raíz del repositorio, instalar si hace falta:
+
+```powershell
+cd segunda-entrega
+npm ci
+```
+
+Dejar una terminal en esa carpeta ejecutando `npm run services` y otra con `npm run dev`.
+Abrir la dirección de Vite, agregar una prenda, cambiar cantidad, aplicar RETRO10,
+eliminar y confirmar el vaciado. Verificar las filas en `src/data/db.json` o con
+GET http://127.0.0.1:4000/carrito. Mantener siempre el mismo origen, por ejemplo
+http://127.0.0.1:5173/, para recuperar la misma sesión de navegador.
+
+Apagar la API debe producir un aviso, sin confirmar escrituras ni presentar un carrito
+vacío como resultado de una consulta fallida. Reiniciar la API y usar Volver a consultar
+el carrito recupera los datos. No hace falta instalar React, Sass ni json-server globalmente.
+
+### GitHub Pages
+
+El sitio publicado conserva el catálogo y la navegación mediante el mock GET estático.
+El carrito con escritura se evalúa localmente: con `VITE_API_URL` vacío en una compilación,
+se muestra ese aviso y se deshabilita Agregar al carrito. No se cambia a localStorage como
+alternativa silenciosa ni se intenta escribir en `api/productos.json`.
+
+Para usar una API externa en el futuro, `VITE_API_URL` debe apuntar a un servicio que soporte
+productos y carrito con estos métodos. Eso requiere configurar y alojar ese servicio;
+no se incluyó ningún alojamiento, cuenta o despliegue en este fix.
+
+### Validación de esta corrección
+
+El 7/11/2026 pasaron 26 comprobaciones de API con peticiones HTTP reales y 18
+observaciones de navegador: variantes, cantidades, descuento, recarga, reinicio de
+json-server, error de escritura, recuperación, eliminación, vaciado y alcance del build.
+La base de prueba quedó separada del proyecto; el recurso carrito entregado está vacío.
+Pasaron `npm run check` y `npm audit --audit-level=low`, con cero vulnerabilidades.
+Cinco vistas renderizadas no tienen errores de Nu HTML Checker. Las tres vistas de
+desarrollo tienen un aviso por `type="text/css"` que añade Vite a su etiqueta style;
+las dos vistas compiladas no presentan ese aviso. No se modificó Sass ni la primera entrega.
+Estas pruebas se realizaron en el navegador integrado; no acreditan pruebas en otros motores.
 
 ## Carrito y formularios
 
@@ -165,8 +242,8 @@ Los precios y la disponibilidad se toman de los productos recibidos por HTTP.
 - RETRO10 aplica 10 %. Aplicar un código vacío quita el descuento.
 - Vaciar pide confirmación; Cancelar o Escape conserva las compras y devuelve el foco al botón.
 - Eliminar la última fila o confirmar el vaciado enfoca el contenido; cerrar el resumen devuelve el foco a su botón.
-- localStorage conserva carrito, cupón y el email que se pidió recordar. Nunca contraseñas.
-- Las pestañas se sincronizan y los errores de guardado se informan sin anunciar un éxito falso.
+- La API conserva las filas del carrito; localStorage solo guarda sesión del carrito, cupón y email recordado.
+- Consultar carrito guardado o recargar recupera cambios de otras pestañas. Los errores no anuncian compras exitosas.
 
 Campo reutiliza etiquetas, ayudas y errores en formularios controlados con onChange.
 Los errores se asocian con aria-invalid, aria-describedby y role=alert; enviar vacío enfoca el primer campo incorrecto.

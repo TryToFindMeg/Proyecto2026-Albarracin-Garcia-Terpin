@@ -10,33 +10,35 @@ import Cuenta from "@/pages/Cuenta.jsx";
 import Contacto from "@/pages/Contacto.jsx";
 import NoEncontrada from "@/pages/NoEncontrada.jsx";
 import { obtenerProductos } from "@/api/productos.js";
-import { leerSeleccion, guardarSeleccion, sumarProducto } from "@/utils/carrito.js";
+import { obtenerCarrito, guardarCarrito, carritoDisponible } from "@/api/carrito.js";
+import { leerCodigo, guardarCodigo, sumarProducto } from "@/utils/carrito.js";
 
-/** Mantiene los productos y la selección de compra compartidos por las páginas de React. */
+/** Comparte el catálogo y el carrito que se consulta y modifica a través de la API. */
 const App = () => {
     const [productos, setProductos] = useState([]);
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState("");
     const [intento, setIntento] = useState(0);
-    const [seleccion, setSeleccion] = useState(leerSeleccion);
+    const [seleccion, setSeleccion] = useState({ carrito: [], codigo: "" });
+    const [cargandoCarrito, setCargandoCarrito] = useState(true);
+    const [errorCarrito, setErrorCarrito] = useState("");
+    const [intentoCarrito, setIntentoCarrito] = useState(0);
+    const [guardando, setGuardando] = useState(false);
     const unidades = seleccion.carrito.reduce((total, item) => total + item.cantidad, 0);
     useEffect(() => {
         let activo = true;
-        /** Consulta los productos y evita actualizar un componente desmontado. */
+        /** Consulta el catálogo y evita actualizar una vista desmontada. */
         const cargar = async () => {
             try {
                 const lista = await obtenerProductos();
-                if (activo) {
-                    setProductos(lista);
-                    setCargando(false);
-                }
+                if (activo) setProductos(lista);
             } catch {
-                if (activo) {
+                if (activo)
                     setError(
                         "En este momento no pudimos cargar los productos. Intentá de nuevo en unos momentos.",
                     );
-                    setCargando(false);
-                }
+            } finally {
+                if (activo) setCargando(false);
             }
         };
         cargar();
@@ -45,35 +47,75 @@ const App = () => {
         };
     }, [intento]);
     useEffect(() => {
-        /** Sincroniza las compras al volver a la ventana o desde otra pestaña. */
-        const sincronizar = () => setSeleccion(leerSeleccion());
-        window.addEventListener("storage", sincronizar);
-        window.addEventListener("focus", sincronizar);
-        window.addEventListener("pageshow", sincronizar);
-        return () => {
-            window.removeEventListener("storage", sincronizar);
-            window.removeEventListener("focus", sincronizar);
-            window.removeEventListener("pageshow", sincronizar);
+        let activo = true;
+        /** Recupera las compras del servicio; un fallo no se presenta como carrito vacío. */
+        const cargar = async () => {
+            try {
+                const carrito = await obtenerCarrito();
+                if (activo) setSeleccion({ carrito, codigo: carrito.length ? leerCodigo() : "" });
+            } catch (problema) {
+                if (activo) setErrorCarrito(problema.message);
+            } finally {
+                if (activo) setCargandoCarrito(false);
+            }
         };
-    }, []);
-    /** Repite una consulta fallida de la API. */
+        cargar();
+        return () => {
+            activo = false;
+        };
+    }, [intentoCarrito]);
+    /** Repite una consulta fallida del catálogo. */
     const reintentar = () => {
         setError("");
         setCargando(true);
         setIntento((valor) => valor + 1);
     };
-    /** Actualiza React solo después de guardar la compra correctamente. */
-    const cambiarSeleccion = (carrito, codigo) => {
-        const nueva = { carrito, codigo: carrito.length > 0 ? codigo : "" };
-        guardarSeleccion(nueva);
-        setSeleccion(nueva);
+    /** Recarga el carrito guardado, por ejemplo después de volver a iniciar json-server. */
+    const reintentarCarrito = () => {
+        if (guardando) return;
+        setErrorCarrito("");
+        setCargandoCarrito(true);
+        setIntentoCarrito((valor) => valor + 1);
     };
-    /** Agrega la variante desde la ficha y conserva el código aplicado. */
-    const agregar = (producto, talle, color, cantidad) => {
-        cambiarSeleccion(
+    /** Espera las escrituras y vuelve a leer la API antes de anunciar que se guardaron. */
+    const cambiarSeleccion = async (carrito, codigo) => {
+        if (guardando || cargandoCarrito || errorCarrito)
+            throw new Error("Esperá a que el carrito termine de cargarse o volvé a consultarlo.");
+        setGuardando(true);
+        try {
+            await guardarCarrito(seleccion.carrito, carrito);
+            const guardado = await obtenerCarrito();
+            const codigoGuardado = guardado.length ? codigo : "";
+            guardarCodigo(codigoGuardado);
+            setSeleccion({ carrito: guardado, codigo: codigoGuardado });
+        } catch (problema) {
+            // json-server no tiene transacciones: una operación múltiple puede quedar parcial.
+            // Se recupera el estado real y nunca se anuncia éxito si una petición falla.
+            try {
+                const actual = await obtenerCarrito();
+                setSeleccion({ carrito: actual, codigo: actual.length ? leerCodigo() : "" });
+            } catch {
+                setErrorCarrito(
+                    "No pudimos confirmar el estado del carrito. Volvé a consultarlo cuando el servicio esté disponible.",
+                );
+            }
+            throw new Error(`No se pudo completar el cambio. ${problema.message}`, { cause: problema });
+        } finally {
+            setGuardando(false);
+        }
+    };
+    /** Acumula una variante válida y comunica su guardado por POST o PATCH. */
+    const agregar = async (producto, talle, color, cantidad) => {
+        await cambiarSeleccion(
             sumarProducto(seleccion.carrito, producto, talle, color, cantidad),
             seleccion.codigo,
         );
+    };
+    const estadoCarrito = {
+        cargando: cargandoCarrito,
+        guardando,
+        error: errorCarrito,
+        reintentar: carritoDisponible ? reintentarCarrito : null,
     };
     return (
         <HashRouter>
@@ -111,6 +153,7 @@ const App = () => {
                                 error={error}
                                 reintentar={reintentar}
                                 alAgregar={agregar}
+                                estadoCarrito={estadoCarrito}
                             />
                         }
                     />
@@ -124,6 +167,7 @@ const App = () => {
                                 reintentar={reintentar}
                                 seleccion={seleccion}
                                 alGuardar={cambiarSeleccion}
+                                estadoCarrito={estadoCarrito}
                             />
                         }
                     />
