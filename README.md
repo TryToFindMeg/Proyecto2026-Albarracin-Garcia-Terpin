@@ -16,6 +16,9 @@ Proyecto de una tienda de ropa y accesorios inspirados en la música para Taller
 - [Diseño](#diseño)
 - [Pruebas](#pruebas)
 - [Trabajo en equipo](#trabajo-en-equipo)
+- [Conservación de versiones](#conservación-de-versiones)
+- [Fixes de la revisión final](#fixes-de-la-revisión-final)
+- [Sitio publicado](#sitio-publicado)
 
 ## Integrantes
 
@@ -27,8 +30,8 @@ Proyecto de una tienda de ropa y accesorios inspirados en la música para Taller
 
 | Ubicación | Estado |
 | --- | --- |
-| [primera-entrega](primera-entrega/index.html) | HTML, CSS y JavaScript: catálogo y ficha reutilizables; contraste corregido. |
-| [segunda-entrega](segunda-entrega/README.md) | Etapas 1 a 5 integradas; fixes de revisión final preparados. |
+| [primera-entrega](primera-entrega/index.html) | HTML, CSS y JavaScript: catálogo y ficha reutilizables, contraste y bocetos corregidos. |
+| [segunda-entrega](segunda-entrega/README.md) | React con etapas 1 a 5 integradas y carrito conectado a la API local. |
 
 La segunda entrega se desarrolla por etapas. Todas las páginas actuales funcionan en React:
 Inicio, Nosotros, catálogo, ficha de producto, carrito, Cuenta y Contacto, además de Novedades en el pie.
@@ -37,16 +40,18 @@ Los productos se obtienen mediante fetch y async/await: json-server durante el d
 publicado junto al sitio en producción. La aplicación valida la respuesta antes de mostrarla.
 El carrito de segunda entrega guarda las variantes mediante GET, POST, PATCH y DELETE en
 json-server local. El navegador conserva el identificador de sesión y la preferencia de cupón.
-La publicación estática informa que el carrito con escritura se prueba en la versión local.
+La compilación estática informa que el carrito con escritura se prueba en la versión local.
+La profesora confirmó que para esta entrega alcanza con ejecutar la API localmente;
+no se requiere alojar un servidor de escritura en internet.
 Los formularios validan mientras se escribe y muestran mensajes accesibles.
 
 | Etapa | Contenido | Estado |
 | --- | --- | --- |
-| 1 | Vite, dependencias, alias, Sass y servicio simulado. | Preparada. |
+| 1 | Vite, dependencias, alias, Sass y servicio simulado. | Implementada. |
 | 2 | Inicio, Nosotros, estructura compartida, rutas y navegación con HTML. | Implementada. |
 | 3 | Catálogo y ficha de producto en React, conectados a la API con fetch y async/await. | Implementada. |
 | 4 | Carrito y formularios en React, persistencia y validación en tiempo real. | Implementada. |
-| 5 | Revisión final, validación de datos y preparación de la publicación. | Integrada en main; publicación y otros navegadores pendientes. |
+| 5 | Revisión final, validación de datos y preparación de la publicación. | Integrada en main; publicación manual. |
 
 ## Correcciones de la primera entrega
 
@@ -71,7 +76,7 @@ El carrito de esta entrega conserva sus datos en el navegador con localStorage.
 
 El fix se verificó el 6 de noviembre de 2026: ocho HTML sin mensajes del validador Nu,
 26 fichas dinámicas comprobadas y pruebas de filtros, carrito y contraste en el navegador
-integrado. La revisión en otros navegadores continúa pendiente.
+integrado.
 
 ## Ejecución de la segunda entrega
 
@@ -129,7 +134,9 @@ npm run preview
 ```
 
 Abrir la dirección que muestre Vite: la raíz redirige a segunda-entrega.
-Esta versión incluye el catálogo simulado y no requiere iniciar services.
+El catálogo de esta versión usa el JSON publicado y no requiere iniciar services.
+El carrito con escritura se prueba con npm run dev y npm run services; sin una API
+de producción configurada, la compilación muestra el aviso de alcance local.
 El build prepara dist con ambas entregas, la redirección y el JSON de productos.
 No modifica primera-entrega. No subir dist ni node_modules.
 
@@ -139,12 +146,14 @@ No modifica primera-entrega. No subir dist ni node_modules.
 - Vite y el plugin oficial de React.
 - React Router DOM con HashRouter, rutas hijas, Outlet, Link y NavLink.
 - Sass con archivos `.scss` dentro de `src/styles`.
-- json-server para simular el servicio de productos.
+- json-server para el servicio local de productos y carrito: GET, POST, PATCH y DELETE.
 - ESLint y Prettier para revisión y formato del código.
 - HTML semántico mediante JSX y JavaScript con funciones flecha.
 - Formularios controlados con onChange y mensajes de error accesibles.
-- fetch y async/await para consultar la API de productos.
-- localStorage para carrito, descuento y email recordado, sin guardar contraseñas.
+- fetch y async/await para consultar productos y gestionar las compras del carrito.
+- localStorage para el carrito de primera entrega; en segunda entrega, para sesión del carrito,
+  preferencia de descuento y email recordado. Las compras de segunda entrega quedan en db.json.
+  No se guardan contraseñas.
 - Google Fonts: Shrikhand y DM Sans.
 - Git, GitHub, GitHub Actions y Markdown.
 
@@ -164,42 +173,31 @@ no envían correos ni procesan pagos. Las contraseñas no se guardan.
 
 El diseño de escritorio parte de [RetroWave en Canva](https://canva.link/nj6srhxjpvdix0j).
 Se conservan la paleta crema, coral, mostaza y marrón y la tipografía de estilo retro.
-Los [Sketch](primera-entrega/Sketch) y [Mockup](primera-entrega/Mockup) de la primera entrega permanecen disponibles.
+Los [Sketch corregidos](primera-entrega/Sketch) están en primera-entrega: 12 JPG con bocetos
+de las páginas y estados de error. Los [Mockup](primera-entrega/Mockup) se conservan en su carpeta.
 
 ## Pruebas
 
-La revisión final posterior a etapa 5 pasó ESLint, Prettier, validación de datos y compilación.
-Se comprobaron 27 casos de lógica, almacenamiento, filtros, contrato HTTP y publicación,
-y se validaron 41 vistas de HTML generado con Nu HTML Checker, incluidas las 26 fichas y los errores de formulario y API.
-En el navegador integrado se probaron filtros, stock, compra, cupón, recarga, vaciado,
-formularios, navegación por secciones, teclado y recuperación ante datos incorrectos.
-Se corrigió el foco al actualizar, eliminar, restablecer o vaciar el carrito y al cerrar sus diálogos.
-Cantidad y cupón inválidos enfocan su campo; los precios incompletos muestran un error accesible
-sin aplicar filtros incorrectos. Las 26 fotos de productos son distintas y los 132 imports revisados están usados.
-La compilación se recorrió bajo el prefijo real del repositorio, con consola sin errores.
-Las combinaciones principales de texto y el botón secundario con foco superaron 4.5:1 de contraste.
-`npm audit` informó 0 vulnerabilidades dentro de segunda-entrega el 5 de noviembre de 2026.
+Se ejecutaron ESLint, Prettier, validación de datos y compilación. La revisión de
+JavaScript y JSX incluyó 45 archivos y 142 imports, sin imports sobrantes detectados.
+La auditoría de dependencias de segunda-entrega informó cero vulnerabilidades el 7/11/2026.
 
-Estas comprobaciones no equivalen a una auditoría completa de accesibilidad ni a pruebas en todos los navegadores.
-Chrome, Firefox y Edge deben comprobarse manualmente; no se instalaron navegadores nuevos.
-Ver [la revisión y sus pendientes](segunda-entrega/REVISION.md).
+En el navegador integrado se comprobaron filtros, stock, formularios, cantidades,
+cupón, compra, recarga, eliminación, vaciado y navegación con teclado. También se
+probó el carrito contra json-server, incluyendo el reinicio del servicio, errores
+de conexión y recuperación de los datos guardados.
+
+Las verificaciones funcionales indicadas corresponden al navegador integrado.
+El detalle de las comprobaciones realizadas está en [REVISION.md](segunda-entrega/REVISION.md).
 
 ## Trabajo en equipo
 
-Cada integrante prepara sus cambios en su rama y abre un Pull Request hacia `main` para revisión del equipo.
-Se utiliza conventional commits y se conservan las versiones exactas en `package-lock.json`.
+Cada integrante trabaja en su rama y abre un Pull Request hacia `main` para revisión del equipo.
+Las ramas son `albarracin`, `garcia` y `terpin`. Las etapas 1 a 5 y los fixes de código
+de ambas entregas ya están integrados en `main`.
+
+Se utiliza conventional commits y las versiones de dependencias se conservan en `package-lock.json`.
 `node_modules`, `dist` y los archivos locales de entorno se excluyen con `.gitignore`.
-
-La [primera entrega](https://trytofindmeg.github.io/Proyecto2026-Albarracin-Garcia-Terpin/primera-entrega/)
-se conserva en la preparación de la publicación. La dirección prevista para React es
-[segunda entrega](https://trytofindmeg.github.io/Proyecto2026-Albarracin-Garcia-Terpin/segunda-entrega/).
-Esta dirección debe verificarse después del despliegue: la etapa 5 no publica automáticamente.
-Consultar [la guía de publicación](segunda-entrega/PUBLICACION.md).
-
-El workflow revisa PR y cambios de main. Solo publica al ejecutar manualmente
-Revisar y publicar RetroWave desde main. Primero integrar las etapas anteriores del equipo;
-para la etapa 5, orden de merge: Emi, Clari y Octa.
-
 
 ## Conservación de versiones
 
@@ -208,15 +206,36 @@ se retiraron de public después de migrar todas sus páginas a React. Sus fotos 
 en public/sitio-html/imagenes. Los respaldos completos y los paquetes de cada etapa se guardan
 aparte en el escritorio de trabajo y no se suben como carpetas del sitio.
 
-
 ## Fixes de la revisión final
 
-Estos cambios se prepararon después de la etapa 5, manteniendo sus paquetes anteriores separados.
-Las etapas 1 a 5 ya están integradas en main. Los fixes de esta revisión se reúnen en un único aporte
-de Octavio, desde la rama albarracin.
-Se mantiene el mismo nivel de React y JavaScript y no se agregan dependencias.
-El detalle de requisitos, resultados y tareas pendientes está en [REVISION.md](segunda-entrega/REVISION.md).
+En primera-entrega se corrigieron la duplicación de catálogos y fichas, el contraste
+de los botones y la ubicación de los bocetos. La versión sigue usando HTML, CSS y
+JavaScript sin React.
+
+En segunda-entrega se corrigieron validación de precios y foco del teclado y se
+conectó el carrito a json-server local. Las filas se consultan y guardan en db.json
+mediante GET, POST, PATCH y DELETE. El navegador conserva solamente la sesión y el cupón,
+además del email que se pidió recordar.
+
+Estos fixes mantienen el nivel de código trabajado en clase y no agregan dependencias.
+La API se ejecuta localmente, como confirmó la profesora para esta entrega.
 
 ## Sitio publicado
 
-La segunda entrega de RetroWave está disponible en GitHub Pages: https://trytofindmeg.github.io/Proyecto2026-Albarracin-Garcia-Terpin/segunda-entrega/#/.
+El proyecto ofrece ambas entregas con enlaces separados dentro de la misma publicación:
+
+- **Primera entrega:** [HTML, CSS y JavaScript](https://trytofindmeg.github.io/Proyecto2026-Albarracin-Garcia-Terpin/primera-entrega/).
+- **Segunda entrega:** [React](https://trytofindmeg.github.io/Proyecto2026-Albarracin-Garcia-Terpin/segunda-entrega/#/).
+
+Después de integrar cambios en `main`, actualizar la publicación desde GitHub:
+
+1. Abrir **Actions → Revisar y publicar RetroWave**.
+2. Presionar **Run workflow** y seleccionar **main**.
+3. Confirmar la ejecución y esperar que finalicen **revisar** y **publicar**.
+
+Los PR y los push ejecutan las comprobaciones; la publicación requiere esa ejecución manual.
+El proceso incluye las dos carpetas y conserva sus direcciones.
+
+Pages muestra el catálogo y la navegación de la segunda entrega mediante archivos estáticos.
+El carrito con API se prueba localmente con `npm run services` y `npm run dev`.
+Consultar [PUBLICACION.md](segunda-entrega/PUBLICACION.md) para más detalles.
