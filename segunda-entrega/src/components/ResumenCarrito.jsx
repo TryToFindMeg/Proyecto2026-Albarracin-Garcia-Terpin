@@ -3,19 +3,19 @@ import { formatearPrecio } from "@/utils/precios.js";
 import { validarCodigo } from "@/utils/carrito.js";
 
 /** Muestra totales y el cupón aplicado, con validación accesible mientras se escribe. */
-const ResumenCarrito = ({ totales, codigoAplicado, valido, alAplicar, alResumen }) => {
+const ResumenCarrito = ({ totales, codigoAplicado, valido, alAplicar, alResumen, ocupado }) => {
     const [codigo, setCodigo] = useState(codigoAplicado);
     const [editado, setEditado] = useState(false);
     const error = editado ? validarCodigo(codigo) : "";
     /** Comprueba el cupón antes de comunicarlo al carrito. */
-    const aplicar = (evento) => {
+    const aplicar = async (evento) => {
         evento.preventDefault();
         setEditado(true);
         if (validarCodigo(codigo)) {
             document.getElementById("codigo-descuento").focus();
             return;
         }
-        alAplicar(codigo.trim().toUpperCase());
+        await alAplicar(codigo.trim().toUpperCase());
     };
     return (
         <aside className="resumen-carrito" aria-labelledby="titulo-resumen">
@@ -24,6 +24,7 @@ const ResumenCarrito = ({ totales, codigoAplicado, valido, alAplicar, alResumen 
                 <label htmlFor="codigo-descuento">Código de descuento</label>
                 <input
                     id="codigo-descuento"
+                    disabled={ocupado}
                     maxLength="20"
                     value={codigo}
                     onChange={(evento) => {
@@ -41,7 +42,12 @@ const ResumenCarrito = ({ totales, codigoAplicado, valido, alAplicar, alResumen 
                         {error}
                     </p>
                 )}
-                <button id="aplicar-descuento" className="boton boton-secundario" type="submit">
+                <button
+                    id="aplicar-descuento"
+                    className="boton boton-secundario"
+                    type="submit"
+                    disabled={ocupado}
+                >
                     Aplicar descuento
                 </button>
             </form>
@@ -68,7 +74,13 @@ const ResumenCarrito = ({ totales, codigoAplicado, valido, alAplicar, alResumen 
                 Envío no incluido. Los importes se calculan con las cantidades que estás viendo; Actualizar
                 carrito las guarda.
             </p>
-            <button id="ver-resumen" className="boton" type="button" onClick={alResumen} disabled={!valido}>
+            <button
+                id="ver-resumen"
+                className="boton"
+                type="button"
+                onClick={alResumen}
+                disabled={!valido || ocupado}
+            >
                 Ver resumen de prueba
             </button>
             <p className="aviso-demo">Demostración: no se generan pedidos ni pagos.</p>

@@ -4,7 +4,8 @@ Revisión local del 5 de noviembre de 2026, posterior a la etapa 5. Se contrast�
 [las consignas del segundo parcial](https://ucc-tallerdesarrolloweb.github.io/filminas/Proyecto.html#/)
 y con Requerimientos.md aportado por el equipo, que se conserva sin cambios.
 
-La copia local cumple los requisitos técnicos comprobados. Se encontraron y corrigieron fallos de foco
+La revisión del 5/11 cubrió los requisitos que se comprobaron en esa fecha; la observación
+posterior de la profesora amplía el carrito a las operaciones de la API y se corrige el 7/11. Se encontraron y corrigieron fallos de foco
 y de validación de precios; las comprobaciones posteriores pasaron. La integración de los fixes en main,
 la revisión en otros navegadores y el despliegue público se verifican por separado al finalizar los PR.
 
@@ -52,11 +53,11 @@ Se mantiene el alcance de escritorio indicado por el equipo. No hizo falta modif
 | Imagen en public y assets       | Fotos estáticas en public y presentación importada desde src/assets.                                                                                                      |
 | Validaciones con onChange       | Cuenta, contacto, novedades, cantidades, cupón y filtros con mensajes accesibles.                                                                                         |
 | Componente genérico reutilizado | Boton, Tarjeta y Campo se reutilizan en la interfaz.                                                                                                                      |
-| localStorage                    | Variantes de compra, cupón y email elegido; no se guardan contraseñas.                                                                                                    |
+| localStorage                    | Identificador de sesión del carrito, cupón y email elegido; las compras quedan en db.json. No se guardan contraseñas.                                                     |
 | Propiedades e imports usados    | Revisión de 42 archivos JS/JSX y 132 imports sin usos sobrantes detectados; los nuevos identificadores y callbacks participan del manejo de foco.                         |
-| json-server y db.json           | Mock en desarrollo con GET /productos; base de 26 productos.                                                                                                              |
-| Una operación de servicio       | El catálogo y los precios se leen con GET. La consigna permite una acción; no exige implementar todas las operaciones CRUD.                                               |
-| fetch y async/await             | obtenerProductos consulta por HTTP y valida su respuesta antes de renderizar.                                                                                             |
+| json-server y db.json           | Mock en desarrollo con 26 productos y recurso carrito; GET /productos y GET, POST, PATCH, DELETE /carrito.                                                                |
+| Una operación de servicio       | Se incorporan las operaciones de carrito que indicó la profesora: consulta, alta, cantidad y baja por API. Vaciado por DELETE de cada fila.                               |
+| fetch y async/await             | Productos y carrito se consultan por HTTP; se espera y valida la respuesta antes de confirmar las operaciones.                                                            |
 | Renderizado dinámico            | Un catálogo para todas las categorías y una ficha para cualquier identificador.                                                                                           |
 | Corrección de duplicación       | No hay HTML distinto para cada categoría o producto en la segunda entrega.                                                                                                |
 
@@ -122,3 +123,76 @@ de la raíz y la primera entrega se conservaron sin modificaciones de esta revis
 El workflow está preparado para revisar PR/main y publicar solo al ejecutarlo manualmente desde main.
 La ejecución real de GitHub Actions y el sitio público no se modificaron ni se dieron por comprobados
 durante esta revisión local.
+
+## Corrección del 7/11: carrito mediante API local
+
+Corrección del 7 de noviembre de 2026: las compras de la segunda entrega se guardan
+en `segunda-entrega/src/data/db.json`, recurso `carrito`, mediante json-server.
+
+| Operación | Petición                          | Comportamiento                                        |
+| --------- | --------------------------------- | ----------------------------------------------------- |
+| Consultar | GET /carrito?sesion=...           | Recuperar el carrito de este navegador.               |
+| Agregar   | POST /carrito                     | Crear una fila con producto, talle, color y cantidad. |
+| Modificar | PATCH /carrito/:id                | Actualizar la cantidad de una fila.                   |
+| Eliminar  | DELETE /carrito/:id               | Quitar una variante.                                  |
+| Vaciar    | DELETE /carrito/:id por cada fila | Quitar las filas de esa sesión después de confirmar.  |
+
+Cada fila tiene un `id` asignado por la API y un `productoId` que identifica la prenda.
+En React se usan `registroId` e `id`, respectivamente. El navegador conserva solo
+`retrowave-api-sesion` y la preferencia `retrowave-api-descuento`; las compras no se
+guardan en localStorage. El identificador separa navegadores de esta demostración:
+no es un sistema de autenticación ni de cuentas.
+
+La base entregada tiene `carrito: []`. Las compras que se hagan localmente se conservan
+en ese archivo al cerrar y reiniciar json-server. El carrito anterior de primera entrega
+no se borra ni se importa automáticamente; sus claves de almacenamiento se conservan.
+No subir carritos de prueba al repositorio: entregar el recurso vacío.
+
+Antes de confirmar una compra, React espera la escritura y vuelve a consultar el servicio.
+Si falla, informa el error y recupera lo que realmente quedó guardado cuando la API responde.
+json-server no ofrece transacciones: si una actualización de varias filas falla a mitad de camino,
+puede haber cambios parciales. No se anuncia éxito y se vuelve a leer la selección real.
+Se bloquean acciones repetidas mientras se guarda. Consultar carrito guardado permite
+recuperar cambios realizados desde otra pestaña; recargar también consulta la API.
+
+### Cómo probar la corrección
+
+Desde la raíz del repositorio, instalar si hace falta:
+
+```powershell
+cd segunda-entrega
+npm ci
+```
+
+Dejar una terminal en esa carpeta ejecutando `npm run services` y otra con `npm run dev`.
+Abrir la dirección de Vite, agregar una prenda, cambiar cantidad, aplicar RETRO10,
+eliminar y confirmar el vaciado. Verificar las filas en `src/data/db.json` o con
+GET http://127.0.0.1:4000/carrito. Mantener siempre el mismo origen, por ejemplo
+http://127.0.0.1:5173/, para recuperar la misma sesión de navegador.
+
+Apagar la API debe producir un aviso, sin confirmar escrituras ni presentar un carrito
+vacío como resultado de una consulta fallida. Reiniciar la API y usar Volver a consultar
+el carrito recupera los datos. No hace falta instalar React, Sass ni json-server globalmente.
+
+### GitHub Pages
+
+El sitio publicado conserva el catálogo y la navegación mediante el mock GET estático.
+El carrito con escritura se evalúa localmente: con `VITE_API_URL` vacío en una compilación,
+se muestra ese aviso y se deshabilita Agregar al carrito. No se cambia a localStorage como
+alternativa silenciosa ni se intenta escribir en `api/productos.json`.
+
+Para usar una API externa en el futuro, `VITE_API_URL` debe apuntar a un servicio que soporte
+productos y carrito con estos métodos. Eso requiere configurar y alojar ese servicio;
+no se incluyó ningún alojamiento, cuenta o despliegue en este fix.
+
+### Validación de esta corrección
+
+El 7/11/2026 pasaron 26 comprobaciones de API con peticiones HTTP reales y 18
+observaciones de navegador: variantes, cantidades, descuento, recarga, reinicio de
+json-server, error de escritura, recuperación, eliminación, vaciado y alcance del build.
+La base de prueba quedó separada del proyecto; el recurso carrito entregado está vacío.
+Pasaron `npm run check` y `npm audit --audit-level=low`, con cero vulnerabilidades.
+Cinco vistas renderizadas no tienen errores de Nu HTML Checker. Las tres vistas de
+desarrollo tienen un aviso por `type="text/css"` que añade Vite a su etiqueta style;
+las dos vistas compiladas no presentan ese aviso. No se modificó Sass ni la primera entrega.
+Estas pruebas se realizaron en el navegador integrado; no acreditan pruebas en otros motores.

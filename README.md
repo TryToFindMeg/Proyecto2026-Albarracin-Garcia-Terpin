@@ -9,6 +9,7 @@ Proyecto de una tienda de ropa y accesorios inspirados en la música para Taller
 - [Integrantes](#integrantes)
 - [Estado de las entregas](#estado-de-las-entregas)
 - [Correcciones de la primera entrega](#correcciones-de-la-primera-entrega)
+- [Carrito conectado a la API local](segunda-entrega/README.md#carrito-conectado-a-la-api-local)
 - [Ejecución de la segunda entrega](#ejecución-de-la-segunda-entrega)
 - [Tecnologías](#tecnologías)
 - [Contenido del sitio](#contenido-del-sitio)
@@ -34,7 +35,9 @@ Inicio, Nosotros, catálogo, ficha de producto, carrito, Cuenta y Contacto, adem
 El catálogo comparte una página para todas las categorías y una ficha reutilizable por identificador.
 Los productos se obtienen mediante fetch y async/await: json-server durante el desarrollo y un mock JSON
 publicado junto al sitio en producción. La aplicación valida la respuesta antes de mostrarla.
-El carrito conserva las variantes y el descuento de las etapas anteriores y se sincroniza entre pestañas.
+El carrito de segunda entrega guarda las variantes mediante GET, POST, PATCH y DELETE en
+json-server local. El navegador conserva el identificador de sesión y la preferencia de cupón.
+La publicación estática informa que el carrito con escritura se prueba en la versión local.
 Los formularios validan mientras se escribe y muestran mensajes accesibles.
 
 | Etapa | Contenido | Estado |
@@ -93,6 +96,8 @@ npm run services
 ```
 
 La API queda en http://127.0.0.1:4000/productos y obtiene sus 26 productos de `src/data/db.json`.
+El recurso http://127.0.0.1:4000/carrito permite consultar, agregar, modificar y eliminar compras
+y conserva sus cambios en el mismo archivo. Ver [ejecución y prueba del carrito local](segunda-entrega/README.md#carrito-conectado-a-la-api-local).
 Este servicio se utiliza al trabajar con npm run dev. La compilación de producción incluye
 su propio mock GET de productos y puede consultarlo sin json-server encendido.
 

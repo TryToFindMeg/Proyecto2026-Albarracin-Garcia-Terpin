@@ -1,76 +1,11 @@
-import { leerTextoLocal } from "@/utils/almacenamiento.js";
+import { leerTextoLocal, guardarTextoLocal } from "@/utils/almacenamiento.js";
 
-/**
- * Recupera variantes guardadas sin depender de una copia local de los productos.
- * @returns {Array} Variantes con identificador, talle, color y cantidad válidos.
- */
-export const leerCarrito = () => {
-    try {
-        const datos = JSON.parse(leerTextoLocal("retrowave-carrito"));
-        if (!Array.isArray(datos)) return [];
-        const carrito = [];
-        for (const item of datos) {
-            if (
-                !item ||
-                typeof item.id !== "string" ||
-                !item.id ||
-                typeof item.talle !== "string" ||
-                !item.talle ||
-                typeof item.color !== "string" ||
-                !item.color ||
-                !Number.isInteger(item.cantidad) ||
-                item.cantidad < 1 ||
-                item.cantidad > 10
-            )
-                continue;
-            const existente = carrito.find(
-                (actual) =>
-                    actual.id === item.id && actual.talle === item.talle && actual.color === item.color,
-            );
-            if (existente) existente.cantidad = Math.min(10, existente.cantidad + item.cantidad);
-            else carrito.push({ id: item.id, talle: item.talle, color: item.color, cantidad: item.cantidad });
-        }
-        return carrito;
-    } catch {
-        return [];
-    }
-};
+/** Recupera solamente la preferencia de cupón; las filas se consultan a la API. */
+export const leerCodigo = () => (leerTextoLocal("retrowave-api-descuento") === "RETRO10" ? "RETRO10" : "");
 
-/** Recupera el carrito y el código de descuento usados por las etapas anteriores. */
-export const leerSeleccion = () => {
-    const carrito = leerCarrito();
-    return {
-        carrito,
-        codigo: carrito.length > 0 && leerTextoLocal("retrowave-descuento") === "RETRO10" ? "RETRO10" : "",
-    };
-};
-
-/** Guarda ambas claves y conserva su contenido anterior si una escritura falla. */
-export const guardarSeleccion = ({ carrito, codigo }) => {
-    let anteriorCarrito;
-    let anteriorCodigo;
-    try {
-        anteriorCarrito = localStorage.getItem("retrowave-carrito");
-        anteriorCodigo = localStorage.getItem("retrowave-descuento");
-    } catch {
-        throw new Error("El navegador no permite acceder al carrito guardado.");
-    }
-    try {
-        localStorage.setItem("retrowave-carrito", JSON.stringify(carrito));
-        if (carrito.length > 0 && codigo === "RETRO10") localStorage.setItem("retrowave-descuento", codigo);
-        else localStorage.removeItem("retrowave-descuento");
-    } catch {
-        try {
-            if (anteriorCarrito === null) localStorage.removeItem("retrowave-carrito");
-            else localStorage.setItem("retrowave-carrito", anteriorCarrito);
-            if (anteriorCodigo === null) localStorage.removeItem("retrowave-descuento");
-            else localStorage.setItem("retrowave-descuento", anteriorCodigo);
-        } catch {
-            /* El aviso permite informar también un bloqueo persistente del navegador. */
-        }
-        throw new Error("El navegador no pudo guardar el carrito. Revisá los permisos de almacenamiento.");
-    }
-};
+/** Conserva el cupón sin modificar las claves del carrito de primera entrega. */
+export const guardarCodigo = (codigo) =>
+    guardarTextoLocal("retrowave-api-descuento", codigo === "RETRO10" ? codigo : null);
 
 /** Valida una cantidad del formulario sin borrar lo que está escribiendo el usuario. */
 export const validarCantidad = (valor) => {
