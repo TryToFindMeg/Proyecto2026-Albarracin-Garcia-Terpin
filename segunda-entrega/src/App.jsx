@@ -9,12 +9,16 @@ import Carrito from "@/pages/Carrito.jsx";
 import Cuenta from "@/pages/Cuenta.jsx";
 import Contacto from "@/pages/Contacto.jsx";
 import NoEncontrada from "@/pages/NoEncontrada.jsx";
+import { obtenerContenido } from "@/api/contenido.js";
 import { obtenerProductos } from "@/api/productos.js";
 import { obtenerCarrito, guardarCarrito, carritoDisponible } from "@/api/carrito.js";
 import { leerCodigo, guardarCodigo, sumarProducto } from "@/utils/carrito.js";
 
 /** Comparte el catálogo y el carrito que se consulta y modifica a través de la API. */
 const App = () => {
+    const [contenido, setContenido] = useState(null);
+    const [errorContenido, setErrorContenido] = useState("");
+    const [intentoContenido, setIntentoContenido] = useState(0);
     const [productos, setProductos] = useState([]);
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState("");
@@ -25,6 +29,28 @@ const App = () => {
     const [intentoCarrito, setIntentoCarrito] = useState(0);
     const [guardando, setGuardando] = useState(false);
     const unidades = seleccion.carrito.reduce((total, item) => total + item.cantidad, 0);
+    useEffect(() => {
+        let activo = true;
+        const cargar = async () => {
+            try {
+                const datos = await obtenerContenido();
+                if (activo) setContenido(datos);
+            } catch {
+                if (activo)
+                    setErrorContenido(
+                        "No pudimos cargar el contenido del sitio. Revisá que la API esté encendida y volvé a intentar.",
+                    );
+            }
+        };
+        cargar();
+        return () => {
+            activo = false;
+        };
+    }, [intentoContenido]);
+    const reintentarContenido = () => {
+        setErrorContenido("");
+        setIntentoContenido((valor) => valor + 1);
+    };
     useEffect(() => {
         let activo = true;
         /** Consulta el catálogo y evita actualizar una vista desmontada. */
@@ -120,11 +146,23 @@ const App = () => {
     return (
         <HashRouter>
             <Routes>
-                <Route path="/" element={<Layout productos={productos} unidades={unidades} />}>
+                <Route
+                    path="/"
+                    element={
+                        <Layout
+                            productos={productos}
+                            unidades={unidades}
+                            contenido={contenido}
+                            errorContenido={errorContenido}
+                            reintentarContenido={reintentarContenido}
+                        />
+                    }
+                >
                     <Route
                         index
                         element={
                             <Inicio
+                                contenido={contenido}
                                 productos={productos}
                                 cargando={cargando}
                                 error={error}
@@ -137,6 +175,7 @@ const App = () => {
                         path="productos"
                         element={
                             <Catalogo
+                                opciones={contenido?.catalogo}
                                 productos={productos}
                                 cargando={cargando}
                                 error={error}
@@ -148,6 +187,7 @@ const App = () => {
                         path="producto/:id"
                         element={
                             <Producto
+                                generos={contenido?.catalogo.generos}
                                 productos={productos}
                                 cargando={cargando}
                                 error={error}
@@ -171,8 +211,11 @@ const App = () => {
                             />
                         }
                     />
-                    <Route path="cuenta" element={<Cuenta />} />
-                    <Route path="contacto" element={<Contacto />} />
+                    <Route
+                        path="cuenta"
+                        element={<Cuenta formulariosCuenta={contenido?.cuenta.formulariosCuenta} />}
+                    />
+                    <Route path="contacto" element={<Contacto contenido={contenido?.contacto} />} />
                     <Route path="*" element={<NoEncontrada />} />
                 </Route>
             </Routes>

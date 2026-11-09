@@ -1,12 +1,11 @@
 import { useState } from "react";
 import Campo from "@/components/Campo.jsx";
-import { motivosContacto } from "@/data/contacto.js";
 import { validarContacto } from "@/utils/validaciones.js";
 
 const inicial = { nombre: "", email: "", motivo: "", pedido: "", mensaje: "" };
 
 /** Valida una consulta en tiempo real y muestra una confirmación de demostración. */
-const FormularioContacto = () => {
+const FormularioContacto = ({ motivosContacto }) => {
     const [valores, setValores] = useState(inicial);
     const [tocados, setTocados] = useState({});
     const [intentado, setIntentado] = useState(false);

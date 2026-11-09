@@ -4,12 +4,12 @@
 
 Integrantes: Octavio Albarracin, Emi Garcia y Clari Terpin.
 
-## Estado: etapas integradas y carrito conectado a la API local
+## Descripción
 
 Todo el sitio actual funciona en React: Inicio, Nosotros, catálogo, detalle, carrito,
 Cuenta, Contacto y Novedades. Conserva el diseño de escritorio, la navbar fija, las fuentes
-Shrikhand y DM Sans y las fotografías locales. La publicación está preparada para ejecutarla
-manualmente después de integrar los aportes del equipo. No se publicó desde esta copia local.
+Shrikhand y DM Sans y las fotografías locales. El carrito se conecta a una API local y la
+versión estática del sitio se publica mediante GitHub Pages.
 
 - [Instalación y ejecución](#instalación-y-ejecución)
 - [Comandos](#comandos)
@@ -34,7 +34,6 @@ npm ci
 ```
 
 Si las dependencias ya están instaladas y el lockfile no cambió, no hace falta repetirlo.
-La etapa 5 no agrega dependencias ni cambia versiones: actualiza los scripts de comprobación y build.
 En PowerShell se puede usar npm.cmd. React y Sass no necesitan instalación global.
 
 ### 2. Desarrollo: API y React
@@ -47,7 +46,7 @@ Terminal 1:
 npm run services
 ```
 
-json-server lee src/data/db.json y responde en http://127.0.0.1:4000/productos y /carrito.
+json-server lee src/data/db.json y responde en http://127.0.0.1:4000/productos, /contenido y /carrito.
 El recurso carrito permite GET, POST, PATCH y DELETE y guarda sus cambios en ese archivo.
 
 Terminal 2:
@@ -72,7 +71,7 @@ npm run preview
 
 Abrir la dirección que indique preview, normalmente http://127.0.0.1:4173/.
 La raíz redirige a http://127.0.0.1:4173/segunda-entrega/.
-La compilación incluye un mock GET de productos: el catálogo no necesita json-server encendido.
+La compilación incluye mocks GET de productos y contenido: el sitio puede leerse sin json-server encendido.
 El carrito con API se prueba con npm run dev y npm run services; en la publicación estática
 queda informado como disponible en la versión local, sin simular escrituras en el navegador.
 La versión anterior se puede consultar en /primera-entrega/.
@@ -97,6 +96,8 @@ Los pasos de GitHub Pages están en [PUBLICACION.md](PUBLICACION.md).
 
 HashRouter permite recargar las rutas en GitHub Pages. Los enlaces a secciones usan un parámetro
 como `#/contacto?seccion=envios` y desplazan también el foco para navegar con teclado.
+Los enlaces de categorías del pie agregan `seccion=titulo-catalogo` para mostrar el encabezado
+del catálogo debajo de la barra fija, incluso al seleccionar otra vez la misma categoría.
 
 ## Comandos
 
@@ -122,7 +123,7 @@ como `#/contacto?seccion=envios` y desplazan también el foco para navegar con t
 | `src/components` | Componentes reutilizables, filtros, formularios, ficha y carrito. |
 | `src/pages`      | Las páginas React y la vista no encontrada.                       |
 | `src/layouts`    | Layout con Outlet, metadatos, foco y desplazamiento.              |
-| `src/data`       | db.json y opciones/contenido de la interfaz.                      |
+| `src/data`       | Solo db.json: productos, carrito y contenido de la interfaz.      |
 | `src/utils`      | Precios, filtros, validaciones y almacenamiento.                  |
 | `src/styles`     | Todos los estilos en archivos .scss con variables y @use.         |
 | `src/assets`     | Imagen importada desde Inicio.                                    |
@@ -152,14 +153,15 @@ El JSON público se genera desde src/data/db.json durante cada build. Es un mock
 no es un backend con usuarios, pedidos ni escritura remota. Cambiar db.json y volver a compilar actualiza el catálogo publicado.
 
 Para usar otra API, copiar .env.example a .env y definir VITE_API_URL con su dirección base,
-sin /productos al final. Esa API debe responder a GET /productos con un array de productos
+sin /productos al final. Esa API debe responder a GET /contenido con la configuración del sitio
+y a GET /productos con un array de productos
 y soportar también el recurso carrito con GET, POST, PATCH y DELETE, permitiendo las consultas del navegador. Reiniciar Vite y volver a compilar para aplicar la configuración.
 Una API configurada que falla muestra el error: no se sustituye silenciosamente por el catálogo local.
 No subir .env. Las variables VITE_ son públicas; nunca colocar claves o contraseñas.
 
 ## Carrito conectado a la API local
 
-Corrección del 7 de noviembre de 2026: las compras de la segunda entrega se guardan
+Las compras de la segunda entrega se guardan
 en `segunda-entrega/src/data/db.json`, recurso `carrito`, mediante json-server.
 
 | Operación | Petición                          | Comportamiento                                        |
@@ -188,7 +190,7 @@ puede haber cambios parciales. No se anuncia éxito y se vuelve a leer la selecc
 Se bloquean acciones repetidas mientras se guarda. Consultar carrito guardado permite
 recuperar cambios realizados desde otra pestaña; recargar también consulta la API.
 
-### Cómo probar la corrección
+### Cómo probar el carrito
 
 Desde la raíz del repositorio, instalar si hace falta:
 
@@ -216,9 +218,9 @@ alternativa silenciosa ni se intenta escribir en `api/productos.json`.
 
 Para usar una API externa en el futuro, `VITE_API_URL` debe apuntar a un servicio que soporte
 productos y carrito con estos métodos. Eso requiere configurar y alojar ese servicio;
-no se incluyó ningún alojamiento, cuenta o despliegue en este fix.
+el proyecto no incluye ese alojamiento.
 
-### Validación de esta corrección
+### Comprobaciones del carrito
 
 El 7/11/2026 pasaron 26 comprobaciones de API con peticiones HTTP reales y 18
 observaciones de navegador: variantes, cantidades, descuento, recarga, reinicio de
@@ -269,19 +271,16 @@ Las combinaciones principales de texto comprobadas superaron 4.5:1; esto no es u
 npm audit informó 0 vulnerabilidades dentro de segunda-entrega. Las dependencias y el lockfile no cambiaron.
 
 Ver [REVISION.md](REVISION.md) para relacionar comprobaciones y requisitos.
-Quedan pendientes las pruebas manuales en Chrome, Firefox y Edge, integrar los aportes en main,
-ejecutar el workflow y comprobar el sitio publicado. No se instalaron otros navegadores ni se publicaron cambios.
+Las pruebas manuales en Chrome, Firefox y Edge quedan fuera de las comprobaciones registradas.
+Después de publicar, verificar los enlaces, recursos y navegación en la dirección de GitHub Pages.
 
 ## Trabajo en equipo
 
-Las etapas 1 a 5 quedaron integradas mediante los aportes de Emi, Clari y Octa.
-Los fixes posteriores de la revisión final se reúnen en un único paquete que sube Octavio
-por la rama albarracin, después de actualizarla desde main. El PR de etapa 5 ya está mergeado.
-Los paquetes anteriores permanecen separados y conservan sus versiones.
+Cada integrante trabaja en su rama: `albarracin`, `garcia` o `terpin`.
+Los cambios se integran mediante Pull Requests hacia `main`, con revisión del equipo.
 
-El workflow de la raíz revisa PR y push a main; la publicación se ejecuta solo manualmente desde main.
-No subir node_modules, dist, .env, ZIP, respaldos ni instructivos. Se suben los once archivos
-incluidos en el paquete de fixes, entre ellos los dos README y REVISION.md.
+El workflow de la raíz revisa los PR y los push a main. La publicación se ejecuta
+manualmente desde main. `node_modules`, `dist` y `.env` se excluyen del repositorio.
 
 ## Material
 
@@ -290,3 +289,24 @@ incluidos en el paquete de fixes, entre ellos los dos README y REVISION.md.
 - [APIs simuladas](https://ucc-tallerdesarrolloweb.github.io/filminas/U7_mock-api.html#/).
 - [Publicación con Vite](https://vite.dev/guide/static-deploy.html).
 - [Variables y modos de Vite](https://vite.dev/guide/env-and-mode.html).
+
+## Datos de la interfaz
+
+`src/data` contiene únicamente `db.json`. Además de `productos` y `carrito`, incluye
+el recurso `contenido`, con cuatro grupos: `catalogo`, `inicio`, `cuenta` y `contacto`.
+Se retiraron los antiguos archivos `catalogo.js`, `inicio.js`, `cuenta.js` y `contacto.js`.
+
+La función `obtenerContenido` de `src/api/contenido.js` usa fetch y async/await para
+consultar GET /contenido en desarrollo. App guarda la respuesta con useState y pasa
+las opciones y textos mediante props. Mientras carga se informa el estado; si falla,
+se muestra un aviso con la opción Intentar de nuevo. Las páginas y componentes no
+importan directamente archivos de datos.
+
+Los scripts de comprobación y publicación usan `leerBaseDatos`, de `src/api/archivos.js`,
+para leer el JSON con Node. El build valida los datos y genera `api/contenido.json`
+junto a `api/productos.json`. La versión publicada consulta ambos con funciones de api;
+el carrito con escritura continúa disponible mediante json-server local.
+
+No se agregaron dependencias. Para ver un cambio en contenido, guardar db.json y
+recargar la página con json-server encendido. No se guardan contraseñas ni mensajes
+reales de usuarios en ese recurso: los formularios siguen siendo una demostración.

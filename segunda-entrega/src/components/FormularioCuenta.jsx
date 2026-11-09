@@ -1,11 +1,10 @@
 import { useState } from "react";
 import Campo from "@/components/Campo.jsx";
-import { formulariosCuenta } from "@/data/cuenta.js";
 import { validarCuenta } from "@/utils/validaciones.js";
 import { leerEmailRecordado, recordarEmail } from "@/utils/cuenta.js";
 
 /** Reutiliza los campos y la validación de ingreso, recuperación y registro de prueba. */
-const FormularioCuenta = ({ tipo }) => {
+const FormularioCuenta = ({ tipo, formulariosCuenta }) => {
     const configuracion = formulariosCuenta[tipo];
     const [valores, setValores] = useState(() => ({
         ...configuracion.inicial,

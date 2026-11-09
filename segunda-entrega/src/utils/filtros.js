@@ -1,5 +1,3 @@
-import { categorias, generos, ordenes } from "@/data/catalogo.js";
-
 /**
  * Normaliza nombres para aceptar búsquedas como ACDC o Guns N Roses.
  * @param {string} texto - Texto a comparar.
@@ -15,9 +13,10 @@ export const normalizarTexto = (texto) =>
 /**
  * Recupera los filtros de la dirección para conservarlos al navegar y recargar.
  * @param {URLSearchParams} parametros - Parámetros del catálogo.
+ * @param {object} opciones - Categorías, géneros y órdenes obtenidos desde la API.
  * @returns {object} Valores de los controles.
  */
-export const leerFiltros = (parametros) => {
+export const leerFiltros = (parametros, { categorias, generos, ordenes }) => {
     const categoria = parametros.get("categoria") || "all";
     const genero = parametros.get("genero") || "all";
     const orden = parametros.get("orden") || "featured";

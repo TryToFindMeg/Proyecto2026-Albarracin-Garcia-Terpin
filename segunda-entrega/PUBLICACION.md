@@ -64,13 +64,15 @@ Una prueba local no reemplaza esta comprobación pública.
 
 GitHub Pages sirve archivos y no ejecuta json-server. Por eso el build genera un mock de lectura
 en segunda-entrega/api/productos.json desde src/data/db.json, consultado con fetch y async/await.
+También genera api/contenido.json con opciones, destacados y configuración de formularios;
+React lo obtiene con obtenerContenido desde src/api/contenido.js.
 El visitante no depende de la PC del equipo ni del puerto 4000. Cambiar db.json requiere otro build y despliegue.
 El carrito se conecta a json-server en la ejecución local. La publicación estática no ofrece
 ese servicio de escritura: muestra un aviso y no utiliza localStorage como sustituto del carrito API.
 No se ofrecen escrituras de catálogo, autenticación, correos ni pagos.
 
 El workflow deja VITE_API_URL vacío para usar este mock publicado. Para una API externa, modificar
-esa configuración deliberadamente con una dirección pública HTTPS que responda a GET /productos
+esa configuración deliberadamente con una dirección pública HTTPS que responda a GET /productos, GET /contenido
 y GET, POST, PATCH y DELETE del recurso /carrito. Ese alojamiento no forma parte del fix local.
 Las [variables VITE_ son públicas](https://vite.dev/guide/env-and-mode.html); no deben contener secretos.
 

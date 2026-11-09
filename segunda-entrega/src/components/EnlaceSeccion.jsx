@@ -1,9 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 
 /** Navega a una sección con una URL válida y permite volver a enfocarla al repetir el clic. */
-const EnlaceSeccion = ({ to, seccion, clase, children }) => {
+const EnlaceSeccion = ({ to, seccion, consulta, clase, children }) => {
     const ubicacion = useLocation();
-    const parametros = new URLSearchParams(ubicacion.pathname === to ? ubicacion.search : "");
+    const parametros = new URLSearchParams(consulta ?? (ubicacion.pathname === to ? ubicacion.search : ""));
     parametros.set("seccion", seccion);
     /** En la misma página, mueve también el foco si el destino ya estaba seleccionado. */
     const enfocar = () => {

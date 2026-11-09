@@ -3,7 +3,7 @@ import FormularioCuenta from "@/components/FormularioCuenta.jsx";
 import { crearEnlaceImagen } from "@/utils/rutas.js";
 
 /** Presenta los tres formularios de cuenta sin crear una sesión o un usuario reales. */
-const Cuenta = () => (
+const Cuenta = ({ formulariosCuenta }) => (
     <div className="contenedor pagina-cuenta">
         <header className="presentacion presentacion-formularios">
             <div className="presentacion-texto">
@@ -29,9 +29,9 @@ const Cuenta = () => (
                 Crear cuenta
             </EnlaceSeccion>
         </nav>
-        <FormularioCuenta tipo="ingreso" />
-        <FormularioCuenta tipo="recuperacion" />
-        <FormularioCuenta tipo="registro" />
+        <FormularioCuenta tipo="ingreso" formulariosCuenta={formulariosCuenta} />
+        <FormularioCuenta tipo="recuperacion" formulariosCuenta={formulariosCuenta} />
+        <FormularioCuenta tipo="registro" formulariosCuenta={formulariosCuenta} />
     </div>
 );
 export default Cuenta;

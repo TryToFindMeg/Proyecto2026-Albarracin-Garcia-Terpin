@@ -21,13 +21,31 @@ const Pie = () => {
                         <h2>Explorá la tienda</h2>
                         <ul>
                             <li>
-                                <Link to="/productos?categoria=remeras">Remeras</Link>
+                                <EnlaceSeccion
+                                    to="/productos"
+                                    consulta={{ categoria: "remeras" }}
+                                    seccion="titulo-catalogo"
+                                >
+                                    Remeras
+                                </EnlaceSeccion>
                             </li>
                             <li>
-                                <Link to="/productos?categoria=buzos">Buzos</Link>
+                                <EnlaceSeccion
+                                    to="/productos"
+                                    consulta={{ categoria: "buzos" }}
+                                    seccion="titulo-catalogo"
+                                >
+                                    Buzos
+                                </EnlaceSeccion>
                             </li>
                             <li>
-                                <Link to="/productos?categoria=accesorios">Accesorios</Link>
+                                <EnlaceSeccion
+                                    to="/productos"
+                                    consulta={{ categoria: "accesorios" }}
+                                    seccion="titulo-catalogo"
+                                >
+                                    Accesorios
+                                </EnlaceSeccion>
                             </li>
                             <li>
                                 <EnlaceSeccion to="/contacto" seccion="preguntas">

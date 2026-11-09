@@ -3,15 +3,17 @@ import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Cabecera from "@/components/Cabecera.jsx";
 import Pie from "@/components/Pie.jsx";
-import { categorias } from "@/data/catalogo.js";
 
 /**
  * Mantiene encabezado y pie y muestra la página hija mediante Outlet.
  * @returns {import("react").ReactElement} Estructura común del sitio.
  */
-const Layout = ({ productos, unidades }) => {
+const Layout = ({ productos, unidades, contenido, errorContenido, reintentarContenido }) => {
     const ubicacion = useLocation();
     const seccion = new URLSearchParams(ubicacion.search).get("seccion") || ubicacion.hash.slice(1);
+
+    const categoriaDestino =
+        seccion === "titulo-catalogo" ? new URLSearchParams(ubicacion.search).get("categoria") : "";
 
     useEffect(() => {
         const paginas = {
@@ -37,7 +39,9 @@ const Layout = ({ productos, unidades }) => {
             descripcion: "Consultanos por prendas, talles, envíos y cambios.",
         };
         const parametros = new URLSearchParams(ubicacion.search);
-        const categoria = categorias.find((item) => item.id === parametros.get("categoria"));
+        const categoria = contenido?.catalogo.categorias.find(
+            (item) => item.id === parametros.get("categoria"),
+        );
         if (ubicacion.pathname === "/productos") {
             paginas["/productos"] = {
                 titulo: categoria?.nombre || "Todos los productos",
@@ -58,17 +62,18 @@ const Layout = ({ productos, unidades }) => {
         };
         document.title = `${pagina.titulo} | RetroWave`;
         document.querySelector('meta[name="description"]').setAttribute("content", pagina.descripcion);
-    }, [ubicacion.pathname, ubicacion.search, productos]);
+    }, [ubicacion.pathname, ubicacion.search, productos, contenido]);
 
     useEffect(() => {
-        const destino = document.getElementById(seccion || "contenido");
-        if (!seccion || seccion === "encabezado") {
+        const destinoSeccion = document.getElementById(seccion);
+        const destino = destinoSeccion || document.getElementById("contenido");
+        if (!destinoSeccion || seccion === "encabezado") {
             window.scrollTo(0, 0);
         } else {
             destino?.scrollIntoView();
         }
         destino?.focus({ preventScroll: true });
-    }, [ubicacion.pathname, seccion]);
+    }, [ubicacion.pathname, seccion, categoriaDestino, contenido]);
 
     return (
         <>
@@ -77,7 +82,22 @@ const Layout = ({ productos, unidades }) => {
             </EnlaceSeccion>
             <Cabecera unidades={unidades} />
             <main id="contenido" tabIndex="-1">
-                <Outlet />
+                {contenido ? (
+                    <Outlet />
+                ) : (
+                    <div className="contenedor aviso-catalogo">
+                        {errorContenido ? (
+                            <div role="alert">
+                                <p>{errorContenido}</p>
+                                <button className="boton" type="button" onClick={reintentarContenido}>
+                                    Intentar de nuevo
+                                </button>
+                            </div>
+                        ) : (
+                            <p role="status">Cargando contenido…</p>
+                        )}
+                    </div>
+                )}
             </main>
             <Pie />
         </>

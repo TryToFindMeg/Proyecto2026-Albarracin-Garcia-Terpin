@@ -8,7 +8,7 @@ import Boton from "@/components/Boton.jsx";
  * @param {object} props - Datos, estado del servicio y actualización del carrito.
  * @returns {import("react").ReactElement} Ficha elegida o aviso de producto inexistente.
  */
-const Producto = ({ productos, cargando, error, reintentar, alAgregar, estadoCarrito }) => {
+const Producto = ({ productos, cargando, error, reintentar, alAgregar, estadoCarrito, generos }) => {
     const { id } = useParams();
     const ubicacion = useLocation();
     const producto = productos.find((item) => item.id === id);
@@ -24,6 +24,7 @@ const Producto = ({ productos, cargando, error, reintentar, alAgregar, estadoCar
                 !error &&
                 (producto ? (
                     <FichaProducto
+                        generos={generos}
                         key={producto.id}
                         producto={producto}
                         regreso={`/productos${ubicacion.search || `?categoria=${producto.categoria}`}`}

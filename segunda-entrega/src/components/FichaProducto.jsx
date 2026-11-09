@@ -4,14 +4,13 @@ import EstadoCarrito from "@/components/EstadoCarrito.jsx";
 import { crearEnlaceImagen } from "@/utils/rutas.js";
 import { formatearPrecio } from "@/utils/precios.js";
 import { validarCantidad } from "@/utils/carrito.js";
-import { generos } from "@/data/catalogo.js";
 
 /**
  * Presenta las opciones de compra de cualquier producto del catálogo.
  * @param {object} props - Producto, regreso al catálogo y actualización del contador.
  * @returns {import("react").ReactElement} Ficha reutilizable con formulario controlado.
  */
-const FichaProducto = ({ producto, regreso, alAgregar, estadoCarrito }) => {
+const FichaProducto = ({ producto, regreso, alAgregar, estadoCarrito, generos }) => {
     const [talle, setTalle] = useState(producto.talles[0]);
     const [color, setColor] = useState(producto.colores[0]);
     const [cantidad, setCantidad] = useState("1");
