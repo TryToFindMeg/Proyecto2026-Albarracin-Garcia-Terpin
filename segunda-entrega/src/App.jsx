@@ -31,6 +31,10 @@ const App = () => {
     const unidades = seleccion.carrito.reduce((total, item) => total + item.cantidad, 0);
     useEffect(() => {
         let activo = true;
+        /**
+         * Consulta el contenido de la interfaz y evita actualizar una vista desmontada.
+         * @returns {Promise<void>} Finaliza después de consultar el contenido del sitio.
+         */
         const cargar = async () => {
             try {
                 const datos = await obtenerContenido();
@@ -47,6 +51,10 @@ const App = () => {
             activo = false;
         };
     }, [intentoContenido]);
+    /**
+     * Limpia el error y repite la consulta del contenido de la interfaz.
+     * @returns {void} Actualiza el estado que activa una nueva consulta.
+     */
     const reintentarContenido = () => {
         setErrorContenido("");
         setIntentoContenido((valor) => valor + 1);
