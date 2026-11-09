@@ -106,12 +106,12 @@ de la raíz y la primera entrega se conservaron sin modificaciones de esta revis
 ## Pendientes para cerrar la entrega
 
 - [x] Integrar las etapas 1 a 5 completas del equipo.
-- [ ] Subir e integrar estos once archivos de fixes en un único PR de Octavio desde albarracin.
-- [ ] Ejecutar npm ci y npm run check sobre el main resultante de todos los aportes.
-- [ ] Probar manualmente Chrome, Firefox y Edge y registrar versión, fecha y resultados reales.
-- [ ] Configurar Pages y ejecutar la publicación manual desde main según [PUBLICACION.md](PUBLICACION.md).
-- [ ] Verificar las direcciones públicas, recarga de rutas, fotos y catálogo desde otro equipo.
-- [ ] Confirmar el último commit completo dentro del plazo de entrega.
+- [x] Subir e integrar estos once archivos de fixes en un único PR de Octavio desde albarracin.
+- [x] Ejecutar npm ci y npm run check sobre el main resultante de todos los aportes.
+- [x] Probar manualmente Chrome, Firefox y Edge y registrar versión, fecha y resultados reales.
+- [x] Configurar Pages y ejecutar la publicación manual desde main según [PUBLICACION.md](PUBLICACION.md).
+- [x] Verificar las direcciones públicas, recarga de rutas, fotos y catálogo desde otro equipo.
+- [x] Confirmar el último commit completo dentro del plazo de entrega.
 
 | Navegador                    | Estado de esta revisión                                                                   |
 | ---------------------------- | ----------------------------------------------------------------------------------------- |
