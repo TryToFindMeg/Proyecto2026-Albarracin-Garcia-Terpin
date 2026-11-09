@@ -2,7 +2,6 @@ import { Link, useLocation, useSearchParams } from "react-router-dom";
 import Filtros from "@/components/Filtros.jsx";
 import TarjetaProducto from "@/components/TarjetaProducto.jsx";
 import EstadoProductos from "@/components/EstadoProductos.jsx";
-import { categorias } from "@/data/catalogo.js";
 import { leerFiltros, validarPrecios, filtrarProductos } from "@/utils/filtros.js";
 
 /**
@@ -10,10 +9,11 @@ import { leerFiltros, validarPrecios, filtrarProductos } from "@/utils/filtros.j
  * @param {object} props - Productos y estado de la API.
  * @returns {import("react").ReactElement} Catálogo filtrable de RetroWave.
  */
-const Catalogo = ({ productos, cargando, error, reintentar }) => {
+const Catalogo = ({ productos, cargando, error, reintentar, opciones }) => {
+    const { categorias, generos } = opciones;
     const [parametros, setParametros] = useSearchParams();
     const ubicacion = useLocation();
-    const filtros = leerFiltros(parametros);
+    const filtros = leerFiltros(parametros, opciones);
     const errores = validarPrecios(filtros);
     const preciosValidos = !errores.minimo && !errores.maximo;
     const seleccion = preciosValidos ? filtrarProductos(productos, filtros) : [];
@@ -37,7 +37,9 @@ const Catalogo = ({ productos, cargando, error, reintentar }) => {
     return (
         <div className="contenedor pagina-catalogo">
             <header className="titulo-catalogo">
-                <h1>{categoria.nombre}</h1>
+                <h1 id="titulo-catalogo" tabIndex="-1">
+                    {categoria.nombre}
+                </h1>
                 <p>Encontrá la prenda que lleva tu música.</p>
             </header>
             <nav className="categorias" aria-label="Categorías de productos">
@@ -56,6 +58,7 @@ const Catalogo = ({ productos, cargando, error, reintentar }) => {
             </nav>
             <div className="catalogo-con-filtros">
                 <Filtros
+                    opciones={opciones}
                     filtros={filtros}
                     errores={errores}
                     productos={productos}
@@ -89,6 +92,7 @@ const Catalogo = ({ productos, cargando, error, reintentar }) => {
                                         key={producto.id}
                                         producto={producto}
                                         busqueda={ubicacion.search}
+                                        generos={generos}
                                     />
                                 ))}
                             </div>

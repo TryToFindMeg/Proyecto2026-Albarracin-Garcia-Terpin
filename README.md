@@ -17,7 +17,7 @@ Proyecto de una tienda de ropa y accesorios inspirados en la música para Taller
 - [Pruebas](#pruebas)
 - [Trabajo en equipo](#trabajo-en-equipo)
 - [Conservación de versiones](#conservación-de-versiones)
-- [Fixes de la revisión final](#fixes-de-la-revisión-final)
+- [Datos y navegación](#datos-y-navegación)
 - [Sitio publicado](#sitio-publicado)
 
 ## Integrantes
@@ -28,10 +28,10 @@ Proyecto de una tienda de ropa y accesorios inspirados en la música para Taller
 
 ## Estado de las entregas
 
-| Ubicación | Estado |
-| --- | --- |
+| Ubicación                                     | Estado                                                                                  |
+| --------------------------------------------- | --------------------------------------------------------------------------------------- |
 | [primera-entrega](primera-entrega/index.html) | HTML, CSS y JavaScript: catálogo y ficha reutilizables, contraste y bocetos corregidos. |
-| [segunda-entrega](segunda-entrega/README.md) | React con etapas 1 a 5 integradas y carrito conectado a la API local. |
+| [segunda-entrega](segunda-entrega/README.md)  | React con etapas 1 a 5 integradas y carrito conectado a la API local.                   |
 
 La segunda entrega se desarrolla por etapas. Todas las páginas actuales funcionan en React:
 Inicio, Nosotros, catálogo, ficha de producto, carrito, Cuenta y Contacto, además de Novedades en el pie.
@@ -41,17 +41,16 @@ publicado junto al sitio en producción. La aplicación valida la respuesta ante
 El carrito de segunda entrega guarda las variantes mediante GET, POST, PATCH y DELETE en
 json-server local. El navegador conserva el identificador de sesión y la preferencia de cupón.
 La compilación estática informa que el carrito con escritura se prueba en la versión local.
-La profesora confirmó que para esta entrega alcanza con ejecutar la API localmente;
-no se requiere alojar un servidor de escritura en internet.
+La API de escritura se ejecuta localmente. GitHub Pages publica los archivos estáticos del sitio.
 Los formularios validan mientras se escribe y muestran mensajes accesibles.
 
-| Etapa | Contenido | Estado |
-| --- | --- | --- |
-| 1 | Vite, dependencias, alias, Sass y servicio simulado. | Implementada. |
-| 2 | Inicio, Nosotros, estructura compartida, rutas y navegación con HTML. | Implementada. |
-| 3 | Catálogo y ficha de producto en React, conectados a la API con fetch y async/await. | Implementada. |
-| 4 | Carrito y formularios en React, persistencia y validación en tiempo real. | Implementada. |
-| 5 | Revisión final, validación de datos y preparación de la publicación. | Integrada en main; publicación manual. |
+| Etapa | Contenido                                                                           | Estado                                 |
+| ----- | ----------------------------------------------------------------------------------- | -------------------------------------- |
+| 1     | Vite, dependencias, alias, Sass y servicio simulado.                                | Implementada.                          |
+| 2     | Inicio, Nosotros, estructura compartida, rutas y navegación con HTML.               | Implementada.                          |
+| 3     | Catálogo y ficha de producto en React, conectados a la API con fetch y async/await. | Implementada.                          |
+| 4     | Carrito y formularios en React, persistencia y validación en tiempo real.           | Implementada.                          |
+| 5     | Revisión final, validación de datos y preparación de la publicación.                | Integrada en main; publicación manual. |
 
 ## Correcciones de la primera entrega
 
@@ -74,7 +73,7 @@ Visual Studio Code, o servir esa carpeta con otro servidor estático. Se necesit
 JavaScript habilitado. No requiere React, instalar paquetes ni ejecutar una API.
 El carrito de esta entrega conserva sus datos en el navegador con localStorage.
 
-El fix se verificó el 6 de noviembre de 2026: ocho HTML sin mensajes del validador Nu,
+La primera entrega se verificó el 6 de noviembre de 2026: ocho HTML sin mensajes del validador Nu,
 26 fichas dinámicas comprobadas y pruebas de filtros, carrito y contraste en el navegador
 integrado.
 
@@ -193,8 +192,7 @@ El detalle de las comprobaciones realizadas está en [REVISION.md](segunda-entre
 ## Trabajo en equipo
 
 Cada integrante trabaja en su rama y abre un Pull Request hacia `main` para revisión del equipo.
-Las ramas son `albarracin`, `garcia` y `terpin`. Las etapas 1 a 5 y los fixes de código
-de ambas entregas ya están integrados en `main`.
+Las ramas son `albarracin`, `garcia` y `terpin`.
 
 Se utiliza conventional commits y las versiones de dependencias se conservan en `package-lock.json`.
 `node_modules`, `dist` y los archivos locales de entorno se excluyen con `.gitignore`.
@@ -203,8 +201,7 @@ Se utiliza conventional commits y las versiones de dependencias se conservan en 
 
 La primera entrega permanece separada. El HTML, CSS y JavaScript anteriores de la segunda entrega
 se retiraron de public después de migrar todas sus páginas a React. Sus fotos locales se conservan
-en public/sitio-html/imagenes. Los respaldos completos y los paquetes de cada etapa se guardan
-aparte en el escritorio de trabajo y no se suben como carpetas del sitio.
+en public/sitio-html/imagenes.
 
 ## Sitio publicado
 
@@ -219,3 +216,14 @@ El proceso incluye las dos carpetas y conserva sus direcciones.
 Pages muestra el catálogo y la navegación de la segunda entrega mediante archivos estáticos.
 El carrito con API se prueba localmente con `npm run services` y `npm run dev`.
 Consultar [PUBLICACION.md](segunda-entrega/PUBLICACION.md) para más detalles.
+
+## Datos y navegación
+
+- `segunda-entrega/src/data` contiene solamente `db.json`.
+  Las opciones del catálogo, los destacados, los estilos y el contenido de Cuenta y Contacto
+  forman el recurso `contenido`. React lo consulta con `obtenerContenido` desde `src/api`;
+  los scripts de Node leen la base con `leerBaseDatos`, también en `src/api`.
+  La publicación genera un JSON de lectura para conservar esas páginas en GitHub Pages.
+- Los enlaces Remeras, Buzos y Accesorios del pie seleccionan la categoría
+  y desplazan la página y el foco hasta el título del catálogo, visible debajo de la barra fija.
+  El desplazamiento también funciona al repetir un enlace de la categoría actual.

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Boton from "@/components/Boton.jsx";
 import Tarjeta from "@/components/Tarjeta.jsx";
 import fotoPresentacion from "@/assets/mujer-tienda-vinilos.jpeg";
-import { destacados, estilos } from "@/data/inicio.js";
 import { crearEnlaceImagen } from "@/utils/rutas.js";
 import TarjetaProducto from "@/components/TarjetaProducto.jsx";
 import EstadoProductos from "@/components/EstadoProductos.jsx";
@@ -12,7 +11,8 @@ import EstadoProductos from "@/components/EstadoProductos.jsx";
  * Muestra la presentación, los destacados y los estilos musicales de la tienda.
  * @returns {import("react").ReactElement} Página de Inicio.
  */
-const Inicio = ({ productos, cargando, error, reintentar }) => {
+const Inicio = ({ productos, cargando, error, reintentar, contenido }) => {
+    const { destacados, estilos } = contenido.inicio;
     const productosDestacados = destacados
         .map((id) => productos.find((producto) => producto.id === id))
         .filter(Boolean);
@@ -39,7 +39,11 @@ const Inicio = ({ productos, cargando, error, reintentar }) => {
                 {!cargando && !error && (
                     <div className="lista-destacados">
                         {productosDestacados.map((producto) => (
-                            <TarjetaProducto key={producto.id} producto={producto} />
+                            <TarjetaProducto
+                                key={producto.id}
+                                producto={producto}
+                                generos={contenido.catalogo.generos}
+                            />
                         ))}
                     </div>
                 )}

@@ -1,7 +1,7 @@
 import { mkdir, readdir, rename, writeFile, cp, access } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { resolve, basename, sep } from "node:path";
-import { productos } from "./verificar-datos.js";
+import { productos, contenido } from "./verificar-datos.js";
 
 const raiz = fileURLToPath(new URL("../", import.meta.url));
 const salida = resolve(raiz, "dist");
@@ -20,6 +20,7 @@ for (const nombre of archivos) {
 }
 await mkdir(resolve(segunda, "api"));
 await writeFile(resolve(segunda, "api/productos.json"), JSON.stringify(productos, null, 2) + "\n");
+await writeFile(resolve(segunda, "api/contenido.json"), JSON.stringify(contenido, null, 2) + "\n");
 const excluidos = ["node_modules", "dist"];
 await cp(primera, resolve(salida, "primera-entrega"), {
     recursive: true,
@@ -43,4 +44,6 @@ await writeFile(
 </html>
 `,
 );
-console.log("Publicación preparada en dist: primera entrega, segunda entrega y mock GET de productos.");
+console.log(
+    "Publicación preparada en dist: primera entrega, segunda entrega y mocks GET de productos y contenido.",
+);

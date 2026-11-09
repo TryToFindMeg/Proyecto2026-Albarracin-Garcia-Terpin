@@ -1,10 +1,9 @@
 import EnlaceSeccion from "@/components/EnlaceSeccion.jsx";
 import FormularioContacto from "@/components/FormularioContacto.jsx";
-import { preguntas } from "@/data/contacto.js";
 import { crearEnlaceImagen } from "@/utils/rutas.js";
 
 /** Reúne el formulario de contacto y las preguntas frecuentes del sitio. */
-const Contacto = () => (
+const Contacto = ({ contenido }) => (
     <div className="contenedor pagina-contacto">
         <header className="presentacion presentacion-formularios">
             <div className="presentacion-texto">
@@ -19,10 +18,10 @@ const Contacto = () => (
                 height="320"
             />
         </header>
-        <FormularioContacto />
+        <FormularioContacto motivosContacto={contenido.motivosContacto} />
         <section className="preguntas-frecuentes" id="preguntas" tabIndex="-1">
             <h2>Preguntas frecuentes</h2>
-            {preguntas.map((pregunta) => (
+            {contenido.preguntas.map((pregunta) => (
                 <article key={pregunta.id} id={pregunta.id} tabIndex="-1">
                     <h3>{pregunta.titulo}</h3>
                     <p>{pregunta.texto}</p>

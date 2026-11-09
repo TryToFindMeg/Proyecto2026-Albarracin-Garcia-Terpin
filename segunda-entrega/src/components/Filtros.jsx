@@ -1,11 +1,10 @@
-import { categorias, generos, ordenes } from "@/data/catalogo.js";
-
 /**
  * Presenta controles de filtros que actualizan el catálogo al cambiar.
  * @param {object} props - Preferencias, opciones, errores y acciones del catálogo.
  * @returns {import("react").ReactElement} Formulario accesible de filtros.
  */
-const Filtros = ({ filtros, errores, productos, deshabilitado, alCambiar, alLimpiar }) => {
+const Filtros = ({ filtros, errores, productos, deshabilitado, alCambiar, alLimpiar, opciones }) => {
+    const { categorias, generos, ordenes } = opciones;
     const colores = [...new Set(productos.flatMap((producto) => producto.colores))].sort();
     const talles = [...new Set(productos.flatMap((producto) => producto.talles))];
     /** Comunica al catálogo el nombre y el valor de un control. */
