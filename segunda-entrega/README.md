@@ -11,6 +11,7 @@ Cuenta, Contacto y Novedades. Conserva el diseño de escritorio, la navbar fija,
 Shrikhand y DM Sans y las fotografías locales. El carrito se conecta a una API local y la
 versión estática del sitio se publica mediante GitHub Pages.
 
+- [Descripción](#descripción)
 - [Instalación y ejecución](#instalación-y-ejecución)
 - [Comandos](#comandos)
 - [Organización](#organización)
@@ -19,6 +20,8 @@ versión estática del sitio se publica mediante GitHub Pages.
 - [Carrito y formularios](#carrito-y-formularios)
 - [Revisión](#revisión)
 - [Trabajo en equipo](#trabajo-en-equipo)
+- [Material](#material)
+- [Datos de la interfaz](#datos-de-la-interfaz)
 
 ## Instalación y ejecución
 
